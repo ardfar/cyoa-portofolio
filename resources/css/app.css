@@ -364,3 +364,14 @@ img {
 .tech-btn:hover svg circle,
 .tech-btn:hover svg ellipse,
 .tech-btn:hover svg line{fill:#000000 !important;stroke:#000000 !important}
+
+.gateway-bg{background-color:#0F1220}
+.gateway-dark{background-color:#14162A}
+.gateway-text{color:#E4E7F2}
+.gateway-muted{color:#A3A8C2}
+.gateway-separator{border-color:#2A3045}
+.gateway-card{background-color:#1A1F35;border:1px solid #2A3045;transition:all 0.2s ease-in-out}
+.gateway-card:hover{border-color:#8B7CF9;box-shadow:0 10px 25px rgba(139,124,249,0.15);transform:translateY(-3px)}
+.gateway-accent{color:#8B7CF9;text-shadow:0 0 8px rgba(139,124,249,0.6),0 0 16px rgba(139,124,249,0.3)}
+.gateway-root{min-height:100vh;height:100vh;overflow:hidden}
+.gateway-main{min-height:calc(100vh - 64px);display:flex;align-items:center}
