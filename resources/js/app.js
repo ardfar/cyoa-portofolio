@@ -174,7 +174,46 @@ function preloadCriticalResources() {
 
 // Preload critical resources after page load
 window.addEventListener('load', preloadCriticalResources);
+    initTypingEffect(document);
+    const hero = document.querySelector('.hero-section');
+    if (hero) {
+        if (window.PortfolioJS && typeof window.PortfolioJS.initNeonParticles === 'function') {
+            window.PortfolioJS.initNeonParticles(hero);
+        }
+    }
 });
+
+// Initialize typing effect for elements within a root
+function initTypingEffect(root = document) {
+    const typingEls = root.querySelectorAll('[data-typing]');
+    typingEls.forEach(el => {
+        const existing = el.textContent;
+        const text = el.getAttribute('data-text') || existing;
+        let i = 0;
+        const speedAttr = el.getAttribute('data-speed');
+        const speed = speedAttr ? parseInt(speedAttr, 10) : 50;
+        // Skip typing if speed is 0 or text already matches
+        if (!text || speed === 0 || existing === text) {
+            el.textContent = text;
+            return;
+        }
+        el.textContent = '';
+        const cursor = document.createElement('span');
+        cursor.textContent = '_';
+        cursor.className = 'accent-green';
+        el.appendChild(cursor);
+        const type = () => {
+            if (i < text.length) {
+                cursor.insertAdjacentText('beforebegin', text[i]);
+                i++;
+                setTimeout(type, speed);
+            } else {
+                cursor.remove();
+            }
+        };
+        type();
+    });
+}
 
 // Utility functions
 function showNotification(message, type = 'info') {
@@ -208,5 +247,71 @@ function debounce(func, wait) {
 // Export functions for global use
 window.PortfolioJS = {
     showNotification,
-    debounce
+    debounce,
+    initTypingEffect,
+    initNeonParticles
 };
+
+function initNeonParticles(container) {
+    if (!container) return;
+    let canvas = container.querySelector('canvas.particles-canvas');
+    if (!canvas) {
+        canvas = document.createElement('canvas');
+        canvas.className = 'particles-canvas';
+        container.appendChild(canvas);
+    }
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    function resize() {
+        canvas.width = container.clientWidth;
+        canvas.height = container.clientHeight;
+        const count = Math.max(18, Math.floor(canvas.width / 50));
+        particles = Array.from({ length: count }).map(() => ({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 0.3,
+            vy: (Math.random() - 0.5) * 0.3,
+            r: 1.2 + Math.random() * 1.6
+        }));
+    }
+    resize();
+    window.addEventListener('resize', debounce(resize, 100));
+    let rafId;
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // subtle background tint
+        ctx.fillStyle = 'rgba(26,26,46,0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // draw connections
+        ctx.strokeStyle = 'rgba(0, 247, 166, 0.15)';
+        ctx.lineWidth = 1;
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 80) {
+                    const alpha = (80 - dist) / 80 * 0.3;
+                    ctx.strokeStyle = `rgba(0, 247, 166, ${alpha})`;
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+        // draw particles
+        for (const p of particles) {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(0, 247, 166, 0.35)';
+            ctx.fill();
+            p.x += p.vx; p.y += p.vy;
+            if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+            if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+        }
+        rafId = requestAnimationFrame(draw);
+    }
+    rafId = requestAnimationFrame(draw);
+    return { stop() { cancelAnimationFrame(rafId); } };
+}

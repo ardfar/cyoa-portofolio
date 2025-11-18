@@ -15,7 +15,7 @@
     <meta name="twitter:title" content="{{ config('portfolio.personas.operations.seo.twitter_title', 'Operations & Creative Portfolio') }}">
     <meta name="twitter:description" content="{{ config('portfolio.personas.operations.seo.twitter_description', 'Praktisi operasional dengan fokus pada optimasi proses dan konten kreatif') }}">
     <title>{{ config('portfolio.personas.operations.seo.title', 'Operations & Creative - Portfolio') }}</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="canonical" href="{{ url()->current() }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 </head>
@@ -296,6 +296,5 @@
         </div>
     </section>
 </div>
-<script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

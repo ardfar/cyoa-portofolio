@@ -4,26 +4,22 @@ use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\CmsController;
 use Illuminate\Support\Facades\Route;
 
-// Gateway page - main entry point with caching
+// Gateway page - main entry point (no cache)
 Route::get('/', [PersonaController::class, 'index'])
-    ->name('home')
-    ->middleware('cache.headers:public;max_age=3600');
+    ->name('home');
 
-// Persona content endpoint for AJAX requests with caching
+// Persona content endpoint for AJAX requests (no cache)
 Route::get('/persona/{persona}', [PersonaController::class, 'content'])
-    ->name('persona.content')
-    ->middleware('cache.headers:public;max_age=3600');
+    ->name('persona.content');
 
-// Resume/Overview page with caching
+// Resume/Overview page (no cache)
 Route::get('/resume', [PersonaController::class, 'resume'])
-    ->name('resume')
-    ->middleware('cache.headers:public;max_age=3600');
+    ->name('resume');
 
-// Additional static pages with caching
+// Additional static pages (no cache)
 Route::get('/contact', function () {
     return view('contact');
-})->name('contact')
-  ->middleware('cache.headers:public;max_age=3600');
+})->name('contact');
 
 // CMS Routes (Basic functionality without authentication for simplicity)
 Route::prefix('cms')->group(function () {

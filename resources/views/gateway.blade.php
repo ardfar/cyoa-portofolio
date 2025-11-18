@@ -203,6 +203,14 @@
                     document.getElementById('persona-content').innerHTML = html;
                     // Scroll to top
                     window.scrollTo(0, 0);
+                    // Initialize enhancements for dynamically injected content
+                    if (window.PortfolioJS && typeof window.PortfolioJS.initTypingEffect === 'function') {
+                        window.PortfolioJS.initTypingEffect(document.getElementById('persona-content'));
+                    }
+                    if (window.PortfolioJS && typeof window.PortfolioJS.initNeonParticles === 'function') {
+                        const hero = document.querySelector('#persona-content .hero-section');
+                        if (hero) window.PortfolioJS.initNeonParticles(hero);
+                    }
                 })
                 .catch(error => {
                     console.error('Error loading persona content:', error);

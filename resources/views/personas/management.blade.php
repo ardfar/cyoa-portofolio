@@ -15,7 +15,7 @@
     <meta name="twitter:title" content="{{ config('portfolio.personas.management.seo.twitter_title', 'Management & Strategy Portfolio') }}">
     <meta name="twitter:description" content="{{ config('portfolio.personas.management.seo.twitter_description', 'Praktisi manajemen dengan fokus pada strategi produk dan transformasi bisnis') }}">
     <title>{{ config('portfolio.personas.management.seo.title', 'Management & Strategy - Portfolio') }}</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="canonical" href="{{ url()->current() }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 </head>
@@ -281,6 +281,5 @@
         </div>
     </section>
 </div>
-<script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
