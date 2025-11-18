@@ -86,7 +86,7 @@
                                             
                                             <h1 class="mt-4 text-4xl tracking-tight font-extrabold text-gray-900 sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
                                                 <span class="block">Halo, saya</span>
-                                                <span class="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Nama Anda</span>
+                                                <span class="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Farras Arrafi</span>
                                             </h1>
                                             
                                             <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
@@ -176,22 +176,8 @@
     <script>
         // Persona selection and content loading
         function selectPersona(persona) {
-            // Store selection in localStorage
             localStorage.setItem('selectedPersona', persona);
-            
-            // Update URL to /persona/:id without reload
-            window.history.pushState({}, '', `/persona/${persona}`);
-            
-            // Show persona content section
-            document.getElementById('gateway-section').classList.add('hidden');
-            document.getElementById('persona-content').classList.remove('hidden');
-            document.getElementById('persona-switcher').classList.remove('hidden');
-            
-            // Update persona selector
-            document.getElementById('persona-selector').value = persona;
-            
-            // Load persona content
-            loadPersonaContent(persona);
+            window.location.assign(`/persona/${persona}`);
         }
         
         function loadPersonaContent(persona) {
@@ -234,10 +220,10 @@
             }
         });
         
-        // Check for existing persona selection on page load (prefer path)
+        // Check for existing persona selection on page load (path only)
         document.addEventListener('DOMContentLoaded', function() {
             const pathMatch = window.location.pathname.match(/^\/persona\/([^\/]+)$/);
-            const persona = (pathMatch ? pathMatch[1] : null) || localStorage.getItem('selectedPersona');
+            const persona = pathMatch ? pathMatch[1] : null;
             if (persona) {
                 selectPersona(persona);
             }
