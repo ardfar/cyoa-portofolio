@@ -179,10 +179,8 @@
             // Store selection in localStorage
             localStorage.setItem('selectedPersona', persona);
             
-            // Update URL without reload
-            const url = new URL(window.location);
-            url.searchParams.set('persona', persona);
-            window.history.pushState({}, '', url);
+            // Update URL to /persona/:id without reload
+            window.history.pushState({}, '', `/persona/${persona}`);
             
             // Show persona content section
             document.getElementById('gateway-section').classList.add('hidden');
@@ -233,22 +231,20 @@
             }
         });
         
-        // Check for existing persona selection on page load
+        // Check for existing persona selection on page load (prefer path)
         document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const persona = urlParams.get('persona') || localStorage.getItem('selectedPersona');
-            
-            if (persona && persona !== 'gateway') {
+            const pathMatch = window.location.pathname.match(/^\/persona\/([^\/]+)$/);
+            const persona = (pathMatch ? pathMatch[1] : null) || localStorage.getItem('selectedPersona');
+            if (persona) {
                 selectPersona(persona);
             }
         });
         
-        // Handle browser back/forward buttons
+        // Handle browser back/forward buttons (parse path)
         window.addEventListener('popstate', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const persona = urlParams.get('persona');
-            
-            if (persona && persona !== 'gateway') {
+            const pathMatch = window.location.pathname.match(/^\/persona\/([^\/]+)$/);
+            const persona = pathMatch ? pathMatch[1] : null;
+            if (persona) {
                 selectPersona(persona);
             } else {
                 // Show gateway
