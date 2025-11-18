@@ -1,0 +1,212 @@
+import './bootstrap';
+
+// Portfolio-specific JavaScript
+
+// Smooth scrolling for navigation links
+document.addEventListener('DOMContentLoaded', function() {
+    // Add smooth scrolling to all navigation links
+    const navLinks = document.querySelectorAll('a[href^="#"]');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Add fade-in animation to elements when they come into view
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in');
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements for animation
+    const animateElements = document.querySelectorAll('.card-hover, .bg-white, .bg-gray-50');
+    animateElements.forEach(el => observer.observe(el));
+
+    // Add loading animation to buttons
+    const buttons = document.querySelectorAll('button[type="submit"]');
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            if (this.form && this.form.checkValidity()) {
+                const originalText = this.innerHTML;
+                this.innerHTML = '<span class="loading mr-2"></span> Mengirim...';
+                this.disabled = true;
+                
+                // Re-enable button after 3 seconds (or when form submission completes)
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.disabled = false;
+                }, 3000);
+            }
+        });
+    });
+
+    // Mobile menu toggle (if needed)
+    const mobileMenuButton = document.querySelector('[data-mobile-menu-toggle]');
+    const mobileMenu = document.querySelector('[data-mobile-menu]');
+    
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+
+    // Persona switcher enhancement
+    const personaSelector = document.getElementById('persona-selector');
+    if (personaSelector) {
+        personaSelector.addEventListener('change', function() {
+            const selectedPersona = this.value;
+            if (selectedPersona) {
+                // Add loading state
+                this.classList.add('opacity-50');
+                
+                // Remove loading state after content loads
+                setTimeout(() => {
+                    this.classList.remove('opacity-50');
+                }, 500);
+            }
+        });
+    }
+
+    // Add hover effects to cards
+    const cards = document.querySelectorAll('.bg-white.rounded-lg');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.classList.add('card-hover');
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.classList.remove('card-hover');
+        });
+    });
+
+    // Form validation enhancement
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            const requiredFields = form.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('border-red-500');
+                    isValid = false;
+                } else {
+                    field.classList.remove('border-red-500');
+                }
+            });
+            
+            if (!isValid) {
+                e.preventDefault();
+                alert('Mohon lengkapi semua field yang wajib diisi.');
+            }
+        });
+    });
+
+    // Add keyboard navigation support
+    document.addEventListener('keydown', function(e) {
+        // ESC key to close modals or reset selections
+        if (e.key === 'Escape') {
+            const mobileMenu = document.querySelector('[data-mobile-menu]');
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        }
+    });
+
+    // Performance optimization: Lazy load images
+const images = document.querySelectorAll('img[data-src]');
+const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            img.classList.remove('opacity-0');
+            observer.unobserve(img);
+        }
+    });
+}, {
+    rootMargin: '50px 0px',
+    threshold: 0.01
+});
+
+images.forEach(img => {
+    img.classList.add('opacity-0', 'transition-opacity', 'duration-300');
+    imageObserver.observe(img);
+});
+
+// Performance optimization: Debounced scroll events
+let scrollTimeout;
+window.addEventListener('scroll', () => {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+        // Add scroll-based animations here if needed
+    }, 10);
+}, { passive: true });
+
+// Performance optimization: Preload critical resources
+function preloadCriticalResources() {
+    const criticalImages = [
+        // Add critical image URLs here
+    ];
+    
+    criticalImages.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
+}
+
+// Preload critical resources after page load
+window.addEventListener('load', preloadCriticalResources);
+});
+
+// Utility functions
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `fixed top-4 right-4 p-4 rounded-md shadow-lg z-50 ${
+        type === 'success' ? 'bg-green-500 text-white' :
+        type === 'error' ? 'bg-red-500 text-white' :
+        'bg-blue-500 text-white'
+    }`;
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.remove();
+    }, 5000);
+}
+
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Export functions for global use
+window.PortfolioJS = {
+    showNotification,
+    debounce
+};
