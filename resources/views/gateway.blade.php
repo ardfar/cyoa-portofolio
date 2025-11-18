@@ -212,6 +212,9 @@
                     if (window.PortfolioJS && typeof window.PortfolioJS.initTechProjectsSwiper === 'function') {
                         window.PortfolioJS.initTechProjectsSwiper(document.getElementById('persona-content'));
                     }
+                    if (window.PortfolioJS && typeof window.PortfolioJS.initStickyNav === 'function') {
+                        window.PortfolioJS.initStickyNav(document.getElementById('persona-content'));
+                    }
                 })
                 .catch(error => {
                     console.error('Error loading persona content:', error);

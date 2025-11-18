@@ -184,6 +184,9 @@ window.addEventListener('load', preloadCriticalResources);
     if (window.PortfolioJS && typeof window.PortfolioJS.initTechProjectsSwiper === 'function') {
         window.PortfolioJS.initTechProjectsSwiper(document);
     }
+    if (window.PortfolioJS && typeof window.PortfolioJS.initStickyNav === 'function') {
+        window.PortfolioJS.initStickyNav(document);
+    }
 });
 
 // Initialize typing effect for elements within a root
@@ -253,7 +256,8 @@ window.PortfolioJS = {
     debounce,
     initTypingEffect,
     initNeonParticles,
-    initTechProjectsSwiper
+    initTechProjectsSwiper,
+    initStickyNav
 };
 
 function initNeonParticles(container) {
@@ -372,5 +376,30 @@ function initTechProjectsSwiper(root = document) {
     ensureCss().then(ensureJs).then(() => {
         init();
     });
+}
+
+// Initialize sticky local navigation
+function initStickyNav(root = document) {
+    const nav = root.querySelector('#tech-local-nav');
+    if (!nav) return;
+    const baseTop = nav.getBoundingClientRect().top + window.pageYOffset;
+    const onScroll = () => {
+        const y = window.pageYOffset || document.documentElement.scrollTop;
+        if (y >= baseTop) {
+            nav.classList.add('is-sticky');
+        } else {
+            nav.classList.remove('is-sticky');
+        }
+    };
+    onScroll();
+    window.addEventListener('scroll', window.PortfolioJS.debounce(onScroll, 10), { passive: true });
+    window.addEventListener('resize', window.PortfolioJS.debounce(() => {
+        // Recompute baseTop on resize for responsive accuracy
+        const newTop = nav.getBoundingClientRect().top + window.pageYOffset;
+        if (Math.abs(newTop - baseTop) > 4) {
+            // update baseTop in closure by re-binding scroll handler
+            window.removeEventListener('scroll', window.PortfolioJS.debounce(onScroll, 10));
+        }
+    }, 100));
 }
 window.PortfolioJS.initTechProjectsSwiper = initTechProjectsSwiper;

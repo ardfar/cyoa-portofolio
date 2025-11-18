@@ -46,7 +46,7 @@
     </div>
 
     <!-- Navigation -->
-    <div class="tech-bg border-b tech-separator backdrop-blur-optimized">
+    <div id="tech-local-nav" class="tech-bg border-b tech-separator backdrop-blur-optimized sticky-nav will-change-transform">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <nav class="flex space-x-8 py-4">
                 <a href="#about" class="tech-muted hover:accent-green font-medium">Tentang</a>
@@ -64,7 +64,7 @@
             <div class="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
                 <div>
                     <h2 class="text-3xl font-bold sm:text-4xl glow-green">
-                        Tentang Saya sebagai Praktisi Teknologi
+                        Engineer & Problem Solver.
                     </h2>
                     <p class="mt-6 text-lg tech-muted">
                         Dengan pengalaman luas dalam pengembangan perangkat lunak dan kecerdasan buatan, saya berdedikasi untuk menciptakan solusi teknologi yang inovatif dan berdampak.
@@ -73,9 +73,7 @@
                         <div class="flex items-start">
                             <div class="flex-shrink-0">
                                 <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background-color:#3A3A4E;">
-                                    <svg class="w-5 h-5 accent-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 accent-green" viewBox="0 0 20 20"><g fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"><path d="M1.59 9.331a1 1 0 0 1 1.412-.074l3.334 3a1 1 0 0 1-1.338 1.486l-3.334-3a1 1 0 0 1-.074-1.412Z"/><path d="M6.41 6.331a1 1 0 0 1-.074 1.412l-3.334 3a1 1 0 1 1-1.338-1.486l3.334-3a1 1 0 0 1 1.412.074Zm12 3a1 1 0 0 1-.074 1.412l-3.334 3a1 1 0 1 1-1.338-1.486l3.334-3a1 1 0 0 1 1.412.074Z"/><path d="M13.59 6.331a1 1 0 0 1 1.412-.074l3.334 3a1 1 0 0 1-1.338 1.486l-3.334-3a1 1 0 0 1-.074-1.412Zm-1.827-2.796a1 1 0 0 1 .702 1.228l-3 11a1 1 0 0 1-1.93-.526l3-11a1 1 0 0 1 1.228-.702Z"/></g></svg>
                                 </div>
                             </div>
                             <div class="ml-4">
@@ -86,9 +84,7 @@
                         <div class="flex items-start">
                             <div class="flex-shrink-0">
                                 <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background-color:#3A3A4E;">
-                                    <svg class="w-5 h-5 accent-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 accent-green" viewBox="0 0 24 24"><path fill="currentColor" d="m14.04 9.137l-.886-3.099c-.332-1.16-1.976-1.16-2.308 0l-.885 3.099a1.2 1.2 0 0 1-.824.824l-3.099.885c-1.16.332-1.16 1.976 0 2.308l3.099.885a1.2 1.2 0 0 1 .824.824l.885 3.099c.332 1.16 1.976 1.16 2.308 0l.885-3.099a1.2 1.2 0 0 1 .824-.824l3.099-.885c1.16-.332 1.16-1.976 0-2.308l-3.099-.885a1.2 1.2 0 0 1-.824-.824m-8.143 7.37c-.289-.844-1.504-.844-1.792 0l-.025.087l-.297 1.188l-1.188.296c-.959.24-.96 1.603 0 1.843l1.188.297l.297 1.188c.24.959 1.602.959 1.842 0l.297-1.188l1.188-.297c.96-.24.96-1.603 0-1.843l-1.188-.296l-.297-1.188zM5 18.797a1 1 0 0 0 .204.202a1 1 0 0 0-.204.204a1 1 0 0 0-.203-.204A1 1 0 0 0 5 18.796m14.896-16.29c-.298-.871-1.585-.842-1.817.087l-.297 1.188l-1.188.297c-.959.24-.96 1.602 0 1.842l1.188.297l.297 1.188c.24.959 1.602.959 1.842 0l.297-1.188l1.188-.297c.96-.24.96-1.603 0-1.842l-1.188-.297l-.297-1.188zM19 4.797a1 1 0 0 0 .204.202a1 1 0 0 0-.204.204a1 1 0 0 0-.203-.204A1 1 0 0 0 19 4.796"/></svg>
                                 </div>
                             </div>
                             <div class="ml-4">
@@ -104,7 +100,7 @@
                             <div class="avatar">
                                 @php($avatarFile = public_path('images/profile.jpg'))
                                 @if(file_exists($avatarFile))
-                                    <img src="{{ asset('images/profile.jpg') }}" alt="Foto Profil">
+                                    <img src="{{ asset('images/profile.jpg') }}" alt="Foto Profil" class="profile-image">
                                 @else
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
                                         <circle cx="12" cy="8" r="4"></circle>
@@ -121,7 +117,7 @@
 
     <!-- Tech Stack Section (from docs/tech-stack.md) -->
     <section id="stack" class="py-16 tech-bg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="w-[90%] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="section-highlight rounded-2xl p-8">
                 <div class="text-center">
                     <h2 class="text-3xl font-extrabold sm:text-4xl glow-green">Tech Stack</h2>
@@ -344,14 +340,14 @@
     <section id="contact" class="py-16 tech-bg-dark">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-3xl font-extrabold sm:text-4xl glow-green">
-                Tertarik dengan proyek teknis saya?
+                Siap Wujudkan Ide Teknologi Anda?
             </h2>
             <p class="mt-4 text-xl tech-muted">
-                Mari diskusikan bagaimana saya bisa membantu mengembangkan solusi teknologi untuk kebutuhan Anda.
+                Mari berkolaborasi membangun solusi digital inovatif yang skalabel dan efisien untuk kebutuhan bisnis Anda.
             </p>
             <div class="mt-8 flex justify-center space-x-4">
-                <a href="{{ route('contact') }}" class="tech-btn inline-flex items-center px-6 py-3 rounded-md">Hubungi Saya</a>
-                <a href="#github" class="tech-btn inline-flex items-center px-6 py-3 rounded-md">Lihat GitHub</a>
+                <a href="{{ route('contact') }}" class="tech-btn inline-flex items-center px-6 py-3 rounded-md">Mulai Proyek Baru</a>
+                <a href="https://github.com/ardfar" target="_blank" class="tech-btn inline-flex items-center px-6 py-3 rounded-md">Lihat GitHub</a>
             </div>
         </div>
     </section>
