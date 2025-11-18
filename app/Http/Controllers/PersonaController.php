@@ -58,8 +58,8 @@ class PersonaController extends Controller
             'tech' => [
                 'id' => 'tech',
                 'name' => 'Technology & Engineering',
-                'headline' => 'Membangun solusi teknis, dari kode hingga infrastruktur cerdas.',
-                'description' => 'Sebagai praktisi teknologi, saya fokus pada pengembangan solusi end-to-end yang scalable dan inovatif.',
+                'headline' => 'Bukan Sekadar Kode. Saya Membangun Ekosistem Digital Cerdas.',
+                'description' => 'Menggabungkan ketangguhan Full-Stack Development dengan kecerdasan Artificial Intelligence. Siap membantu Anda menciptakan aplikasi yang scalable, efisien, dan berwawasan.',
                 'roles' => ['Full Stack Developer', 'AI/ML Engineer'],
                 'theme' => 'blue-purple',
                 'accent_color' => 'blue'

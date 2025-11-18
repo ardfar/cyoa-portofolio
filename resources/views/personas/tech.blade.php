@@ -39,7 +39,7 @@
                 </div>
                 <div class="mt-8 flex justify-center space-x-4">
                     <a href="#projects" class="tech-btn inline-flex items-center px-6 py-3 rounded-md">Lihat Proyek Terbaru</a>
-                    <a href="#stack" class="tech-btn inline-flex items-center px-6 py-3 rounded-md">Lihat Stack Teknologi</a>
+                    <a href="#stack" class="tech-btn inline-flex items-center px-6 py-3 rounded-md">Lihat Kemampuan Saya</a>
                 </div>
             </div>
         </div>
