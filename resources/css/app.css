@@ -338,3 +338,18 @@ img {
 .project-swiper .swiper-pagination-bullet-active { background: #00F7A6; box-shadow: 0 0 0 2px #2A2A3E, 0 0 10px rgba(0,247,166,0.6); }
 .tech-card.slide-card { transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out; }
 .tech-card.slide-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,247,166,0.18); border-color: #00F7A6; }
+/* Profile avatar sizing */
+.avatar-orbit{position:relative;width:340px;height:340px;margin:0 auto;}
+.avatar-orbit .avatar{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:280px;height:280px;border-radius:9999px;overflow:hidden;border:2px solid #00F7A6;box-shadow:0 0 0 6px rgba(0,247,166,0.08);background:#10101A;}
+@media (max-width:640px){.avatar-orbit{width:220px;height:220px}.avatar-orbit .avatar{width:180px;height:180px}}
+
+/* Tech link icons color and size */
+.tech-btn svg{width:24px;height:24px}
+.tech-btn svg path,
+.tech-btn svg circle,
+.tech-btn svg ellipse,
+.tech-btn svg line{fill:currentColor !important;stroke:currentColor !important}
+.tech-btn:hover svg path,
+.tech-btn:hover svg circle,
+.tech-btn:hover svg ellipse,
+.tech-btn:hover svg line{fill:#000000 !important;stroke:#000000 !important}
