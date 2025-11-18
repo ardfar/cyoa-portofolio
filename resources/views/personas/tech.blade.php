@@ -17,8 +17,10 @@
     <title>{{ config('portfolio.personas.tech.seo.title', 'Technology & Engineering - Portfolio') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@9/swiper-bundle.min.css" />
     <link rel="canonical" href="{{ url()->current() }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js" defer></script>
 </head>
 <body class="tech-bg tech-text font-mono-tech">
 <!-- Technology & Engineering Persona -->
@@ -276,82 +278,64 @@
 
     <!-- Projects Section -->
     <section id="projects" class="py-16 tech-bg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
-                <h2 class="text-3xl font-extrabold sm:text-4xl glow-green">
-                    Proyek Teknologi Unggulan
-                </h2>
-                <p class="mt-4 max-w-2xl mx-auto text-xl tech-muted">
-                    Beberapa proyek teknis yang menunjukkan kemampuan saya dalam mengembangkan solusi end-to-end.
-                </p>
+                <h2 class="text-3xl font-extrabold sm:text-4xl glow-green">Proyek Unggulan</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-xl tech-muted">Beberapa proyek teknis yang menunjukkan kemampuan saya dalam mengembangkan solusi end-to-end.</p>
             </div>
 
-            <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                <div class="tech-card rounded-lg overflow-hidden">
-                    <div class="h-48 flex items-center justify-center" style="background-color:#10101A;">
-                        <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                        </svg>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 glow-green">Platform E-commerce</h3>
-                        <p class="tech-muted mb-4">Full-stack e-commerce solution dengan payment gateway, inventory management, dan real-time analytics.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="tech-tag">Laravel</span>
-                            <span class="tech-tag">Vue.js</span>
-                            <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">Redis</span>
+            <div class="mt-12">
+                @php($hasProjects = isset($projects) && is_array($projects) && count($projects) > 0)
+                @if($hasProjects)
+                    <div class="project-swiper-shell" aria-label="Slider Proyek Teknologi" role="region">
+                        <button class="swiper-nav swiper-button-prev prev" aria-label="Sebelumnya" tabindex="0">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                        </button>
+                        <div class="swiper project-swiper">
+                            <div class="swiper-wrapper py-4">
+                            @foreach($projects as $p)
+                                <div class="swiper-slide">
+                                    <div class="tech-card slide-card rounded-lg overflow-hidden flex flex-col">
+                                        <div class="project-thumb">
+                                            @if(!empty($p['image']))
+                                                <img src="{{ $p['image'] }}" alt="Thumbnail {{ $p['title'] }}">
+                                            @else
+                                                <svg class="w-16 h-16 text-white mx-auto my-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18"></path>
+                                                </svg>
+                                            @endif
+                                        </div>
+                                        <div class="p-6 flex-1 flex flex-col">
+                                            <h3 class="text-xl font-semibold mb-2 glow-green">{{ $p['title'] }}</h3>
+                                            <p class="tech-muted mb-4">{{ $p['description'] }}</p>
+                                            @if(!empty($p['technologies']))
+                                                <div class="flex flex-wrap gap-2 mb-4">
+                                                    @foreach($p['technologies'] as $t)
+                                                        <span class="tech-tag">{{ $t }}</span>
+                                                    @endforeach
+                                                </div>
+                                            @endif
+                                            <div class="mt-auto flex space-x-4">
+                                                @if(!empty($p['link']))
+                                                    <a href="{{ $p['link'] }}" class="tech-btn inline-flex items-center px-4 py-2 rounded-md" target="_blank" rel="noopener" aria-label="Lihat detail {{ $p['title'] }}">Lihat Detail</a>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                            </div>
                         </div>
-                        <div class="flex space-x-4">
-                            <a href="#" class="tech-btn inline-flex items-center px-4 py-2 rounded-md">View Live</a>
-                            <a href="#" class="tech-btn inline-flex items-center px-4 py-2 rounded-md">View Code</a>
-                        </div>
+                        <button class="swiper-nav swiper-button-next next" aria-label="Berikutnya" tabindex="0">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                        </button>
+                        <div class="swiper-pagination" aria-label="Pagination" tabindex="0"></div>
                     </div>
-                </div>
-
-                <div class="tech-card rounded-lg overflow-hidden">
-                    <div class="h-48 flex items-center justify-center" style="background-color:#10101A;">
-                        <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-                        </svg>
+                @else
+                    <div class="tech-card rounded-lg p-6 text-center">
+                        <p class="tech-muted">Data proyek tidak tersedia atau format tidak valid.</p>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 glow-green">AI Object Detection</h3>
-                        <p class="tech-muted mb-4">Sistem deteksi objek real-time menggunakan YOLO dan OpenCV untuk aplikasi monitoring.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">YOLO</span>
-                            <span class="tech-tag">OpenCV</span>
-                            <span class="tech-tag">CUDA</span>
-                        </div>
-                        <div class="flex space-x-4">
-                            <a href="#" class="tech-btn inline-flex items-center px-4 py-2 rounded-md">View Live</a>
-                            <a href="#" class="tech-btn inline-flex items-center px-4 py-2 rounded-md">View Code</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tech-card rounded-lg overflow-hidden">
-                    <div class="h-48 flex items-center justify-center" style="background-color:#10101A;">
-                        <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                        </svg>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 glow-green">DevOps Dashboard</h3>
-                        <p class="tech-muted mb-4">Monitoring dan manajemen infrastruktur dengan CI/CD pipeline automation dan real-time metrics.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="tech-tag">Docker</span>
-                            <span class="tech-tag">Kubernetes</span>
-                            <span class="tech-tag">Jenkins</span>
-                            <span class="tech-tag">Grafana</span>
-                        </div>
-                        <div class="flex space-x-4">
-                            <a href="#" class="tech-btn inline-flex items-center px-4 py-2 rounded-md">View Live</a>
-                            <a href="#" class="tech-btn inline-flex items-center px-4 py-2 rounded-md">View Code</a>
-                        </div>
-                    </div>
-                </div>
+                @endif
             </div>
         </div>
     </section>

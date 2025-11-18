@@ -181,6 +181,9 @@ window.addEventListener('load', preloadCriticalResources);
             window.PortfolioJS.initNeonParticles(hero);
         }
     }
+    if (window.PortfolioJS && typeof window.PortfolioJS.initTechProjectsSwiper === 'function') {
+        window.PortfolioJS.initTechProjectsSwiper(document);
+    }
 });
 
 // Initialize typing effect for elements within a root
@@ -249,7 +252,8 @@ window.PortfolioJS = {
     showNotification,
     debounce,
     initTypingEffect,
-    initNeonParticles
+    initNeonParticles,
+    initTechProjectsSwiper
 };
 
 function initNeonParticles(container) {
@@ -315,3 +319,58 @@ function initNeonParticles(container) {
     rafId = requestAnimationFrame(draw);
     return { stop() { cancelAnimationFrame(rafId); } };
 }
+
+function initTechProjectsSwiper(root = document) {
+    const container = root.querySelector('.project-swiper');
+    if (!container) return;
+    const init = () => {
+        if (typeof Swiper === 'undefined') return;
+        const nextEl = root.querySelector('.swiper-button-next') || container.querySelector('.swiper-button-next');
+        const prevEl = root.querySelector('.swiper-button-prev') || container.querySelector('.swiper-button-prev');
+        const paginationEl = root.querySelector('.swiper-pagination') || container.querySelector('.swiper-pagination');
+        new Swiper(container, {
+            slidesPerView: 1,
+            spaceBetween: 16,
+            speed: 450,
+            grabCursor: true,
+            navigation: { nextEl, prevEl },
+            pagination: { el: paginationEl, clickable: true },
+            a11y: { enabled: true },
+            keyboard: { enabled: true },
+            breakpoints: {
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 }
+            }
+        });
+    };
+    if (typeof Swiper !== 'undefined') {
+        init();
+        return;
+    }
+    const cssHref = 'https://unpkg.com/swiper@9/swiper-bundle.min.css';
+    const jsSrc = 'https://unpkg.com/swiper@9/swiper-bundle.min.js';
+    const ensureCss = () => {
+        if ([...document.styleSheets].some(s => s.href && s.href.includes('swiper'))) return Promise.resolve();
+        return new Promise(resolve => {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = cssHref;
+            link.onload = () => resolve();
+            document.head.appendChild(link);
+        });
+    };
+    const ensureJs = () => {
+        if (typeof Swiper !== 'undefined') return Promise.resolve();
+        return new Promise(resolve => {
+            const script = document.createElement('script');
+            script.src = jsSrc;
+            script.defer = true;
+            script.onload = () => resolve();
+            document.head.appendChild(script);
+        });
+    };
+    ensureCss().then(ensureJs).then(() => {
+        init();
+    });
+}
+window.PortfolioJS.initTechProjectsSwiper = initTechProjectsSwiper;

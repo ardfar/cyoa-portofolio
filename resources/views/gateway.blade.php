@@ -211,6 +211,9 @@
                         const hero = document.querySelector('#persona-content .hero-section');
                         if (hero) window.PortfolioJS.initNeonParticles(hero);
                     }
+                    if (window.PortfolioJS && typeof window.PortfolioJS.initTechProjectsSwiper === 'function') {
+                        window.PortfolioJS.initTechProjectsSwiper(document.getElementById('persona-content'));
+                    }
                 })
                 .catch(error => {
                     console.error('Error loading persona content:', error);
