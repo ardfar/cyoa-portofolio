@@ -415,9 +415,10 @@ function initQuantHighlight(root = document) {
     const re = /(\d{1,3}(?:\.\d{3})*(?:,\d+)?\+?|\d+(?:[.,]\d+)?%?)/g;
     while ((node = walker.nextNode())) {
         const t = node.nodeValue;
-        if (t && re.test(t)) {
-            targets.push(node);
-        }
+        const parentEl = node.parentElement;
+        if (!t || !re.test(t)) { continue; }
+        if (parentEl && (parentEl.closest('[data-no-quant]') || parentEl.closest('#roadmap'))) { continue; }
+        targets.push(node);
     }
     targets.forEach(n => {
         const span = document.createElement('span');
