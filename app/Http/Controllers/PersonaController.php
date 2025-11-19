@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Models\Persona;
+use App\Models\TechProject;
+use App\Models\TechExperience;
+use Illuminate\Support\Facades\Schema;
 
 class PersonaController extends Controller
 {
@@ -33,8 +37,50 @@ class PersonaController extends Controller
 
         $data = ['persona' => $personas[$persona]];
         if ($persona === 'tech') {
-            $data['projects'] = $this->getTechProjects();
-            $data['experiences'] = $this->getTechExperiences();
+            $dbPersona = null;
+            if (Schema::hasTable('personas')) {
+                $dbPersona = Persona::find('tech');
+            }
+            if ($dbPersona) {
+                $data['persona'] = [
+                    'id' => $dbPersona->id,
+                    'name' => $dbPersona->name,
+                    'headline' => $dbPersona->headline,
+                    'description' => $dbPersona->description,
+                    'roles' => $dbPersona->roles,
+                    'theme' => $dbPersona->theme,
+                    'accent_color' => $dbPersona->accent_color,
+                ];
+            }
+            $projects = [];
+            if (Schema::hasTable('tech_projects')) {
+                $projects = TechProject::orderBy('id')->get()->map(function ($p) {
+                    return [
+                        'title' => $p->title,
+                        'description' => $p->description,
+                        'technologies' => $p->technologies ?? [],
+                        'link' => $p->link,
+                        'image' => $p->image,
+                    ];
+                })->all();
+            }
+            $experiences = [];
+            if (Schema::hasTable('tech_experiences')) {
+                $experiences = TechExperience::orderBy('id')->get()->map(function ($e) {
+                    return [
+                        'title' => $e->title,
+                        'org' => $e->org,
+                    ];
+                })->all();
+            }
+            if (count($projects) === 0) {
+                $projects = $this->getTechProjects();
+            }
+            if (count($experiences) === 0) {
+                $experiences = $this->getTechExperiences();
+            }
+            $data['projects'] = $projects;
+            $data['experiences'] = $experiences;
         }
 
         return view('personas.' . $persona, $data);
