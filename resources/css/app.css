@@ -356,6 +356,11 @@ img {
 .sticky-nav { position: sticky; top: 0; z-index: 40; background-color: #10101A; transition: box-shadow 0.18s ease, border-color 0.18s ease, backdrop-filter 0.18s ease; }
 .sticky-nav.is-sticky { box-shadow: 0 6px 14px rgba(0,0,0,0.25), 0 0 0 1px rgba(58,58,78,0.6), 0 10px 24px rgba(0,247,166,0.08); border-bottom-color: #00F7A6; }
 @media (max-width:640px){ .sticky-nav { top: 0; } }
+
+.sticky-nav-light { position: sticky; top: 0; z-index: 40; background-color: #ffffff; transition: box-shadow 0.18s ease, border-color 0.18s ease, backdrop-filter 0.18s ease; }
+.sticky-nav-light.is-sticky { box-shadow: 0 6px 14px rgba(0,0,0,0.10), 0 1px 0 0 rgba(209,213,219,0.9); border-bottom-color: #d1d5db; }
+
+.quant-highlight { font-weight: 700; color: #111827; background-image: linear-gradient(transparent 62%, rgba(250, 204, 21, 0.4) 62%); padding: 0 2px; border-radius: 2px; }
 /* Profile avatar sizing */
 .avatar-orbit{position:relative;width:450px;height:450px;margin:0 auto;}
 .avatar-orbit .avatar{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:435px;height:435px;border-radius:9999px;overflow:hidden;border:2px solid #00F7A6;box-shadow:0 0 0 6px rgba(0,247,166,0.08);background:#10101A;}

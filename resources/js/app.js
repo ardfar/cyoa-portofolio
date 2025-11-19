@@ -187,6 +187,9 @@ window.addEventListener('load', preloadCriticalResources);
     if (window.PortfolioJS && typeof window.PortfolioJS.initStickyNav === 'function') {
         window.PortfolioJS.initStickyNav(document);
     }
+    if (window.PortfolioJS && typeof window.PortfolioJS.initQuantHighlight === 'function') {
+        window.PortfolioJS.initQuantHighlight(document);
+    }
 });
 
 // Initialize typing effect for elements within a root
@@ -257,7 +260,8 @@ window.PortfolioJS = {
     initTypingEffect,
     initNeonParticles,
     initTechProjectsSwiper,
-    initStickyNav
+    initStickyNav,
+    initQuantHighlight
 };
 
 function initNeonParticles(container) {
@@ -378,28 +382,48 @@ function initTechProjectsSwiper(root = document) {
     });
 }
 
-// Initialize sticky local navigation
+// Initialize sticky local navigation (supports multiple nav bars)
 function initStickyNav(root = document) {
-    const nav = root.querySelector('#tech-local-nav');
-    if (!nav) return;
-    const baseTop = nav.getBoundingClientRect().top + window.pageYOffset;
-    const onScroll = () => {
-        const y = window.pageYOffset || document.documentElement.scrollTop;
-        if (y >= baseTop) {
-            nav.classList.add('is-sticky');
-        } else {
-            nav.classList.remove('is-sticky');
-        }
-    };
-    onScroll();
-    window.addEventListener('scroll', window.PortfolioJS.debounce(onScroll, 10), { passive: true });
-    window.addEventListener('resize', window.PortfolioJS.debounce(() => {
-        // Recompute baseTop on resize for responsive accuracy
-        const newTop = nav.getBoundingClientRect().top + window.pageYOffset;
-        if (Math.abs(newTop - baseTop) > 4) {
-            // update baseTop in closure by re-binding scroll handler
-            window.removeEventListener('scroll', window.PortfolioJS.debounce(onScroll, 10));
-        }
-    }, 100));
+    const navs = root.querySelectorAll('.sticky-nav');
+    if (!navs || navs.length === 0) return;
+    navs.forEach((nav) => {
+        let baseTop = nav.getBoundingClientRect().top + window.pageYOffset;
+        const onScroll = () => {
+            const y = window.pageYOffset || document.documentElement.scrollTop;
+            if (y >= baseTop) {
+                nav.classList.add('is-sticky');
+            } else {
+                nav.classList.remove('is-sticky');
+            }
+        };
+        onScroll();
+        const scrollHandler = window.PortfolioJS.debounce(onScroll, 10);
+        window.addEventListener('scroll', scrollHandler, { passive: true });
+        window.addEventListener('resize', window.PortfolioJS.debounce(() => {
+            baseTop = nav.getBoundingClientRect().top + window.pageYOffset;
+        }, 100));
+    });
 }
 window.PortfolioJS.initTechProjectsSwiper = initTechProjectsSwiper;
+
+function initQuantHighlight(root = document) {
+    const container = root.querySelector('.management-typography');
+    if (!container) return;
+    const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
+    const targets = [];
+    let node;
+    const re = /(\d{1,3}(?:\.\d{3})*(?:,\d+)?\+?|\d+(?:[.,]\d+)?%?)/g;
+    while ((node = walker.nextNode())) {
+        const t = node.nodeValue;
+        if (t && re.test(t)) {
+            targets.push(node);
+        }
+    }
+    targets.forEach(n => {
+        const span = document.createElement('span');
+        span.innerHTML = n.nodeValue.replace(re, '<span class="quant-highlight">$1</span>');
+        if (n.parentNode) {
+            n.parentNode.replaceChild(span, n);
+        }
+    });
+}

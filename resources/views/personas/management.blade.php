@@ -55,11 +55,11 @@
     </div>
 
     <!-- Navigation -->
-    <div class="bg-white shadow-sm border-b border-gray-200">
+    <div id="management-local-nav" class="bg-white shadow-sm border-b border-gray-200 sticky-nav sticky-nav-light will-change-transform">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <nav class="flex space-x-8 py-4">
                 <a href="#about" class="text-gray-800 hover:text-gray-900 font-medium">Tentang</a>
-                <a href="#case-studies" class="text-gray-600 hover:text-gray-800 font-medium">Studi Kasus</a>
+                <a href="#case-studies" class="text-gray-600 hover:text-gray-800 font-medium">Track Record</a>
                 <a href="#roadmap" class="text-gray-600 hover:text-gray-800 font-medium">Roadmap</a>
                 <a href="#contact" class="text-gray-600 hover:text-gray-800 font-medium">Kontak</a>
             </nav>
@@ -111,20 +111,20 @@
                         <h3 class="text-xl font-semibold text-gray-900 mb-4">Key Metrics</h3>
                         <div class="grid grid-cols-2 gap-4">
                             <div class="bg-white rounded-lg p-4 text-center">
-                                <div class="text-3xl font-bold text-gray-800">$2.5M</div>
-                                <div class="text-sm text-gray-600">Revenue Generated</div>
+                                <div class="text-3xl font-bold text-gray-800">25%</div>
+                                <div class="text-sm text-gray-600">Pengurangan Biaya</div>
                             </div>
                             <div class="bg-white rounded-lg p-4 text-center">
-                                <div class="text-3xl font-bold text-yellow-600">15+</div>
-                                <div class="text-sm text-gray-600">Projects Delivered</div>
+                                <div class="text-3xl font-bold text-yellow-600">10+</div>
+                                <div class="text-sm text-gray-600">Bisnis Terbantu</div>
                             </div>
                             <div class="bg-white rounded-lg p-4 text-center">
                                 <div class="text-3xl font-bold text-green-600">98%</div>
-                                <div class="text-sm text-gray-600">Client Satisfaction</div>
+                                <div class="text-sm text-gray-600">Kepuasan Pelanggan</div>
                             </div>
                             <div class="bg-white rounded-lg p-4 text-center">
-                                <div class="text-3xl font-bold text-blue-600">25%</div>
-                                <div class="text-sm text-gray-600">Cost Reduction</div>
+                                <div class="text-3xl font-bold text-blue-600">10%</div>
+                                <div class="text-sm text-gray-600">Perkembangan Bisnis</div>
                             </div>
                         </div>
                     </div>
@@ -146,28 +146,26 @@
             </div>
 
             <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                <!-- Product Launch -->
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                    <div class="bg-gradient-to-br from-gray-600 to-yellow-600 h-48 flex items-center justify-center">
+                    <div class="bg-gradient-to-br from-gray-700 to-yellow-600 h-48 flex items-center justify-center">
                         <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                         </svg>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Product Launch Success</h3>
-                        <p class="text-gray-600 mb-4">Peluncuran produk SaaS baru yang menghasilkan 500+ pengguna dalam 3 bulan pertama dengan strategi go-to-market yang efektif.</p>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Digirekber</h3>
+                        <p class="text-gray-600 mb-4">Memimpin pengembangan platform Escrow Digital dari nol yang akan memfasilitasi 5.000+ transaksi aman dan menurunkan risiko penipuan online hingga 90% di tahun pertama.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded">Market Research</span>
-                            <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded">Go-to-Market</span>
-                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">User Acquisition</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded">Product Strategy</span>
+                            <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded">Risk Mitigation</span>
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Go-to-Market</span>
                         </div>
                         <div class="flex space-x-4">
-                            <button class="text-gray-700 hover:text-gray-900 font-medium">Baca Studi Kasus</button>
+                            <button class="text-gray-700 hover:text-gray-900 font-medium">Lihat Detail</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Process Optimization -->
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                     <div class="bg-gradient-to-br from-yellow-500 to-amber-600 h-48 flex items-center justify-center">
                         <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -175,12 +173,12 @@
                         </svg>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Process Optimization</h3>
-                        <p class="text-gray-600 mb-4">Redesain proses bisnis yang mengurangi waktu delivery 40% dan meningkatkan efisiensi operasional secara signifikan.</p>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Dapur BuAs</h3>
+                        <p class="text-gray-600 mb-4">Transformasi manajemen keuangan bisnis yang menghasilkan kenaikan laba bersih 25% dan efisiensi biaya operasional yang signifikan dalam kurun waktu 12 bulan.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">Process Mapping</span>
-                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">Agile</span>
-                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Efficiency</span>
+                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">Financial Strategy</span>
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Cost Efficiency</span>
+                            <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded">Business Growth</span>
                         </div>
                         <div class="flex space-x-4">
                             <button class="text-yellow-600 hover:text-yellow-800 font-medium">Lihat Detail</button>
@@ -188,7 +186,6 @@
                     </div>
                 </div>
 
-                <!-- Strategic Partnership -->
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                     <div class="bg-gradient-to-br from-amber-500 to-orange-600 h-48 flex items-center justify-center">
                         <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -196,12 +193,12 @@
                         </svg>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Strategic Partnership</h3>
-                        <p class="text-gray-600 mb-4">Mengembangkan kemitraan strategis yang membuka akses ke market baru dan meningkatkan revenue 35%.</p>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">PCRPC</h3>
+                        <p class="text-gray-600 mb-4">Membangun sistem layanan IT support untuk 500+ UMKM, mempercepat waktu penyelesaian masalah (SLA) dari 3 hari menjadi 1 hari dengan kepuasan pengguna 95%.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded">Partnership</span>
-                            <span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded">Market Expansion</span>
-                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Revenue Growth</span>
+                            <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded">Ops Management</span>
+                            <span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded">Service Delivery</span>
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Leadership</span>
                         </div>
                         <div class="flex space-x-4">
                             <button class="text-orange-600 hover:text-orange-800 font-medium">Lihat Detail</button>
