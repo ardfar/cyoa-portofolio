@@ -7,6 +7,7 @@ use Illuminate\View\View;
 use App\Models\Persona;
 use App\Models\TechProject;
 use App\Models\TechExperience;
+use App\Models\MgmtRecord;
 use Illuminate\Support\Facades\Schema;
 
 class PersonaController extends Controller
@@ -81,6 +82,37 @@ class PersonaController extends Controller
             }
             $data['projects'] = $projects;
             $data['experiences'] = $experiences;
+        }
+        if ($persona === 'management') {
+            $dbPersona = null;
+            if (Schema::hasTable('personas')) {
+                $dbPersona = Persona::find('management');
+            }
+            if ($dbPersona) {
+                $data['persona'] = [
+                    'id' => $dbPersona->id,
+                    'name' => $dbPersona->name,
+                    'headline' => $dbPersona->headline,
+                    'description' => $dbPersona->description,
+                    'roles' => $dbPersona->roles,
+                    'theme' => $dbPersona->theme,
+                    'accent_color' => $dbPersona->accent_color,
+                ];
+            }
+            $records = [];
+            if (Schema::hasTable('mgmt_records')) {
+                $records = MgmtRecord::orderBy('id')->get()->map(function ($r) {
+                    return [
+                        'title' => $r->title,
+                        'description' => $r->description,
+                        'tags' => $r->tags ?? [],
+                    ];
+                })->all();
+            }
+            if (count($records) === 0) {
+                $records = $this->getMgmtRecords();
+            }
+            $data['records'] = $records;
         }
 
         return view('personas.' . $persona, $data);
@@ -289,5 +321,47 @@ class PersonaController extends Controller
         }
         if ($current) { $exps[] = $current; }
         return $exps;
+    }
+
+    private function getMgmtRecords(): array
+    {
+        $path = base_path('docs/mgmt-record.md');
+        if (!file_exists($path)) {
+            return [];
+        }
+        $raw = @file_get_contents($path);
+        if ($raw === false) {
+            return [];
+        }
+        $lines = preg_split('/\r\n|\r|\n/', $raw);
+        $records = [];
+        $current = null;
+        foreach ($lines as $line) {
+            $line = trim($line);
+            if ($line === '') { continue; }
+            if (preg_match('/^#\s+(.+)/', $line, $m)) {
+                if ($current) { $records[] = $current; }
+                $current = ['title' => $m[1], 'description' => '', 'tags' => []];
+                continue;
+            }
+            if (!$current) { continue; }
+            if (preg_match('/^-\s*Deskripsi:\s*(.+)/i', $line, $m)) {
+                $current['description'] = $m[1];
+                continue;
+            }
+            if (preg_match('/^-\s*Tags:\s*(.+)/i', $line, $m)) {
+                $rawTags = trim($m[1]);
+                $tags = [];
+                if (strpos($rawTags, ',') !== false) {
+                    $tags = array_map('trim', preg_split('/,\s*/', $rawTags));
+                } else {
+                    $tags = array_values(array_filter(array_map('trim', preg_split('/\s+/', $rawTags)), fn($t) => $t !== ''));
+                }
+                $current['tags'] = $tags;
+                continue;
+            }
+        }
+        if ($current) { $records[] = $current; }
+        return $records;
     }
 }

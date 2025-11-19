@@ -39,16 +39,10 @@
                 <p class="mt-6 max-w-2xl mx-auto text-xl text-gray-600">
                     {{ $persona['description'] }}
                 </p>
-                <div class="mt-8 flex justify-center space-x-4">
-                    <span class="inline-flex items-center px-4 py-2 bg-yellow-100 text-yellow-800 text-sm font-medium rounded-full">
-                        Product Manager
-                    </span>
-                    <span class="inline-flex items-center px-4 py-2 bg-amber-100 text-amber-800 text-sm font-medium rounded-full">
-                        Business Development
-                    </span>
-                     <span class="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-800 text-sm font-medium rounded-full">
-                        Project Manager
-                    </span>
+                <div class="mt-8 flex justify-center gap-3 flex-wrap">
+                    @foreach(($persona['roles'] ?? []) as $role)
+                        <span class="inline-flex items-center px-4 py-2 bg-yellow-100 text-yellow-800 text-sm font-medium rounded-full">{{ $role }}</span>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -146,65 +140,29 @@
             </div>
 
             <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                    <div class="bg-gradient-to-br from-gray-700 to-yellow-600 h-48 flex items-center justify-center">
-                        <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                        </svg>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Digirekber</h3>
-                        <p class="text-gray-600 mb-4">Memimpin pengembangan platform Escrow Digital dari nol yang akan memfasilitasi 5.000+ transaksi aman dan menurunkan risiko penipuan online hingga 90% di tahun pertama.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded">Product Strategy</span>
-                            <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded">Risk Mitigation</span>
-                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Go-to-Market</span>
+                @php $gradients = ['from-gray-700 to-yellow-600','from-yellow-500 to-amber-600','from-amber-500 to-orange-600']; @endphp
+                @foreach(($records ?? []) as $idx => $rec)
+                    @php $g = $gradients[$idx % count($gradients)]; @endphp
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                        <div class="bg-gradient-to-br {{ $g }} h-48 flex items-center justify-center">
+                            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
                         </div>
-                        <div class="flex space-x-4">
-                            <button class="text-gray-700 hover:text-gray-900 font-medium">Lihat Detail</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                    <div class="bg-gradient-to-br from-yellow-500 to-amber-600 h-48 flex items-center justify-center">
-                        <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                        </svg>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Dapur BuAs</h3>
-                        <p class="text-gray-600 mb-4">Transformasi manajemen keuangan bisnis yang menghasilkan kenaikan laba bersih 25% dan efisiensi biaya operasional yang signifikan dalam kurun waktu 12 bulan.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">Financial Strategy</span>
-                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Cost Efficiency</span>
-                            <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded">Business Growth</span>
-                        </div>
-                        <div class="flex space-x-4">
-                            <button class="text-yellow-600 hover:text-yellow-800 font-medium">Lihat Detail</button>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ $rec['title'] }}</h3>
+                            <p class="text-gray-600 mb-4">{{ $rec['description'] }}</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                @foreach(($rec['tags'] ?? []) as $tag)
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded">{{ $tag }}</span>
+                                @endforeach
+                            </div>
+                            <div class="flex space-x-4">
+                                <button class="text-gray-700 hover:text-gray-900 font-medium">Lihat Detail</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                    <div class="bg-gradient-to-br from-amber-500 to-orange-600 h-48 flex items-center justify-center">
-                        <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">PCRPC</h3>
-                        <p class="text-gray-600 mb-4">Membangun sistem layanan IT support untuk 500+ UMKM, mempercepat waktu penyelesaian masalah (SLA) dari 3 hari menjadi 1 hari dengan kepuasan pengguna 95%.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded">Ops Management</span>
-                            <span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded">Service Delivery</span>
-                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Leadership</span>
-                        </div>
-                        <div class="flex space-x-4">
-                            <button class="text-orange-600 hover:text-orange-800 font-medium">Lihat Detail</button>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
