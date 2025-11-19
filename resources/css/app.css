@@ -10,6 +10,13 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
+.management-typography h1,
+.management-typography h2,
+.management-typography h3,
+.management-typography h4 {
+    font-family: 'Playfair Display', 'Merriweather', serif;
+}
+
 /* Custom animations and transitions */
 .fade-in {
     animation: fadeIn 0.5s ease-in-out;

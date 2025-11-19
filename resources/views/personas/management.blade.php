@@ -16,6 +16,7 @@
     <meta name="twitter:description" content="{{ config('portfolio.personas.management.seo.twitter_description', 'Praktisi manajemen dengan fokus pada strategi produk dan transformasi bisnis') }}">
     <title>{{ config('portfolio.personas.management.seo.title', 'Management & Strategy - Portfolio') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
     <link rel="canonical" href="{{ url()->current() }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 </head>
@@ -27,7 +28,7 @@
     <a href="{{ url('/persona/operations') }}" class="persona-operations">Operations</a>
 </div>
 <!-- Management & Strategy Persona -->
-<div class="bg-gradient-to-br from-gray-50 to-yellow-50">
+<div class="bg-gradient-to-br from-gray-50 to-yellow-50 management-typography">
     <!-- Hero Section -->
     <div class="relative overflow-hidden hero-section will-change-transform">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
@@ -39,14 +40,14 @@
                     {{ $persona['description'] }}
                 </p>
                 <div class="mt-8 flex justify-center space-x-4">
-                    <span class="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-800 text-sm font-medium rounded-full">
-                        Project Manager
-                    </span>
                     <span class="inline-flex items-center px-4 py-2 bg-yellow-100 text-yellow-800 text-sm font-medium rounded-full">
                         Product Manager
                     </span>
                     <span class="inline-flex items-center px-4 py-2 bg-amber-100 text-amber-800 text-sm font-medium rounded-full">
                         Business Development
+                    </span>
+                     <span class="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-800 text-sm font-medium rounded-full">
+                        Project Manager
                     </span>
                 </div>
             </div>
@@ -71,7 +72,7 @@
             <div class="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
                 <div>
                     <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">
-                        Strategic Leadership & Business Growth
+                        Kepemimpinan Strategis & Pertumbuhan Bisnis
                     </h2>
                     <p class="mt-6 text-lg text-gray-600">
                         Dengan pengalaman luas dalam manajemen proyek dan pengembangan bisnis, saya berfokus pada penerjemahan visi kompleks menjadi strategi yang dapat dieksekusi dan menghasilkan ROI.
