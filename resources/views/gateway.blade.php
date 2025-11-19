@@ -56,7 +56,7 @@
                                             <div class="mb-8">
                                                 @php($avatarFile = public_path('images/profile.jpg'))
                                                 @if(file_exists($avatarFile))
-                                                    <div class="w-32 h-32 mx-auto lg:mx-0 rounded-full overflow-hidden">
+                                                    <div class="w-52 aspect-square mx-auto lg:mx-0 rounded-full overflow-hidden">
                                                         <img src="{{ asset('images/profile.jpg') }}" alt="Foto Profil" class="gateway-avatar w-full h-full object-cover">
                                                     </div>
                                                 @else
@@ -82,7 +82,7 @@
                                     </div>
                                     
                                     <!-- Persona Selection -->
-                                    <div class="mt-12 sm:mt-16 lg:mt-0">
+                                    <div class="mt-12 sm:mt-16 lg:mt-0 flex items-center">
                                         <div class="gateway-card rounded-lg p-6 sm:p-8">
                                             <h2 class="text-2xl font-bold gateway-accent mb-6 text-center">Pilih Persona</h2>
                                             
@@ -90,7 +90,7 @@
                                                 @foreach($personas as $persona)
                                                 <button 
                                                     onclick="selectPersona('{{ $persona['id'] }}')"
-                                                    class="w-full text-left p-4 gateway-card rounded-lg hover:shadow-md transition-all duration-200 group will-change-transform content-visibility-auto"
+                                                    class="w-full text-left p-4 gateway-card rounded-lg hover:shadow-md transition-all duration-200 group will-change-transform content-visibility-auto cursor-pointer"
                                                 >
                                                     <div class="flex items-center">
                                                         <div class="flex-shrink-0">
