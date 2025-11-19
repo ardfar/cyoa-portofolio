@@ -23,6 +23,12 @@
     <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js" defer></script>
 </head>
 <body class="tech-bg tech-text font-mono-tech">
+<div class="persona-switcher">
+    <a href="{{ route('home') }}" class="persona-home">Beranda</a>
+    <a href="{{ url('/persona/tech') }}" class="active persona-tech">Tech</a>
+    <a href="{{ url('/persona/management') }}" class="persona-management">Management</a>
+    <a href="{{ url('/persona/operations') }}" class="persona-operations">Operations</a>
+</div>
 <!-- Technology & Engineering Persona -->
 <div class="tech-bg">
     <!-- Hero Section -->
@@ -95,20 +101,30 @@
                     </div>
                 </div>
                 <div class="mt-12 lg:mt-0">
-                    <div class="flex items-center justify-center">
-                        <div class="avatar-orbit">
-                            <div class="avatar">
-                                @php($avatarFile = public_path('images/profile.jpg'))
-                                @if(file_exists($avatarFile))
-                                    <img src="{{ asset('images/profile.jpg') }}" alt="Foto Profil" class="profile-image">
-                                @else
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                                        <circle cx="12" cy="8" r="4"></circle>
-                                        <path d="M4 20c2-4 6-6 8-6s6 2 8 6"></path>
-                                    </svg>
-                                @endif
+                    <div class="w-full">
+                        @if(!empty($experiences))
+                        <div class="exp-metrics rounded-2xl p-8">
+                            <h3 class="text-xl font-semibold glow-green">Pengalaman Utama</h3>
+                            <div class="mt-6 exp-list">
+                                @foreach($experiences as $exp)
+                                <div class="exp-card-row">
+                                    <div class="exp-text">
+                                        <div class="exp-title">{{ $exp['title'] }}</div>
+                                        <div class="exp-place">{{ $exp['org'] }}</div>
+                                    </div>
+                                    <div class="exp-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l3 7l7 1l-5 5l2 7l-7-4l-7 4l2-7l-5-5l7-1z"/></svg>
+                                    </div>
+                                </div>
+                                @endforeach
                             </div>
                         </div>
+                        @else
+                        <div class="tech-card rounded-2xl p-8">
+                            <h3 class="text-xl font-semibold glow-green">Pengalaman Utama</h3>
+                            <p class="tech-muted">Data pengalaman belum tersedia.</p>
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>

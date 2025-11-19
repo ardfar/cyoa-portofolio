@@ -375,3 +375,29 @@ img {
 .gateway-accent{color:#8B7CF9;text-shadow:0 0 8px rgba(139,124,249,0.6),0 0 16px rgba(139,124,249,0.3)}
 .gateway-root{min-height:100vh;height:100vh;overflow:hidden}
 .gateway-main{min-height:calc(100vh - 64px);display:flex;align-items:center}
+
+.exp-metrics{background:linear-gradient(180deg, rgba(20,22,42,0.85) 0%, rgba(16,18,32,0.95) 100%);border:1px solid #3A3A4E;box-shadow:0 8px 20px rgba(0,247,166,0.06)}
+.exp-card{background:#1A1A2E;border:1px solid #3A3A4E;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center;transition:transform .2s ease-in-out, box-shadow .2s ease-in-out, border-color .2s ease-in-out}
+.exp-card:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,247,166,0.12);border-color:#00F7A6}
+.exp-value{color:#00F7A6;font-weight:800;font-size:1.5rem;letter-spacing:.2px}
+.exp-label{color:#8C8C9A;font-size:.95rem}
+
+.exp-grid{display:grid;grid-template-columns:1fr;gap:24px}
+@media(min-width:768px){.exp-grid{grid-template-columns:1fr 1fr}}
+.exp-grid .exp-card:nth-last-child(1):nth-child(odd){grid-column:1 / -1;justify-self:center;}
+
+.exp-list{display:grid;grid-template-columns:1fr;row-gap:18px}
+.exp-card-row{display:grid;grid-template-columns:1fr 60px;align-items:center;background:#1A1A2E;border:1px solid #3A3A4E;border-radius:12px;padding:18px 20px;transition:transform .2s ease-in-out, box-shadow .2s ease-in-out, border-color .2s ease-in-out}
+.exp-card-row:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,247,166,0.12);border-color:#00F7A6}
+.exp-text{display:grid;row-gap:6px}
+.exp-title{color:#00F7A6;font-weight:800;font-size:1.4rem}
+.exp-place{color:#8C8C9A;font-size:.95rem}
+.exp-icon{width:56px;height:56px;border-radius:9999px;border:2px solid #00F7A6;display:flex;align-items:center;justify-content:center;background:#10101A;color:#00F7A6}
+.exp-icon svg{width:24px;height:24px}
+
+.persona-switcher{position:fixed;top:12px;right:12px;z-index:50;display:flex;gap:8px;padding:8px;border-radius:9999px;background:rgba(16,16,26,0.6);border:1px solid #3A3A4E;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.persona-switcher a{display:inline-flex;align-items:center;justify-content:center;padding:6px 10px;border-radius:9999px;font-weight:600;font-size:13px;color:#E0E0E0;border:1px solid transparent;transition:all .18s ease}
+.persona-switcher a:hover{color:#00F7A6;border-color:#3A3A4E}
+.persona-switcher a.active{background:#00F7A6;color:#10101A}
+.persona-switcher .persona-management.active{background:#FFD700;color:#1A1A2E}
+.persona-switcher .persona-operations.active{background:#56ab2f;color:#0F1220}

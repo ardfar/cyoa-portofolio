@@ -34,6 +34,7 @@ class PersonaController extends Controller
         $data = ['persona' => $personas[$persona]];
         if ($persona === 'tech') {
             $data['projects'] = $this->getTechProjects();
+            $data['experiences'] = $this->getTechExperiences();
         }
 
         return view('personas.' . $persona, $data);
@@ -212,5 +213,35 @@ class PersonaController extends Controller
             }
         }
         return null;
+    }
+
+    private function getTechExperiences(): array
+    {
+        $path = base_path('docs/tech-experience.md');
+        if (!file_exists($path)) {
+            return [];
+        }
+        $raw = @file_get_contents($path);
+        if ($raw === false) {
+            return [];
+        }
+        $lines = preg_split('/\r\n|\r|\n/', $raw);
+        $exps = [];
+        $current = null;
+        foreach ($lines as $line) {
+            $line = trim($line);
+            if ($line === '') { continue; }
+            if (preg_match('/^#\s+(.+)/', $line, $m)) {
+                if ($current) { $exps[] = $current; }
+                $current = ['title' => $m[1], 'org' => null];
+                continue;
+            }
+            if ($current && preg_match('/^@\s*(.+)/', $line, $m)) {
+                $current['org'] = $m[1];
+                continue;
+            }
+        }
+        if ($current) { $exps[] = $current; }
+        return $exps;
     }
 }

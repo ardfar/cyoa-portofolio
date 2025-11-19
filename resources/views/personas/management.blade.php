@@ -20,6 +20,12 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 </head>
 <body>
+<div class="persona-switcher">
+    <a href="{{ route('home') }}" class="persona-home">Beranda</a>
+    <a href="{{ url('/persona/tech') }}" class="persona-tech">Tech</a>
+    <a href="{{ url('/persona/management') }}" class="active persona-management">Management</a>
+    <a href="{{ url('/persona/operations') }}" class="persona-operations">Operations</a>
+</div>
 <!-- Management & Strategy Persona -->
 <div class="bg-gradient-to-br from-gray-50 to-yellow-50">
     <!-- Hero Section -->
