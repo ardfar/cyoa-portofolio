@@ -115,7 +115,7 @@ class PersonaController extends Controller
                 'id' => 'management',
                 'name' => 'Management & Strategy',
                 'headline' => 'Menerjemahkan visi bisnis menjadi produk yang sukses dan strategis.',
-                'description' => 'Dengan pendekatan yang berorientasi pada hasil, saya menerjemahkan visi kompleks menjadi strategi yang dapat dieksekusi.',
+                'description' => 'Mentransformasi ide abstrak menjadi roadmap produk yang nyata dan terukur.',
                 'roles' => ['Project Manager', 'Product Manager', 'Business Development'],
                 'theme' => 'black-gold',
                 'accent_color' => 'gold'
