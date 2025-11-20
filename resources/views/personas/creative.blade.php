@@ -115,36 +115,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="space-y-6 creative-services">
-                        <div class="creative-service-item">
-                            <div class="creative-service-icon">
-                                <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center shadow-lg">
-                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="creative-service-content">
-                                <h3 class="text-xl font-bold creative-text">Graphic Design</h3>
-                                <p class="creative-muted mt-1">Brand identity, layout, dan desain visual untuk komunikasi yang efektif.</p>
-                            </div>
-                        </div>
-                        <div class="creative-service-item">
-                            <div class="creative-service-icon">
-                                <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="creative-service-content">
-                                <h3 class="text-xl font-bold creative-text">Creative Photography</h3>
-                                <p class="creative-muted mt-1">Visual storytelling dan creative direction untuk kebutuhan branding dan marketing.</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -152,7 +122,7 @@
 
     <!-- Photography Gallery Section -->
     <section id="photo" class="py-20 creative-bg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="w-[90%] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <h2 class="text-4xl font-black creative-text sm:text-5xl creative-gallery-title">Portofolio Fotografi</h2>
                 <p class="mt-6 max-w-3xl mx-auto text-xl creative-muted creative-gallery-description">
@@ -160,52 +130,23 @@
                 </p>
             </div>
 
-            <div class="mt-16 creative-gallery creative-gallery-advanced">
-                <div class="creative-gallery-item" data-category="portrait">
-                    <div class="creative-gallery-thumb" style="background:linear-gradient(135deg,#DDF4E4,#FFFFFF)">
-                        <div class="creative-gallery-overlay">
-                            <div class="creative-gallery-content">
-                                <h3 class="creative-gallery-title">Portrait Photography</h3>
-                                <p class="creative-gallery-desc">Capturing personality and emotion</p>
-                                <div class="creative-gallery-tags">
-                                    <span class="creative-gallery-tag">Studio</span>
-                                    <span class="creative-gallery-tag">Natural Light</span>
-                                </div>
+            <div class="scrolling-gallery-container mt-12">
+                <div class="scrolling-gallery">
+                    <div class="masonry-gallery">
+                        @php
+                            $imageFiles = glob(public_path('images/portofolio/*.jpg'));
+                            $imageFiles = array_merge($imageFiles, $imageFiles); // Duplicate images for seamless scroll
+                        @endphp
+                        @foreach ($imageFiles as $file)
+                            <div class="masonry-item">
+                                <img src="{{ asset('images/portofolio/' . basename($file)) }}" alt="Portofolio Fotografi" class="rounded-lg shadow-lg">
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="creative-gallery-item" data-category="event">
-                    <div class="creative-gallery-thumb" style="background:linear-gradient(135deg,#FFD166,#FFF4CC)">
-                        <div class="creative-gallery-overlay">
-                            <div class="creative-gallery-content">
-                                <h3 class="creative-gallery-title">Event Photography</h3>
-                                <p class="creative-gallery-desc">Documenting memorable moments</p>
-                                <div class="creative-gallery-tags">
-                                    <span class="creative-gallery-tag">Corporate</span>
-                                    <span class="creative-gallery-tag">Wedding</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="creative-gallery-item" data-category="corporate">
-                    <div class="creative-gallery-thumb" style="background:linear-gradient(135deg,#DDF4E4,#FFFFFF)">
-                        <div class="creative-gallery-overlay">
-                            <div class="creative-gallery-content">
-                                <h3 class="creative-gallery-title">Corporate Photography</h3>
-                                <p class="creative-gallery-desc">Professional business imagery</p>
-                                <div class="creative-gallery-tags">
-                                    <span class="creative-gallery-tag">Headshots</span>
-                                    <span class="creative-gallery-tag">Product</span>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
 
-            <div class="mt-16 text-center">
+            <div class="mt-4 text-center">
                 <a href="#photo" class="inline-flex items-center px-8 py-4 rounded-full font-bold text-lg creative-btn creative-gallery-btn">
                     Lihat Galeri Lengkap
                     <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
