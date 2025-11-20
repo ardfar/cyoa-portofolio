@@ -30,8 +30,8 @@
 <!-- Creative Persona -->
 <div class="creative-bg creative-typography">
     <!-- Hero Section -->
-    <div class="relative overflow-hidden hero-section will-change-transform creative-hero">
-        <div class="creative-hero-bg"></div>
+    <div class="relative overflow-hidden hero-section will-change-transform creative-hero h-fit">
+        <div class="creative-hero-bg w-full overflow-hidden"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:py-24">
             <div class="text-center content-visibility-auto relative z-10">
                 <h1 class="text-5xl font-black tracking-tighter creative-text sm:text-6xl lg:text-7xl xl:text-8xl hero-headline">

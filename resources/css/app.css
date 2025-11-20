@@ -387,7 +387,7 @@ img {
 .creative-shapes > *{position:relative;z-index:1}
 
 /* Creative Hero Section - Bold & Dynamic */
-.creative-hero{position:relative;min-height:70vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.creative-hero{position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .creative-hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse at top right, rgba(92,207,159,0.15) 0%, transparent 50%),radial-gradient(ellipse at bottom left, rgba(255,209,102,0.1) 0%, transparent 50%),linear-gradient(135deg, #0F1220 0%, #14162A 100%)}
 .hero-headline{background:linear-gradient(135deg, #FFFFFF 0%, #6CDFAF 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:900;letter-spacing:-0.05em;line-height:1.1;text-shadow:0 2px 20px rgba(0,0,0,0.3), 0 0 40px rgba(92,207,159,0.4);animation:heroFadeIn 1s ease-out}
 .hero-description{opacity:0.9;font-weight:500;text-shadow:0 2px 20px rgba(0,0,0,0.5);animation:heroSlideUp 1s ease-out 0.3s both}
