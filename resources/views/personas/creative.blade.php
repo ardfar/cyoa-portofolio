@@ -124,8 +124,8 @@
     <section id="photo" class="py-20 creative-bg">
         <div class="w-[90%] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
-                <h2 class="text-4xl font-black creative-text sm:text-5xl creative-gallery-title">Portofolio Fotografi</h2>
-                <p class="mt-6 max-w-3xl mx-auto text-xl creative-muted creative-gallery-description">
+                <h2 class="text-4xl font-black creative-text sm:text-5xl lg:text-6xl creative-section-title">Portofolio Fotografi</h2>
+                <p class="mt-8 text-xl creative-muted creative-about-description">
                     Koleksi visual yang menampilkan momen berharga dan cerita yang menginspirasi melalui lensa kreatif.
                 </p>
             </div>
