@@ -67,17 +67,17 @@
             <div class="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
                 <div class="creative-about-content">
                     <h2 class="text-4xl font-black creative-text sm:text-5xl lg:text-6xl creative-section-title">
-                        Menangkap Momen. Menciptakan Identitas.
+                        Merangkai Cerita dalam Setiap Lensa dan Goresan.
                     </h2>
                     <p class="mt-8 text-xl creative-muted creative-about-description">
-                        Visual storytelling yang menghidupkan brand dan mengabadikan cerita melalui fotografi dan desain grafis.
+                        Setiap brand punya jiwa, setiap momen punya cerita. Saya di sini untuk menerjemahkannya ke dalam bahasa visual yang menggugah rasa.
                     </p>
                     <div class="mt-10 flex flex-wrap gap-4 creative-cta-group">
                         <a href="#photo" class="creative-btn creative-btn-bold inline-flex items-center px-8 py-4 rounded-full font-bold text-lg">
-                            Lihat Portofolio Fotografi
+                            Jelajahi Karya Lensa
                         </a>
                         <a href="#design" class="creative-btn creative-btn-outline inline-flex items-center px-8 py-4 rounded-full font-bold text-lg">
-                            Jelajahi Proyek Desain
+                            Selami Dunia Desain
                         </a>
                     </div>
                 </div>
@@ -124,9 +124,9 @@
     <section id="photo" class="py-20 creative-bg">
         <div class="w-[90%] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
-                <h2 class="text-4xl font-black creative-text sm:text-5xl lg:text-6xl creative-section-title">Portofolio Fotografi</h2>
+                <h2 class="text-4xl font-black creative-text sm:text-5xl lg:text-6xl creative-section-title">Galeri Jiwa</h2>
                 <p class="mt-8 text-xl creative-muted creative-about-description">
-                    Koleksi visual yang menampilkan momen berharga dan cerita yang menginspirasi melalui lensa kreatif.
+                    Sebuah persembahan visual, di mana setiap frame adalah jeda puitis dari realita yang fana. Momen yang tertangkap, cerita yang abadi.
                 </p>
             </div>
 
@@ -138,8 +138,45 @@
                             $imageFiles = array_merge($imageFiles, $imageFiles); // Duplicate images for seamless scroll
                         @endphp
                         @foreach ($imageFiles as $file)
-                            <div class="masonry-item">
-                                <img src="{{ asset('images/portofolio/' . basename($file)) }}" alt="Portofolio Fotografi" class="rounded-lg shadow-lg">
+                            @php
+                                // Suppress warnings if exif extension is not available or data is not present
+                                $exifData = @exif_read_data($file);
+                                $camera = $exifData['Model'] ?? null;
+                                
+                                $apertureValue = $exifData['FNumber'] ?? null;
+                                $aperture = null;
+                                if ($apertureValue) {
+                                    $parts = explode('/', $apertureValue);
+                                    if (count($parts) == 2 && $parts[1] != 0) {
+                                        $aperture = 'f/' . round($parts[0] / $parts[1], 1);
+                                    }
+                                }
+
+                                $shutter = $exifData['ExposureTime'] ?? null;
+                                $iso = $exifData['ISOSpeedRatings'] ?? null;
+                            @endphp
+                            <div class="masonry-item group relative overflow-hidden rounded-lg shadow-lg bg-white">
+                                <img src="{{ asset('images/portofolio/' . basename($file)) }}" alt="Portofolio Fotografi" class="w-full h-full object-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110">
+                                @if($camera || $aperture || $shutter || $iso)
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                                    <div class="text-white transform translate-y-3 group-hover:translate-y-0 transition-transform duration-300 ease-in-out">
+                                        @if($camera)
+                                            <p class="text-sm font-bold tracking-wide">{{ $camera }}</p>
+                                        @endif
+                                        <div class="flex items-center space-x-3 text-xs mt-1 opacity-90 font-mono">
+                                            @if($aperture)
+                                                <span class="font-semibold">{{ $aperture }}</span>
+                                            @endif
+                                            @if($shutter)
+                                                <span>{{ $shutter }}s</span>
+                                            @endif
+                                            @if($iso)
+                                                <span>ISO{{ $iso }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
                             </div>
                         @endforeach
                     </div>
@@ -148,7 +185,7 @@
 
             <div class="mt-4 text-center">
                 <a href="#photo" class="inline-flex items-center px-8 py-4 rounded-full font-bold text-lg creative-btn creative-gallery-btn">
-                    Lihat Galeri Lengkap
+                    Lihat Koleksi Penuh
                     <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                     </svg>
@@ -161,8 +198,8 @@
     <section id="design" class="py-16 creative-bg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
-                <h2 class="text-3xl font-extrabold creative-text sm:text-4xl">Proyek Desain</h2>
-                <p class="mt-4 max-w-2xl mx-auto text-xl creative-muted">Grid proyek desain dengan kartu minimalis dan tag kategori.</p>
+                <h2 class="text-3xl font-extrabold creative-text sm:text-4xl">Kanvas Digital</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-xl creative-muted">Dari konsep hingga mahakarya, inilah beberapa proyek pilihan yang lahir dari kolaborasi dan imajinasi.</p>
             </div>
 
             <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -183,14 +220,14 @@
                         </div>
                     </div>
                     <div class="creative-card-body">
-                        <h3 class="text-xl font-bold creative-text mb-2">Brand Identity & Visual System</h3>
-                        <p class="creative-muted mb-4">Pengembangan sistem identitas visual yang konsisten untuk meningkatkan pengenalan merek dan engagement.</p>
+                        <h3 class="text-xl font-bold creative-text mb-2">Membangun Jiwa untuk Brand</h3>
+                        <p class="creative-muted mb-4">Menciptakan identitas yang tidak hanya dilihat, tapi juga dirasakan. Sebuah sistem visual yang berbicara langsung ke hati audiens.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="creative-tag">Branding</span>
                             <span class="creative-tag">Visual System</span>
                         </div>
                         <div class="creative-card-footer">
-                            <button class="creative-project-btn">Lihat Studi Kasus</button>
+                            <button class="creative-project-btn">Pelajari Kisahnya</button>
                         </div>
                     </div>
                 </div>
