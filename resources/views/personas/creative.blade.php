@@ -32,7 +32,7 @@
     <!-- Hero Section -->
     <div class="relative overflow-hidden hero-section will-change-transform creative-hero">
         <div class="creative-hero-bg"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:py-24">
             <div class="text-center content-visibility-auto relative z-10">
                 <h1 class="text-5xl font-black tracking-tighter creative-text sm:text-6xl lg:text-7xl xl:text-8xl hero-headline">
                     {{ $persona['headline'] }}
@@ -50,7 +50,7 @@
     </div>
 
     <!-- Navigation -->
-    <div class="sticky-nav creative-navbar">
+    <div class="sticky-nav creative-navbar sticky-nav-light will-change-transform">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <nav class="flex space-x-8 py-4">
                 <a href="#about" class="creative-link hover:creative-link-active font-medium">Tentang</a>
@@ -62,7 +62,7 @@
     </div>
 
     <!-- About Section -->
-    <section id="about" class="py-20 creative-bg creative-shapes">
+    <section id="about" class="py-20 creative-shapes">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
                 <div class="creative-about-content">
@@ -80,39 +80,10 @@
                             Jelajahi Proyek Desain
                         </a>
                     </div>
-                    <div class="mt-12 space-y-6 creative-services">
-                        <div class="creative-service-item">
-                            <div class="creative-service-icon">
-                                <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center shadow-lg">
-                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="creative-service-content">
-                                <h3 class="text-xl font-bold creative-text">Graphic Design</h3>
-                                <p class="creative-muted mt-1">Brand identity, layout, dan desain visual untuk komunikasi yang efektif.</p>
-                            </div>
-                        </div>
-                        <div class="creative-service-item">
-                            <div class="creative-service-icon">
-                                <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="creative-service-content">
-                                <h3 class="text-xl font-bold creative-text">Creative Photography</h3>
-                                <p class="creative-muted mt-1">Visual storytelling dan creative direction untuk kebutuhan branding dan marketing.</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="mt-16 lg:mt-0">
-                    <div class="creative-secondary rounded-3xl p-8 creative-skills-card">
-                        <h3 class="text-2xl font-bold creative-text mb-6 creative-skills-title">Skills & Tools</h3>
+                    <div class="creative-secondary rounded-3xl p-6 creative-skills-card">
+                        <h3 class="text-2xl font-bold creative-text mb-4 creative-skills-title">Skills & Tools</h3>
                         <div class="grid grid-cols-2 gap-4">
                             <div class="creative-skill-item">
                                 <div class="text-2xl font-black creative-text">95%</div>
@@ -141,6 +112,36 @@
                                 <div class="creative-skill-bar">
                                     <div class="creative-skill-progress" style="width: 85%"></div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6 creative-services">
+                        <div class="creative-service-item">
+                            <div class="creative-service-icon">
+                                <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center shadow-lg">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="creative-service-content">
+                                <h3 class="text-xl font-bold creative-text">Graphic Design</h3>
+                                <p class="creative-muted mt-1">Brand identity, layout, dan desain visual untuk komunikasi yang efektif.</p>
+                            </div>
+                        </div>
+                        <div class="creative-service-item">
+                            <div class="creative-service-icon">
+                                <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="creative-service-content">
+                                <h3 class="text-xl font-bold creative-text">Creative Photography</h3>
+                                <p class="creative-muted mt-1">Visual storytelling dan creative direction untuk kebutuhan branding dan marketing.</p>
                             </div>
                         </div>
                     </div>
