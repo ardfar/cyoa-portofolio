@@ -529,7 +529,7 @@ img {
 }
 
 .scrolling-gallery {
-    animation: autoScroll 240s linear infinite;
+    animation: autoScroll 180s linear infinite;
 }
 
 @keyframes autoScroll {
