@@ -33,13 +33,13 @@
     <div class="relative overflow-hidden hero-section will-change-transform">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
             <div class="text-center content-visibility-auto">
-                <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl will-change-opacity">
+                <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl will-change-opacity animate-fade-in-up">
                     {{ $persona['headline'] }}
                 </h1>
-                <p class="mt-6 max-w-2xl mx-auto text-xl text-gray-600">
+                <p class="mt-6 max-w-2xl mx-auto text-xl text-gray-600 animate-fade-in-up animation-delay-300">
                     {{ $persona['description'] }}
                 </p>
-                <div class="mt-8 flex justify-center gap-3 flex-wrap">
+                <div class="mt-8 flex justify-center gap-3 flex-wrap animate-fade-in-up animation-delay-600">
                     @foreach(($persona['roles'] ?? []) as $role)
                         <span class="inline-flex items-center px-4 py-2 bg-yellow-100 text-yellow-800 text-sm font-medium rounded-full">{{ $role }}</span>
                     @endforeach
