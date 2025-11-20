@@ -152,12 +152,12 @@ class PersonaController extends Controller
                 'theme' => 'black-gold',
                 'accent_color' => 'gold'
             ],
-            'operations' => [
-                'id' => 'operations',
-                'name' => 'Operations & Creative',
-                'headline' => 'Memastikan operasi bisnis berjalan lancar dengan sentuhan kreatif.',
-                'description' => 'Menggabungkan efisiensi operasional dengan kreativitas untuk mendukung pertumbuhan bisnis yang berkelanjutan.',
-                'roles' => ['IT Support', 'Administrator', 'Photography'],
+            'creative' => [
+                'id' => 'creative',
+                'name' => 'Creative',
+                'headline' => 'Mewujudkan ide visual melalui desain grafis dan fotografi.',
+                'description' => 'Fokus pada desain grafis dan visual storytelling untuk mendukung branding dan komunikasi yang kuat.',
+                'roles' => ['Desain Grafis', 'Photographer'],
                 'theme' => 'green-gray',
                 'accent_color' => 'green'
             ]

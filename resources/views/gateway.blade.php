@@ -100,9 +100,9 @@
                                                                 @else from-green-500 to-gray-600 @endif
                                                                 flex items-center justify-center">
                                                                 <span class="text-white font-bold text-lg">
-                                                                    @if($persona['id'] == 'tech') T
-                                                                    @elseif($persona['id'] == 'management') M
-                                                                    @else O @endif
+                                                                @if($persona['id'] == 'tech') T
+                                                                @elseif($persona['id'] == 'management') M
+                                                                @else C @endif
                                                                 </span>
                                                         </div>
                                                         </div>
