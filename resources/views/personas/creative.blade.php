@@ -218,93 +218,58 @@
                 <p class="mt-4 max-w-2xl mx-auto text-xl creative-muted">Dari konsep hingga mahakarya, inilah beberapa proyek pilihan yang lahir dari kolaborasi dan imajinasi.</p>
             </div>
 
+            @php
+                $designProjects = [
+                    [
+                        'folder' => 'kopinaren',
+                        'title' => 'Kopinaren: Meracik Identitas Rasa',
+                        'description' => 'Membangun jiwa sebuah coffee shop terjangkau, mulai dari goresan tipografi hingga desain menu yang mengundang selera.',
+                        'tags' => ['Branding', 'Identity', 'Menu Design']
+                    ],
+                    [
+                        'folder' => 'mik',
+                        'title' => 'MIK: Visualisasi Data Kompleks',
+                        'description' => 'Mentransformasi data teknis yang rumit menjadi sebuah presentasi visual yang jernih, memukau, dan mudah dicerna oleh klien.',
+                        'tags' => ['Presentation', 'Data Visualization', 'Corporate']
+                    ],
+                    [
+                        'folder' => 'bakso-boss',
+                        'title' => 'Bakso Boss 88: Vibe & Kredibilitas',
+                        'description' => 'Menghadirkan desain dan vibe yang membangun kredibilitas, mengubah gerai bakso sederhana menjadi destinasi kuliner yang berkesan.',
+                        'tags' => ['Food Stall', 'Branding', 'Environmental']
+                    ]
+                ];
+            @endphp
+
             <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                <!-- IT Support Case Study -->
+                @foreach ($designProjects as $project)
                 <div class="creative-card creative-project-card">
                     <div class="creative-card-header">
-                        <div class="bg-gradient-to-br from-green-500 to-teal-600 h-48 flex items-center justify-center">
-                            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                            </svg>
+                        {{-- Using inline style for dynamic background image --}}
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('{{ asset('images/design/' . $project['folder'] . '/hero.png') }}')">
                         </div>
                         <div class="creative-card-overlay">
                             <div class="creative-card-overlay-content">
-                                <h4 class="text-white font-bold mb-2">Brand Identity</h4>
-                                <p class="text-gray-200 text-sm">Visual storytelling untuk brand yang kuat</p>
+                                <h4 class="text-white font-bold mb-2">{{ $project['title'] }}</h4>
+                                <p class="text-gray-200 text-sm">{{ $project['tags'][0] ?? '' }}</p>
                                 <button class="creative-overlay-btn mt-4">Lihat Detail</button>
                             </div>
                         </div>
                     </div>
                     <div class="creative-card-body">
-                        <h3 class="text-xl font-bold creative-text mb-2">Membangun Jiwa untuk Brand</h3>
-                        <p class="creative-muted mb-4">Menciptakan identitas yang tidak hanya dilihat, tapi juga dirasakan. Sebuah sistem visual yang berbicara langsung ke hati audiens.</p>
+                        <h3 class="text-xl font-bold creative-text mb-2">{{ $project['title'] }}</h3>
+                        <p class="creative-muted mb-4">{{ $project['description'] }}</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="creative-tag">Branding</span>
-                            <span class="creative-tag">Visual System</span>
+                            @foreach ($project['tags'] as $tag)
+                                <span class="creative-tag">{{ $tag }}</span>
+                            @endforeach
                         </div>
                         <div class="creative-card-footer">
                             <button class="creative-project-btn">Pelajari Kisahnya</button>
                         </div>
                     </div>
                 </div>
-
-                <!-- Admin Efficiency -->
-                <div class="creative-card creative-project-card">
-                    <div class="creative-card-header">
-                        <div class="bg-gradient-to-br from-gray-500 to-blue-600 h-48 flex items-center justify-center">
-                            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
-                            </svg>
-                        </div>
-                        <div class="creative-card-overlay">
-                            <div class="creative-card-overlay-content">
-                                <h4 class="text-white font-bold mb-2">Marketing Design</h4>
-                                <p class="text-gray-200 text-sm">Campaign visual yang menarik</p>
-                                <button class="creative-overlay-btn mt-4">Lihat Detail</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="creative-card-body">
-                        <h3 class="text-xl font-bold creative-text mb-2">Marketing Collateral Design</h3>
-                        <p class="creative-muted mb-4">Desain materi campaign seperti poster, banner, dan social media assets yang kohesif dan menarik.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="creative-tag">Poster</span>
-                            <span class="creative-tag">Social Media</span>
-                        </div>
-                        <div class="creative-card-footer">
-                            <button class="creative-project-btn">Lihat Detail</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Creative Solutions -->
-                <div class="creative-card creative-project-card">
-                    <div class="creative-card-header">
-                        <div class="bg-gradient-to-br from-purple-500 to-pink-600 h-48 flex items-center justify-center">
-                            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
-                            </svg>
-                        </div>
-                        <div class="creative-card-overlay">
-                            <div class="creative-card-overlay-content">
-                                <h4 class="text-white font-bold mb-2">Studio Photography</h4>
-                                <p class="text-gray-200 text-sm">Editorial & commercial visuals</p>
-                                <button class="creative-overlay-btn mt-4">Lihat Detail</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="creative-card-body">
-                        <h3 class="text-xl font-bold creative-text mb-2">Studio & Editorial Photography</h3>
-                        <p class="creative-muted mb-4">Produksi visual berkualitas untuk kebutuhan editorial, komersial, dan promosi.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="creative-tag">Editorial</span>
-                            <span class="creative-tag">Studio</span>
-                        </div>
-                        <div class="creative-card-footer">
-                            <button class="creative-project-btn">Lihat Detail</button>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
