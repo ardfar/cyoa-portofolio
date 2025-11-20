@@ -152,7 +152,23 @@
                                     }
                                 }
 
-                                $shutter = $exifData['ExposureTime'] ?? null;
+                                $shutterValue = $exifData['ExposureTime'] ?? null;
+                                $shutter = null;
+                                if ($shutterValue) {
+                                    if (strpos($shutterValue, '/') !== false) {
+                                        list($num, $den) = explode('/', $shutterValue);
+                                        if ($den != 0) {
+                                            $exposure = $num / $den;
+                                            if ($exposure >= 1) {
+                                                $shutter = round($exposure) . 's';
+                                            } else {
+                                                $shutter = '1/' . round(1 / $exposure) . 's';
+                                            }
+                                        }
+                                    } else {
+                                        $shutter = $shutterValue . 's';
+                                    }
+                                }
                                 $iso = $exifData['ISOSpeedRatings'] ?? null;
                             @endphp
                             <div class="masonry-item group relative overflow-hidden rounded-lg shadow-lg bg-white">
@@ -168,7 +184,7 @@
                                                 <span class="font-semibold">{{ $aperture }}</span>
                                             @endif
                                             @if($shutter)
-                                                <span>{{ $shutter }}s</span>
+                                                <span>{{ $shutter }}</span>
                                             @endif
                                             @if($iso)
                                                 <span>ISO{{ $iso }}</span>
