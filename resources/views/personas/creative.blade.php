@@ -265,7 +265,11 @@
                             @endforeach
                         </div>
                         <div class="creative-card-footer">
-                            <button class="creative-project-btn">Pelajari Kisahnya</button>
+                            @if(($project['folder'] ?? '') === 'kopinaren')
+                                <a href="{{ route('portfolio.kopinaren') }}" class="creative-project-btn">Pelajari Kisahnya</a>
+                            @else
+                                <button class="creative-project-btn">Pelajari Kisahnya</button>
+                            @endif
                         </div>
                     </div>
                 </div>

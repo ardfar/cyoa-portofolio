@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\CmsController;
+use App\Http\Controllers\PersonaController;
 use Illuminate\Support\Facades\Route;
 
 // Gateway page - main entry point (no cache)
@@ -19,6 +19,11 @@ Route::get('/resume', [PersonaController::class, 'resume'])
 // Full photography gallery (by theme) under creative persona
 Route::get('/persona/creative/gallery', [PersonaController::class, 'gallery'])
     ->name('persona.creative.gallery');
+
+// Dedicated portfolio page for Kopinaren
+Route::get('/portfolio/kopinaren', function () {
+    return view('portfolio.kopinaren');
+})->name('portfolio.kopinaren');
 
 // Additional static pages (no cache)
 Route::get('/contact', function () {
