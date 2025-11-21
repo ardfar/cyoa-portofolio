@@ -13,7 +13,7 @@
     <a href="{{ url('/persona/management') }}" class="persona-management">Management</a>
     <a href="{{ url('/persona/creative') }}" class="active persona-creative">Creative</a>
     </div>
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="w-[90vw] mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="text-center">
         <h1 class="text-4xl font-black creative-text sm:text-5xl lg:text-6xl">Galeri Koleksi Foto</h1>
         <p class="mt-6 text-lg creative-muted">Jelajahi koleksi fotografi yang dikelompokkan berdasarkan tema.</p>
@@ -101,7 +101,15 @@ document.addEventListener('DOMContentLoaded', function () {
             this.classList.add('active');
             const f = this.getAttribute('data-filter');
             items.forEach(it => {
-                it.style.display = (f === 'all' || it.getAttribute('data-theme') === f) ? 'block' : 'none';
+                if (f === 'all' || it.getAttribute('data-theme') === f) {
+                    it.style.display = 'block';
+                    // re-trigger fade-in animation
+                    it.classList.remove('animate-fade-in');
+                    void it.offsetWidth; // force reflow
+                    it.classList.add('animate-fade-in');
+                } else {
+                    it.style.display = 'none';
+                }
             });
         });
     });
