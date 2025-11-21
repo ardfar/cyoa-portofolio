@@ -21,12 +21,13 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 </head>
 <body>
-<div class="persona-switcher">
-    <a href="{{ route('home') }}" class="persona-home">Beranda</a>
-    <a href="{{ url('/persona/tech') }}" class="persona-tech">Tech</a>
-    <a href="{{ url('/persona/management') }}" class="active persona-management">Management</a>
-    <a href="{{ url('/persona/creative') }}" class="persona-creative">Creative</a>
-</div>
+    <div class="management-switcher persona-switcher">
+                    <a href="{{ route('home') }}" class="persona-home">Beranda</a>
+                    <a href="{{ url('/persona/tech') }}" class="persona-tech">Tech</a>
+                    <a href="{{ url('/persona/management') }}" class="active persona-management">Management</a>
+                    <a href="{{ url('/persona/creative') }}" class="persona-creative">Creative</a>
+                </div>
+ 
 <!-- Management & Strategy Persona -->
 <div class="bg-gradient-to-br from-gray-50 to-yellow-50 management-typography">
     <!-- Hero Section -->
@@ -51,12 +52,14 @@
     <!-- Navigation -->
     <div id="management-local-nav" class="bg-white shadow-sm border-b border-gray-200 sticky-nav sticky-nav-light will-change-transform">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <nav class="flex space-x-8 py-4">
-                <a href="#about" class="text-gray-800 hover:text-gray-900 font-medium">Tentang</a>
-                <a href="#case-studies" class="text-gray-600 hover:text-gray-800 font-medium">Track Record</a>
-                <a href="#roadmap" class="text-gray-600 hover:text-gray-800 font-medium">Roadmap</a>
-                <a href="#contact" class="text-gray-600 hover:text-gray-800 font-medium">Kontak</a>
-            </nav>
+            <div class="flex items-center justify-between py-4">
+                <nav class="flex space-x-8">
+                    <a href="#about" class="text-gray-800 hover:text-gray-900 font-medium">Tentang</a>
+                    <a href="#case-studies" class="text-gray-600 hover:text-gray-800 font-medium">Track Record</a>
+                    <a href="#roadmap" class="text-gray-600 hover:text-gray-800 font-medium">Roadmap</a>
+                    <a href="#contact" class="text-gray-600 hover:text-gray-800 font-medium">Kontak</a>
+                </nav>
+            </div>
         </div>
     </div>
 
