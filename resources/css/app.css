@@ -600,6 +600,10 @@ img {
 .animation-delay-600 {
     animation-delay: 0.6s;
 }
+
+.artist-gallery-bg{background:#F8FDF9}
+.artist-title{font-family:'Plus Jakarta Sans','Outfit','Sora',Inter,system-ui,-apple-system,sans-serif;color:#1F3D35}
+.artist-subtitle{color:#3A5449}
 .filter-btn{transition:all .25s ease;will-change:transform,background,color,box-shadow;cursor:pointer}
 .filter-btn.active{background:linear-gradient(135deg,#6CDFAF 0%,#5CCF9F 100%);color:#0F1220;border-color:#5CCF9F;box-shadow:0 8px 20px rgba(92,207,159,.25);transform:translateY(-2px)}
 .filter-btn:not(.active):hover{transform:translateY(-2px);border-color:rgba(0,106,78,.35)}
