@@ -25,6 +25,11 @@ Route::get('/portfolio/kopinaren', function () {
     return view('portfolio.kopinaren');
 })->name('portfolio.kopinaren');
 
+// Dedicated portfolio page for Bakso Boss 88
+Route::get('/portfolio/bakso-boss', function () {
+    return view('portfolio.bakso-boss');
+})->name('portfolio.bakso-boss');
+
 // Additional static pages (no cache)
 Route::get('/contact', function () {
     return view('contact');

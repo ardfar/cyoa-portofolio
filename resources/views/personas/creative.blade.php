@@ -267,6 +267,8 @@
                         <div class="creative-card-footer">
                             @if(($project['folder'] ?? '') === 'kopinaren')
                                 <a href="{{ route('portfolio.kopinaren') }}" class="creative-project-btn">Pelajari Kisahnya</a>
+                            @elseif(($project['folder'] ?? '') === 'bakso-boss')
+                                <a href="{{ route('portfolio.bakso-boss') }}" class="creative-project-btn">Pelajari Kisahnya</a>
                             @else
                                 <button class="creative-project-btn">Pelajari Kisahnya</button>
                             @endif
