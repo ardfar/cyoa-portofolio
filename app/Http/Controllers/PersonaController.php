@@ -129,6 +129,45 @@ class PersonaController extends Controller
     }
 
     /**
+     * Display the full photography gallery page grouped by theme
+     */
+    public function gallery(): View
+    {
+        $basePath = public_path('images/portofolio');
+        $themes = [];
+        $allPhotos = [];
+
+        if (is_dir($basePath)) {
+            // Get only subdirectories (themes)
+            $directories = array_values(array_filter(glob($basePath . '/*'), 'is_dir'));
+            foreach ($directories as $dir) {
+                $theme = basename($dir);
+                $files = glob($dir . '/*.{jpg,jpeg,png,gif}', GLOB_BRACE) ?: [];
+                $photos = [];
+                foreach ($files as $file) {
+                    $photos[] = [
+                        'url' => asset('images/portofolio/' . $theme . '/' . basename($file)),
+                        'file' => $file,
+                        'theme' => $theme,
+                    ];
+                }
+                $themes[$theme] = $photos;
+                $allPhotos = array_merge($allPhotos, $photos);
+            }
+        }
+
+        // Sort photos consistently by URL
+        usort($allPhotos, function ($a, $b) {
+            return strcmp($a['url'], $b['url']);
+        });
+
+        return view('gallery', [
+            'themes' => $themes,
+            'photos' => $allPhotos,
+        ]);
+    }
+
+    /**
      * Get all personas configuration
      */
     private function getPersonas(): array

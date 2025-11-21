@@ -16,6 +16,10 @@ Route::get('/persona/{persona}', [PersonaController::class, 'content'])
 Route::get('/resume', [PersonaController::class, 'resume'])
     ->name('resume');
 
+// Full photography gallery (by theme) under creative persona
+Route::get('/persona/creative/gallery', [PersonaController::class, 'gallery'])
+    ->name('persona.creative.gallery');
+
 // Additional static pages (no cache)
 Route::get('/contact', function () {
     return view('contact');
