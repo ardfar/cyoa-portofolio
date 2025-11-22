@@ -81,7 +81,7 @@ html {
 }
 
 .glass-card {
-    background: rgba(30, 41, 59, 0.7);
+    background: rgba(30, 41, 59, 0.4);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -112,6 +112,17 @@ html {
 
 .animate-pulse-slow {
     animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+input[type="radio"]:checked + div {
+    border-color: var(--active-color);
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 15px -3px var(--active-color-glow);
+}
+
+input[type="radio"]:checked + div .icon-box {
+    background-color: var(--active-color);
+    color: #0F172A;
 }
 
 /* Persona theme colors */

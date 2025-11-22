@@ -47,6 +47,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const originalText = this.innerHTML;
                 this.innerHTML = '<span class="loading mr-2"></span> Mengirim...';
                 this.disabled = true;
+
+                this.form.submit();
                 
                 // Re-enable button after 3 seconds (or when form submission completes)
                 setTimeout(() => {

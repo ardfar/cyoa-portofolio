@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CmsController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PersonaController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +40,8 @@ Route::get('/portfolio/mik', function () {
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
+
+Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
 
 // CMS Routes (Basic functionality without authentication for simplicity)
 Route::prefix('cms')->group(function () {
