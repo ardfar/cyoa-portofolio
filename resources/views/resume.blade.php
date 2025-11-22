@@ -174,7 +174,7 @@
     <footer class="py-12 text-center">
         <h2 class="font-display text-2xl text-white mb-6">Siap Berkolaborasi?</h2>
         <div class="flex justify-center gap-6">
-            <a href="mailto:me@aradenta.com" class="text-slate-400 hover:text-white transition">Email</a>
+            @obfuscateEmail('me@aradenta.com', 'text-slate-400 hover:text-white transition', 'Email')
             <a href="https://linkedin.com/in/farras-arrafi" class="text-slate-400 hover:text-white transition">LinkedIn</a>
             <a href="https://github.com/ardfar" class="text-slate-400 hover:text-white transition">GitHub</a>
         </div>

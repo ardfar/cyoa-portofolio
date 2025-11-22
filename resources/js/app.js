@@ -175,7 +175,10 @@ function preloadCriticalResources() {
 }
 
 // Preload critical resources after page load
-window.addEventListener('load', preloadCriticalResources);
+    window.addEventListener('load', preloadCriticalResources);
+    if (window.PortfolioJS && typeof window.PortfolioJS.initContactObfuscation === 'function') {
+        window.PortfolioJS.initContactObfuscation(document);
+    }
     initTypingEffect(document);
     const hero = document.querySelector('.hero-section');
     if (hero) {
@@ -263,7 +266,8 @@ window.PortfolioJS = {
     initNeonParticles,
     initTechProjectsSwiper,
     initStickyNav,
-    initQuantHighlight
+    initQuantHighlight,
+    initContactObfuscation
 };
 
 function initNeonParticles(container) {
@@ -428,5 +432,37 @@ function initQuantHighlight(root = document) {
         if (n.parentNode) {
             n.parentNode.replaceChild(span, n);
         }
+    });
+}
+
+function initContactObfuscation(root = document) {
+    const targets = root.querySelectorAll('.obf-email, .obf-phone');
+    targets.forEach(el => {
+        const v = el.getAttribute('data-v');
+        if (!v) return;
+        let text = '';
+        try { text = atob(v); } catch (e) { return; }
+        const a = document.createElement('a');
+        const label = el.getAttribute('data-label');
+        if (label) {
+            try { a.textContent = atob(label); } catch (e) { a.textContent = text; }
+        } else {
+            a.textContent = text;
+        }
+        a.rel = 'nofollow';
+        if (el.classList.contains('obf-email')) {
+            a.href = 'mailto:' + text;
+        } else {
+            const t = (el.getAttribute('data-type') || 'tel').toLowerCase();
+            if (t === 'wa') {
+                const digits = text.replace(/\D+/g, '');
+                a.href = 'https://wa.me/' + digits;
+            } else {
+                a.href = 'tel:' + text;
+            }
+        }
+        const cls = (el.className || '').replace(/\bobf-(email|phone)\b/g, '').trim();
+        if (cls) a.className = cls;
+        el.replaceWith(a);
     });
 }

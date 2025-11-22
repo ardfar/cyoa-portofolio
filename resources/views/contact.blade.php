@@ -39,7 +39,7 @@
                     <div class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-persona-tech border border-white/5"><i class="fa-regular fa-envelope"></i></div>
                     <div>
                         <h3 class="text-white font-bold text-sm">Email</h3>
-                        <a href="mailto:me@aradenta.com" class="text-slate-400 hover:text-persona-tech transition text-sm font-mono">me@aradenta.com</a>
+                        @obfuscateEmail('me@aradenta.com', 'text-slate-400 hover:text-persona-tech transition text-sm font-mono')
                     </div>
                 </div>
                 <div class="flex items-start space-x-4">
@@ -54,7 +54,7 @@
                     <div class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-persona-art border border-white/5"><i class="fa-brands fa-whatsapp"></i></div>
                     <div>
                         <h3 class="text-white font-bold text-sm">WhatsApp</h3>
-                        <a href="https://wa.me/6289531503505" class="text-slate-400 hover:text-persona-art transition text-sm font-mono">+62 895-3150-3505</a>
+                        @obfuscatePhone('+62 895-3150-3505', 'wa', 'text-slate-400 hover:text-persona-art transition text-sm font-mono')
                     </div>
                 </div>
             </div>
