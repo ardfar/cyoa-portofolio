@@ -1,59 +1,128 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# CYOA Portfolio Website
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Website portofolio personal dengan konsep "Choose Your Own Adventure" (CYOA). Pengunjung memilih persona (Tech, Management, Creative) dan mendapatkan konten yang relevan. Termasuk halaman Resume, Portfolio, Gallery, Contact, serta CMS sederhana untuk mengelola konten.
 
-## About Laravel
+## Fitur Utama
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Gateway persona dan konten AJAX untuk halaman `tech`, `management`, dan `creative`.
+- Resume/Overview yang merangkum peran, skills, dan proyek.
+- Halaman portfolio khusus: `kopinaren`, `bakso-boss`, `mik`.
+- Gallery foto (creative persona) terkelompok per tema.
+- Halaman Contact dengan form email server-side dan pencegahan scraping untuk email/telepon.
+- CMS sederhana (tanpa auth) untuk memperbarui site dan item persona/proyek.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Teknologi
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Laravel `^12.0`, PHP `^8.2`.
+- Vite untuk bundling frontend.
+- Tailwind CSS v4 style (lihat `resources/css/app.css`).
+- Pest (plugin Laravel) untuk pengujian.
 
-## Learning Laravel
+## Prasyarat
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+- PHP `8.2+`, Composer.
+- Node.js `20.19+` atau `22.12+` (sesuai kebutuhan Vite).
+- Database opsional (SQLite sudah didukung; MySQL/PostgreSQL bisa ditambahkan jika perlu).
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Instalasi
 
-## Laravel Sponsors
+1. Clone repository ini.
+2. Pasang dependencies:
+   - `composer install`
+   - `npm install`
+3. Inisialisasi environment:
+   - Salin `.env.example` menjadi `.env`
+   - `php artisan key:generate`
+   - (Opsional) buat file SQLite kosong `database/database.sqlite`
+4. Migrasi database (opsional jika menggunakan tabel):
+   - `php artisan migrate`
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Konfigurasi `.env`
 
-### Premium Partners
+- `APP_NAME`, `APP_URL`
+- `MAIL_MAILER`, `MAIL_HOST`, `MAIL_PORT`, `MAIL_USERNAME`, `MAIL_PASSWORD`, `MAIL_ENCRYPTION`
+- `MAIL_FROM_ADDRESS`, `MAIL_FROM_NAME`
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Contoh mailer dasar:
 
-## Contributing
+```
+MAIL_MAILER=smtp
+MAIL_FROM_ADDRESS=me@aradenta.com
+MAIL_FROM_NAME="CYOA Contact"
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Untuk pengembangan tanpa SMTP, Anda bisa menggunakan log mailer:
 
-## Code of Conduct
+```
+MAIL_MAILER=log
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Menjalankan Secara Lokal
 
-## Security Vulnerabilities
+- Jalur cepat (gabungan server + queue + vite):
+  - `composer run dev`
+- Atau jalankan terpisah:
+  - `php artisan serve`
+  - `php artisan queue:listen --tries=1`
+  - `npm run dev`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Build Produksi
 
-## License
+- `npm run build`
+- Pastikan `APP_ENV=production` dan `APP_DEBUG=false`.
+- Hapus cache bila perlu: `php artisan config:clear`, `php artisan view:clear`.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Testing
+
+- `composer test`
+- Atau `php artisan test`
+
+## Rute & Halaman
+
+- Beranda: `GET /` (`home`)
+- Konten persona (AJAX): `GET /persona/{persona}` (`persona.content`)
+- Resume: `GET /resume` (`resume`)
+- Gallery (creative): `GET /persona/creative/gallery` (`persona.creative.gallery`)
+- Portfolio khusus: `GET /portfolio/kopinaren`, `GET /portfolio/bakso-boss`, `GET /portfolio/mik`
+- Contact: `GET /contact`, kirim pesan: `POST /contact/send`
+- CMS: `GET /cms` dan berbagai `POST` untuk update konten
+
+Lihat `routes/web.php` untuk daftar lengkap.
+
+## Form Contact & Email
+
+- Controller pengiriman: `app/Http/Controllers/ContactController.php:16`
+- Mailable: `app/Mail/ContactMessage.php:19`
+- Email dikirim ke alamat yang dikodekan di controller; sesuaikan jika perlu.
+
+## Pencegahan Web Scraper (Kontak)
+
+- Email dan telepon dirender melalui directive Blade yang di-obfuscate, lalu diubah menjadi tautan oleh JavaScript:
+  - Blade directives:
+    - `@obfuscateEmail('user@domain.com', 'optional-css-classes', 'optional-label')`
+    - `@obfuscatePhone('+62 812-xxxx-xxxx', 'wa|tel', 'optional-css-classes', 'optional-label')`
+  - Helper: `app/Support/Obfuscator.php`
+  - Inisialisasi JS: `resources/js/app.js` fungsi `initContactObfuscation`
+
+Jika JavaScript dinonaktifkan, akan ada fallback teks non-link yang lebih sulit di-scrape.
+
+## Struktur Direktori Ringkas
+
+- `app/Http/Controllers/` — controller halaman dan CMS
+- `app/Mail/` — mailable untuk form contact
+- `app/Support/Obfuscator.php` — helper obfuscation email/telepon
+- `resources/views/` — Blade views (`gateway`, `personas/*`, `resume`, `contact`, `portfolio/*`)
+- `resources/js/app.js` — inisialisasi frontend, utilitas UI, obfuscation
+- `resources/css/app.css` — Tailwind v4 style dengan `@theme`
+- `routes/web.php` — definisi rute
+- `docs/*.md` — sumber konten teknis/management/creative (dibaca oleh controller)
+
+## Catatan Deployment
+
+- Pastikan konfigurasi mailer, domain, dan asset build sudah benar.
+- Pertimbangkan reverse proxy dan HTTPS untuk produksi.
+- Set `APP_ENV=production`, `APP_DEBUG=false`, dan jalankan `php artisan optimize`.
+
+## Lisensi
+
+Kode framework mengikuti lisensi MIT dari Laravel. Konten dan materi portofolio dimiliki oleh pemilik situs.
