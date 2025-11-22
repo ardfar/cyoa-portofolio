@@ -26,6 +26,7 @@
     <div class="min-h-screen pt-24 pb-12 px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row max-w-7xl mx-auto gap-12">
         <div class="w-full md:w-5/12 space-y-8">
             <div>
+                <span class="hidden">Hubungi Saya</span>
                 <div class="inline-flex items-center space-x-2 bg-persona-tech/10 px-3 py-1 rounded-full border border-persona-tech/20 mb-6">
                     <span class="w-2 h-2 rounded-full bg-persona-tech animate-pulse"></span>
                     <span class="text-xs font-mono text-persona-tech">Available for New Projects</span>

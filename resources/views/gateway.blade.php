@@ -63,7 +63,7 @@
                     </div>
                     <h2
                         class="font-display text-2xl font-bold mb-2 text-white group-hover:text-persona-tech transition">
-                        Technology</h2>
+                        Technology &amp; Engineering</h2>
                     <p class="text-sm text-slate-400 mb-4 line-clamp-2">Full Stack Development, AI/ML Engineering, &
                         System Architecture.</p>
                     <span
@@ -91,7 +91,7 @@
                     </div>
                     <h2
                         class="font-display text-2xl font-bold mb-2 text-white group-hover:text-persona-mgmt transition">
-                        Management</h2>
+                        Management &amp; Strategy</h2>
                     <p class="text-sm text-slate-400 mb-4 line-clamp-2">Project Management, Product Strategy, & Business
                         Development.</p>
                     <span
@@ -118,7 +118,7 @@
                         </svg>
                     </div>
                     <h2 class="font-display text-2xl font-bold mb-2 text-white group-hover:text-persona-art transition">
-                        Creative</h2>
+                        Operations &amp; Creative</h2>
                     <p class="text-sm text-slate-400 mb-4 line-clamp-2">Photography, Visual Design, & Creative Problem
                         Solving.</p>
                     <span

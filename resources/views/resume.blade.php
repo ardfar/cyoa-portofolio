@@ -61,6 +61,15 @@
         </div>
     </section>
 
+    <section class="py-10 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+        <h2 class="font-display text-3xl font-bold text-white mb-6">Ringkasan Profesional</h2>
+        <div class="flex flex-wrap gap-2">
+            @foreach(($roles ?? []) as $role)
+                <span class="px-3 py-1 bg-slate-800 text-xs rounded text-slate-300">{{ $role['title'] }}</span>
+            @endforeach
+        </div>
+    </section>
+
     <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         <div class="flex items-center justify-between mb-12">
             <h2 class="font-display text-3xl font-bold text-white">Jejak Profesional</h2>

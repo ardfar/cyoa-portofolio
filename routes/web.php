@@ -42,6 +42,7 @@ Route::get('/contact', function () {
 })->name('contact');
 
 Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
+Route::post('/contact', [ContactController::class, 'send']);
 
 // CMS Routes (Basic functionality without authentication for simplicity)
 Route::prefix('cms')->group(function () {

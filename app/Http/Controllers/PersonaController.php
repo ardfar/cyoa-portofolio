@@ -8,6 +8,7 @@ use App\Models\Persona;
 use App\Models\TechProject;
 use App\Models\TechExperience;
 use App\Models\MgmtRecord;
+use App\Models\Role;
 use Illuminate\Support\Facades\Schema;
 
 class PersonaController extends Controller
@@ -176,6 +177,24 @@ class PersonaController extends Controller
      */
     private function getPersonas(): array
     {
+        if (Schema::hasTable('personas')) {
+            $items = Persona::orderBy('id')->get()->all();
+            $result = [];
+            foreach ($items as $p) {
+                $result[$p->id === 'creative' ? 'operations' : $p->id] = [
+                    'id' => $p->id,
+                    'name' => $p->name,
+                    'headline' => $p->headline,
+                    'description' => $p->description,
+                    'roles' => $p->roles,
+                    'theme' => $p->theme,
+                    'accent_color' => $p->accent_color,
+                ];
+            }
+            if (!empty($result)) {
+                return $result;
+            }
+        }
         return [
             'tech' => [
                 'id' => 'tech',
@@ -212,6 +231,19 @@ class PersonaController extends Controller
      */
     private function getAllRoles(): array
     {
+        if (Schema::hasTable('roles')) {
+            $items = Role::orderBy('id')->get()->map(function ($r) {
+                return [
+                    'title' => $r->title,
+                    'category' => $r->category,
+                    'skills' => $r->skills ?? [],
+                    'description' => $r->description,
+                ];
+            })->all();
+            if (!empty($items)) {
+                return $items;
+            }
+        }
         return [
             [
                 'title' => 'Full Stack Developer',

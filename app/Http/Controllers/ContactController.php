@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Setting;
 use App\Mail\ContactMessage;
 
 class ContactController extends Controller
@@ -20,7 +21,15 @@ class ContactController extends Controller
 
         $topic = $validated['topic'] ?? 'general';
 
-        Mail::to('farrasarrafi5b@gmail.com')->send(
+        $recipient = null;
+        if (\Illuminate\Support\Facades\Schema::hasTable('settings')) {
+            $recipient = Setting::query()->where('key', 'contact_recipient')->value('value');
+        }
+        if (!$recipient) {
+            $recipient = config('mail.from.address');
+        }
+
+        Mail::to($recipient)->send(
             new ContactMessage(
                 $validated['name'],
                 $validated['email'],
