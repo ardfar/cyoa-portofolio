@@ -30,6 +30,11 @@ Route::get('/portfolio/bakso-boss', function () {
     return view('portfolio.bakso-boss');
 })->name('portfolio.bakso-boss');
 
+// Dedicated portfolio page for Media Info Kreasindo (MIK)
+Route::get('/portfolio/mik', function () {
+    return view('portfolio.mik');
+})->name('portfolio.mik');
+
 // Additional static pages (no cache)
 Route::get('/contact', function () {
     return view('contact');
