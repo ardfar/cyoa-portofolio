@@ -38,10 +38,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex-shrink-0">
-                    <a href="{{ route('home') }}" class="font-display font-bold text-xl tracking-tight text-gray-900">farras arrafi.</a>
+                    <a href="{{ route('home') }}" class="font-display font-bold text-xl tracking-tight text-gray-900">farras.<span class="text-[#8B5E3C]">arrafi</span></a>
                 </div>
                 <div class="hidden md:flex space-x-8">
-                    <a href="{{ url('/persona/creative') }}" class="text-gray-500 hover:text-gray-900 px-3 py-2 text-sm font-medium">Kembali ke Portofolio</a>
+                    <a href="{{ url('/persona/creative') }}#design" class="text-gray-500 hover:text-gray-900 px-3 py-2 text-sm font-medium">Kembali ke Portofolio</a>
                 </div>
             </div>
         </div>
