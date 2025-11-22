@@ -31,13 +31,13 @@ class PersonaController extends Controller
     public function content(string $persona): View
     {
         $personas = $this->getPersonas();
-        
-        if (!isset($personas[$persona])) {
+        $key = $persona === 'creative' ? 'operations' : $persona;
+        if (!isset($personas[$key])) {
             abort(404);
         }
 
-        $data = ['persona' => $personas[$persona]];
-        if ($persona === 'tech') {
+        $data = ['persona' => $personas[$key]];
+        if ($key === 'tech') {
             $dbPersona = null;
             if (Schema::hasTable('personas')) {
                 $dbPersona = Persona::find('tech');
@@ -83,7 +83,7 @@ class PersonaController extends Controller
             $data['projects'] = $projects;
             $data['experiences'] = $experiences;
         }
-        if ($persona === 'management') {
+        if ($key === 'management') {
             $dbPersona = null;
             if (Schema::hasTable('personas')) {
                 $dbPersona = Persona::find('management');
@@ -115,7 +115,7 @@ class PersonaController extends Controller
             $data['records'] = $records;
         }
 
-        return view('personas.' . $persona, $data);
+        return view('personas.' . ($key === 'operations' ? 'creative' : $key), $data);
     }
 
     /**
@@ -124,7 +124,11 @@ class PersonaController extends Controller
     public function resume(): View
     {
         return view('resume', [
-            'roles' => $this->getAllRoles()
+            'roles' => $this->getAllRoles(),
+            'personas' => $this->getPersonas(),
+            'skills' => config('portfolio.skills'),
+            'projects' => config('portfolio.projects'),
+            'site' => config('portfolio.site'),
         ]);
     }
 
@@ -191,9 +195,9 @@ class PersonaController extends Controller
                 'theme' => 'black-gold',
                 'accent_color' => 'gold'
             ],
-            'creative' => [
+            'operations' => [
                 'id' => 'creative',
-                'name' => 'Creative',
+                'name' => 'Operations & Creative',
                 'headline' => 'Mewujudkan ide visual melalui desain grafis dan fotografi.',
                 'description' => 'Fokus pada desain grafis dan visual storytelling untuk mendukung branding dan komunikasi yang kuat.',
                 'roles' => ['Desain Grafis', 'Photographer'],
@@ -246,16 +250,16 @@ class PersonaController extends Controller
                 'description' => 'Pemeliharaan sistem IT dan dukungan teknis untuk operasional bisnis.'
             ],
             [
-                'title' => 'Administrator',
-                'category' => 'Operations & Creative',
-                'skills' => ['Office Management', 'Documentation', 'Process Improvement', 'Coordination'],
-                'description' => 'Pengelolaan administratif dan operasional untuk efisiensi organisasi.'
-            ],
-            [
-                'title' => 'Photography',
+                'title' => 'Photographer',
                 'category' => 'Operations & Creative',
                 'skills' => ['Adobe Suite', 'Photo Editing', 'Visual Storytelling', 'Creative Direction'],
-                'description' => 'Kreativitas visual untuk mendukung kebutuhan branding dan marketing.'
+                'description' => 'Fotografi profesional untuk storytelling visual dan kebutuhan branding.'
+            ],
+            [
+                'title' => 'Desain Grafis',
+                'category' => 'Operations & Creative',
+                'skills' => ['Adobe Suite', 'Visual Design', 'Branding', 'Creative Direction'],
+                'description' => 'Karya desain grafis untuk mendukung identitas merek dan komunikasi visual.'
             ]
         ];
     }

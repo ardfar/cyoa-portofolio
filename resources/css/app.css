@@ -8,6 +8,15 @@
 @theme {
     --font-sans: 'Figtree', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    --color-persona-tech: #00F7A6;
+    --color-persona-mgmt: #FCD34D;
+    --color-persona-art: #86EFAC;
+    --color-persona-dark: #0F172A;
+    --color-persona-card: #1E293B;
 }
 
 .management-typography h1,
@@ -69,6 +78,12 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #a8a8a8;
+}
+
+.glass-card {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* Persona theme colors */
