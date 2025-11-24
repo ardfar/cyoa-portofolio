@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\View\View;
-use App\Models\Persona;
-use App\Models\TechProject;
-use App\Models\TechExperience;
 use App\Models\MgmtRecord;
+use App\Models\Persona;
 use App\Models\Role;
+use App\Models\TechExperience;
+use App\Models\TechProject;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\View\View;
 
 class PersonaController extends Controller
 {
@@ -19,10 +19,10 @@ class PersonaController extends Controller
     public function index(Request $request): View
     {
         $activePersona = $request->query('persona', 'gateway');
-        
+
         return view('gateway', [
             'activePersona' => $activePersona,
-            'personas' => $this->getPersonas()
+            'personas' => $this->getPersonas(),
         ]);
     }
 
@@ -33,7 +33,7 @@ class PersonaController extends Controller
     {
         $personas = $this->getPersonas();
         $key = $persona === 'creative' ? 'operations' : $persona;
-        if (!isset($personas[$key])) {
+        if (! isset($personas[$key])) {
             abort(404);
         }
 
@@ -116,7 +116,7 @@ class PersonaController extends Controller
             $data['records'] = $records;
         }
 
-        return view('personas.' . ($key === 'operations' ? 'creative' : $key), $data);
+        return view('personas.'.($key === 'operations' ? 'creative' : $key), $data);
     }
 
     /**
@@ -144,14 +144,14 @@ class PersonaController extends Controller
 
         if (is_dir($basePath)) {
             // Get only subdirectories (themes)
-            $directories = array_values(array_filter(glob($basePath . '/*'), 'is_dir'));
+            $directories = array_values(array_filter(glob($basePath.'/*'), 'is_dir'));
             foreach ($directories as $dir) {
                 $theme = basename($dir);
-                $files = glob($dir . '/*.{jpg,jpeg,png,gif}', GLOB_BRACE) ?: [];
+                $files = glob($dir.'/*.{jpg,jpeg,png,gif}', GLOB_BRACE) ?: [];
                 $photos = [];
                 foreach ($files as $file) {
                     $photos[] = [
-                        'url' => asset('images/portofolio/' . $theme . '/' . basename($file)),
+                        'url' => asset('images/portofolio/'.$theme.'/'.basename($file)),
                         'file' => $file,
                         'theme' => $theme,
                     ];
@@ -191,10 +191,11 @@ class PersonaController extends Controller
                     'accent_color' => $p->accent_color,
                 ];
             }
-            if (!empty($result)) {
+            if (! empty($result)) {
                 return $result;
             }
         }
+
         return [
             'tech' => [
                 'id' => 'tech',
@@ -203,7 +204,7 @@ class PersonaController extends Controller
                 'description' => 'Menggabungkan ketangguhan Full-Stack Development dengan kecerdasan Artificial Intelligence. Siap membantu Anda menciptakan aplikasi yang scalable, efisien, dan berwawasan.',
                 'roles' => ['Full Stack Developer', 'AI/ML Engineer'],
                 'theme' => 'blue-purple',
-                'accent_color' => 'blue'
+                'accent_color' => 'blue',
             ],
             'management' => [
                 'id' => 'management',
@@ -212,7 +213,7 @@ class PersonaController extends Controller
                 'description' => 'Mentransformasi ide abstrak menjadi roadmap produk yang nyata dan terukur.',
                 'roles' => ['Project Manager', 'Product Manager', 'Business Development'],
                 'theme' => 'black-gold',
-                'accent_color' => 'gold'
+                'accent_color' => 'gold',
             ],
             'operations' => [
                 'id' => 'creative',
@@ -221,8 +222,8 @@ class PersonaController extends Controller
                 'description' => 'Fokus pada desain grafis dan visual storytelling untuk mendukung branding dan komunikasi yang kuat.',
                 'roles' => ['Desain Grafis', 'Photographer'],
                 'theme' => 'green-gray',
-                'accent_color' => 'green'
-            ]
+                'accent_color' => 'green',
+            ],
         ];
     }
 
@@ -240,59 +241,60 @@ class PersonaController extends Controller
                     'description' => $r->description,
                 ];
             })->all();
-            if (!empty($items)) {
+            if (! empty($items)) {
                 return $items;
             }
         }
+
         return [
             [
                 'title' => 'Full Stack Developer',
                 'category' => 'Technology & Engineering',
                 'skills' => ['Laravel', 'Python', 'JavaScript & TypeScript', 'MySQL & NoSQL', 'Docker', 'CI/CD'],
-                'description' => 'Pengembangan aplikasi web end-to-end dengan teknologi modern dan praktik terbaik.'
+                'description' => 'Pengembangan aplikasi web end-to-end dengan teknologi modern dan praktik terbaik.',
             ],
             [
                 'title' => 'AI/ML Engineer',
                 'category' => 'Technology & Engineering',
                 'skills' => ['Python', 'TensorFlow', 'PyTorch', 'YOLO', 'OpenCV', 'CUDA'],
-                'description' => 'Pengembangan model AI/ML untuk solusi computer vision dan data analytics.'
+                'description' => 'Pengembangan model AI/ML untuk solusi computer vision dan data analytics.',
             ],
             [
                 'title' => 'Project Manager',
                 'category' => 'Management & Strategy',
                 'skills' => ['Project Management', 'Agile/Scrum', 'Risk Management', 'Stakeholder Management'],
-                'description' => 'Pengelolaan proyek teknologi dari perencanaan hingga implementasi yang sukses.'
+                'description' => 'Pengelolaan proyek teknologi dari perencanaan hingga implementasi yang sukses.',
             ],
             [
                 'title' => 'Product Manager',
                 'category' => 'Management & Strategy',
                 'skills' => ['Product Strategy', 'User Research', 'Roadmap Planning', 'Data Analysis'],
-                'description' => 'Pengembangan strategi produk yang berfokus pada kebutuhan pengguna dan tujuan bisnis.'
+                'description' => 'Pengembangan strategi produk yang berfokus pada kebutuhan pengguna dan tujuan bisnis.',
             ],
             [
                 'title' => 'Business Development',
                 'category' => 'Management & Strategy',
                 'skills' => ['Market Analysis', 'Partnership Development', 'Go-to-Market Strategy', 'Sales'],
-                'description' => 'Pengembangan peluang bisnis dan strategi pertumbuhan yang berkelanjutan.'
+                'description' => 'Pengembangan peluang bisnis dan strategi pertumbuhan yang berkelanjutan.',
             ],
             [
                 'title' => 'IT Support',
                 'category' => 'Operations & Creative',
                 'skills' => ['Technical Support', 'System Administration', 'Network Management', 'Troubleshooting'],
-                'description' => 'Pemeliharaan sistem IT dan dukungan teknis untuk operasional bisnis.'
+                'description' => 'Pemeliharaan sistem IT dan dukungan teknis untuk operasional bisnis.',
             ],
             [
                 'title' => 'Photographer',
                 'category' => 'Operations & Creative',
                 'skills' => ['Adobe Suite', 'Photo Editing', 'Visual Storytelling', 'Creative Direction'],
-                'description' => 'Fotografi profesional untuk storytelling visual dan kebutuhan branding.'
+                'description' => 'Fotografi profesional untuk storytelling visual dan kebutuhan branding.',
             ],
             [
                 'title' => 'Desain Grafis',
                 'category' => 'Operations & Creative',
                 'skills' => ['Adobe Suite', 'Visual Design', 'Branding', 'Creative Direction'],
-                'description' => 'Karya desain grafis untuk mendukung identitas merek dan komunikasi visual.'
-            ]
+                'description' => 'Karya desain grafis untuk mendukung identitas merek dan komunikasi visual.',
+            ],
         ];
     }
 
@@ -302,7 +304,7 @@ class PersonaController extends Controller
     private function getTechProjects(): array
     {
         $path = base_path('docs/tech-project.md');
-        if (!file_exists($path)) {
+        if (! file_exists($path)) {
             return [];
         }
         $raw = @file_get_contents($path);
@@ -314,29 +316,42 @@ class PersonaController extends Controller
         $current = null;
         foreach ($lines as $line) {
             $line = trim($line);
-            if ($line === '') { continue; }
-            if (preg_match('/^#\s+(.+)/', $line, $m)) {
-                if ($current) { $projects[] = $current; }
-                $current = ['title' => $m[1], 'description' => '', 'technologies' => [], 'link' => null, 'image' => null];
+            if ($line === '') {
                 continue;
             }
-            if (!$current) { continue; }
+            if (preg_match('/^#\s+(.+)/', $line, $m)) {
+                if ($current) {
+                    $projects[] = $current;
+                }
+                $current = ['title' => $m[1], 'description' => '', 'technologies' => [], 'link' => null, 'image' => null];
+
+                continue;
+            }
+            if (! $current) {
+                continue;
+            }
             if (preg_match('/^-\s*Description:\s*(.+)/i', $line, $m)) {
                 $current['description'] = $m[1];
+
                 continue;
             }
             if (preg_match('/^-\s*Technologies:\s*(.+)/i', $line, $m)) {
                 $techs = array_map('trim', preg_split('/,\s*/', $m[1]));
                 $current['technologies'] = $techs;
+
                 continue;
             }
             if (preg_match('/^-\s*Link:\s*(.+)/i', $line, $m) || preg_match('/^-\s*link:\s*(.+)/i', $line, $m)) {
                 $current['link'] = trim($m[1]);
                 $current['image'] = $this->extractImageFromReadme($current['link']);
+
                 continue;
             }
         }
-        if ($current) { $projects[] = $current; }
+        if ($current) {
+            $projects[] = $current;
+        }
+
         return $projects;
     }
 
@@ -345,7 +360,7 @@ class PersonaController extends Controller
      */
     private function extractImageFromReadme(?string $githubUrl): ?string
     {
-        if (!$githubUrl || !preg_match('/github.com\/([^\/]+)\/([^\/?#]+)/', $githubUrl, $m)) {
+        if (! $githubUrl || ! preg_match('/github.com\/([^\/]+)\/([^\/?#]+)/', $githubUrl, $m)) {
             return null;
         }
         $owner = $m[1];
@@ -355,23 +370,27 @@ class PersonaController extends Controller
             $rawUrl = "https://raw.githubusercontent.com/{$owner}/{$repo}/{$branch}/README.md";
             $ctx = stream_context_create(['http' => ['timeout' => 2]]);
             $readme = @file_get_contents($rawUrl, false, $ctx);
-            if ($readme === false) { continue; }
+            if ($readme === false) {
+                continue;
+            }
             if (preg_match('/!\[[^\]]*\]\(([^)]+)\)/', $readme, $mm)) {
                 $img = $mm[1];
                 if (preg_match('/^https?:\/\//', $img)) {
                     return $img;
                 }
                 $img = ltrim($img, './');
+
                 return "https://raw.githubusercontent.com/{$owner}/{$repo}/{$branch}/{$img}";
             }
         }
+
         return null;
     }
 
     private function getTechExperiences(): array
     {
         $path = base_path('docs/tech-experience.md');
-        if (!file_exists($path)) {
+        if (! file_exists($path)) {
             return [];
         }
         $raw = @file_get_contents($path);
@@ -383,25 +402,34 @@ class PersonaController extends Controller
         $current = null;
         foreach ($lines as $line) {
             $line = trim($line);
-            if ($line === '') { continue; }
+            if ($line === '') {
+                continue;
+            }
             if (preg_match('/^#\s+(.+)/', $line, $m)) {
-                if ($current) { $exps[] = $current; }
+                if ($current) {
+                    $exps[] = $current;
+                }
                 $current = ['title' => $m[1], 'org' => null];
+
                 continue;
             }
             if ($current && preg_match('/^@\s*(.+)/', $line, $m)) {
                 $current['org'] = $m[1];
+
                 continue;
             }
         }
-        if ($current) { $exps[] = $current; }
+        if ($current) {
+            $exps[] = $current;
+        }
+
         return $exps;
     }
 
     private function getMgmtRecords(): array
     {
         $path = base_path('docs/mgmt-record.md');
-        if (!file_exists($path)) {
+        if (! file_exists($path)) {
             return [];
         }
         $raw = @file_get_contents($path);
@@ -413,15 +441,23 @@ class PersonaController extends Controller
         $current = null;
         foreach ($lines as $line) {
             $line = trim($line);
-            if ($line === '') { continue; }
-            if (preg_match('/^#\s+(.+)/', $line, $m)) {
-                if ($current) { $records[] = $current; }
-                $current = ['title' => $m[1], 'description' => '', 'tags' => []];
+            if ($line === '') {
                 continue;
             }
-            if (!$current) { continue; }
+            if (preg_match('/^#\s+(.+)/', $line, $m)) {
+                if ($current) {
+                    $records[] = $current;
+                }
+                $current = ['title' => $m[1], 'description' => '', 'tags' => []];
+
+                continue;
+            }
+            if (! $current) {
+                continue;
+            }
             if (preg_match('/^-\s*Deskripsi:\s*(.+)/i', $line, $m)) {
                 $current['description'] = $m[1];
+
                 continue;
             }
             if (preg_match('/^-\s*Tags:\s*(.+)/i', $line, $m)) {
@@ -430,13 +466,17 @@ class PersonaController extends Controller
                 if (strpos($rawTags, ',') !== false) {
                     $tags = array_map('trim', preg_split('/,\s*/', $rawTags));
                 } else {
-                    $tags = array_values(array_filter(array_map('trim', preg_split('/\s+/', $rawTags)), fn($t) => $t !== ''));
+                    $tags = array_values(array_filter(array_map('trim', preg_split('/\s+/', $rawTags)), fn ($t) => $t !== ''));
                 }
                 $current['tags'] = $tags;
+
                 continue;
             }
         }
-        if ($current) { $records[] = $current; }
+        if ($current) {
+            $records[] = $current;
+        }
+
         return $records;
     }
 }

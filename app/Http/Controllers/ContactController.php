@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Mail;
-use App\Models\Setting;
 use App\Mail\ContactMessage;
+use App\Models\Setting;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -25,7 +24,7 @@ class ContactController extends Controller
         if (\Illuminate\Support\Facades\Schema::hasTable('settings')) {
             $recipient = Setting::query()->where('key', 'contact_recipient')->value('value');
         }
-        if (!$recipient) {
+        if (! $recipient) {
             $recipient = config('mail.from.address');
         }
 

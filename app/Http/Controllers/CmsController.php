@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\File;
 
 class CmsController extends Controller
 {
@@ -14,6 +14,7 @@ class CmsController extends Controller
     public function dashboard()
     {
         $portfolioConfig = config('portfolio');
+
         return view('cms.dashboard', compact('portfolioConfig'));
     }
 
@@ -33,9 +34,9 @@ class CmsController extends Controller
         ]);
 
         $this->updateConfigFile('site', $validated);
-        
+
         Cache::flush();
-        
+
         return redirect()->back()->with('success', 'Site settings updated successfully!');
     }
 
@@ -53,9 +54,9 @@ class CmsController extends Controller
         ]);
 
         $this->updateConfigFile("personas.{$persona}", $validated);
-        
+
         Cache::flush();
-        
+
         return redirect()->back()->with('success', 'Persona settings updated successfully!');
     }
 
@@ -78,12 +79,12 @@ class CmsController extends Controller
                 $portfolioConfig['personas'][$persona]['projects'][$projectIndex],
                 $validated
             );
-            
+
             $this->updateConfigFile("personas.{$persona}.projects", $portfolioConfig['personas'][$persona]['projects']);
         }
 
         Cache::flush();
-        
+
         return redirect()->back()->with('success', 'Project updated successfully!');
     }
 
@@ -102,7 +103,7 @@ class CmsController extends Controller
 
         $portfolioConfig = config('portfolio');
         $projects = $portfolioConfig['personas'][$persona]['projects'] ?? [];
-        
+
         $newProject = [
             'title' => $validated['title'],
             'description' => $validated['description'],
@@ -111,13 +112,13 @@ class CmsController extends Controller
             'github' => $validated['github'] ?? '#',
             'icon' => 'code',
         ];
-        
+
         $projects[] = $newProject;
-        
+
         $this->updateConfigFile("personas.{$persona}.projects", $projects);
 
         Cache::flush();
-        
+
         return redirect()->back()->with('success', 'Project added successfully!');
     }
 
@@ -130,12 +131,12 @@ class CmsController extends Controller
         if (isset($portfolioConfig['personas'][$persona]['projects'][$projectIndex])) {
             $projects = $portfolioConfig['personas'][$persona]['projects'];
             array_splice($projects, $projectIndex, 1);
-            
+
             $this->updateConfigFile("personas.{$persona}.projects", $projects);
         }
 
         Cache::flush();
-        
+
         return redirect()->back()->with('success', 'Project removed successfully!');
     }
 
@@ -146,22 +147,22 @@ class CmsController extends Controller
     {
         $configPath = config_path('portfolio.php');
         $config = include $configPath;
-        
+
         // Update the specific key
         $keys = explode('.', $key);
         $current = &$config;
-        
+
         foreach ($keys as $k) {
-            if (!isset($current[$k])) {
+            if (! isset($current[$k])) {
                 $current[$k] = [];
             }
             $current = &$current[$k];
         }
-        
+
         $current = $data;
-        
+
         // Write back to file
-        $content = "<?php\n\nreturn " . var_export($config, true) . ";\n";
+        $content = "<?php\n\nreturn ".var_export($config, true).";\n";
         File::put($configPath, $content);
     }
 
@@ -171,7 +172,7 @@ class CmsController extends Controller
     public function clearCache()
     {
         Cache::flush();
-        
+
         return redirect()->back()->with('success', 'Cache cleared successfully!');
     }
 }

@@ -11,8 +11,11 @@ class ContactMessage extends Mailable
     use Queueable, SerializesModels;
 
     public string $name;
+
     public string $email;
+
     public string $messageText;
+
     public string $topic;
 
     public function __construct(string $name, string $email, string $messageText, string $topic)

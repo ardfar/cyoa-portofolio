@@ -9,7 +9,7 @@ return [
         'author' => 'Nama Anda',
         'url' => env('APP_URL', 'http://localhost'),
     ],
-    
+
     'personas' => [
         'tech' => [
             'meta_title' => 'Technology & Engineering Portfolio - Full Stack & AI/ML Expert',
@@ -30,7 +30,7 @@ return [
             'og_image' => '/images/operations-og-image.jpg',
         ],
     ],
-    
+
     'contact' => [
         'email' => 'nama@email.com',
         'phone' => '+62 812-3456-7890',
@@ -39,7 +39,7 @@ return [
         'github' => 'https://github.com/namaanda',
         'twitter' => 'https://twitter.com/namaanda',
     ],
-    
+
     'projects' => [
         'tech' => [
             [
@@ -111,24 +111,24 @@ return [
             ],
         ],
     ],
-    
+
     'skills' => [
         'tech' => [
             'Laravel', 'Python', 'JavaScript & TypeScript', 'MySQL & NoSQL', 'Docker', 'CI/CD',
-            'TensorFlow', 'PyTorch', 'YOLO', 'OpenCV', 'CUDA', 'Vue.js', 'React', 'Node.js'
+            'TensorFlow', 'PyTorch', 'YOLO', 'OpenCV', 'CUDA', 'Vue.js', 'React', 'Node.js',
         ],
         'management' => [
             'Project Management', 'Agile/Scrum', 'Risk Management', 'Stakeholder Management',
             'Product Strategy', 'User Research', 'Roadmap Planning', 'Data Analysis',
-            'Market Analysis', 'Partnership Development', 'Go-to-Market Strategy', 'Sales'
+            'Market Analysis', 'Partnership Development', 'Go-to-Market Strategy', 'Sales',
         ],
         'operations' => [
             'Technical Support', 'System Administration', 'Network Management', 'Troubleshooting',
             'Office Management', 'Documentation', 'Process Improvement', 'Coordination',
-            'Adobe Suite', 'Photo Editing', 'Visual Storytelling', 'Creative Direction'
+            'Adobe Suite', 'Photo Editing', 'Visual Storytelling', 'Creative Direction',
         ],
     ],
-    
+
     'testimonials' => [
         'tech' => [
             [

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactMessage;
+use Illuminate\Support\Facades\Mail;
 
 it('sends contact email and redirects with flash', function () {
     Mail::fake();

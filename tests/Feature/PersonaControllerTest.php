@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class PersonaControllerTest extends TestCase
@@ -80,12 +78,12 @@ class PersonaControllerTest extends TestCase
 
         $response->assertViewHas('personas');
         $personas = $response->viewData('personas');
-        
+
         $this->assertIsArray($personas);
         $this->assertArrayHasKey('tech', $personas);
         $this->assertArrayHasKey('management', $personas);
         $this->assertArrayHasKey('operations', $personas);
-        
+
         $this->assertEquals('Technology & Engineering', $personas['tech']['name']);
         $this->assertEquals('Management & Strategy', $personas['management']['name']);
         $this->assertEquals('Operations & Creative', $personas['operations']['name']);

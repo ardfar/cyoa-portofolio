@@ -2,15 +2,14 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
+use App\Models\MgmtRecord;
 use App\Models\Persona;
 use App\Models\Role;
-use App\Models\TechProject;
-use App\Models\TechExperience;
-use App\Models\MgmtRecord;
 use App\Models\Setting;
+use App\Models\TechExperience;
+use App\Models\TechProject;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 
 class InitialContentSeeder extends Seeder
 {
@@ -52,25 +51,33 @@ class InitialContentSeeder extends Seeder
                     $current = null;
                     foreach ($lines as $line) {
                         $line = trim($line);
-                        if ($line === '') { continue; }
+                        if ($line === '') {
+                            continue;
+                        }
                         if (preg_match('/^#\s+(.+)/', $line, $m)) {
                             if ($current) {
                                 TechProject::updateOrCreate(['title' => $current['title']], $current);
                             }
                             $current = ['title' => $m[1], 'description' => '', 'technologies' => [], 'link' => null, 'image' => null];
+
                             continue;
                         }
-                        if (!$current) { continue; }
+                        if (! $current) {
+                            continue;
+                        }
                         if (preg_match('/^\-\s*Description:\s*(.+)/i', $line, $m)) {
                             $current['description'] = $m[1];
+
                             continue;
                         }
                         if (preg_match('/^\-\s*Technologies:\s*(.+)/i', $line, $m)) {
                             $current['technologies'] = array_map('trim', preg_split('/,\s*/', $m[1]));
+
                             continue;
                         }
                         if (preg_match('/^\-\s*Link:\s*(.+)/i', $line, $m) || preg_match('/^\-\s*link:\s*(.+)/i', $line, $m)) {
                             $current['link'] = trim($m[1]);
+
                             continue;
                         }
                     }
@@ -90,18 +97,26 @@ class InitialContentSeeder extends Seeder
                     $current = null;
                     foreach ($lines as $line) {
                         $line = trim($line);
-                        if ($line === '') { continue; }
+                        if ($line === '') {
+                            continue;
+                        }
                         if (preg_match('/^#\s+(.+)/', $line, $m)) {
-                            if ($current) { TechExperience::updateOrCreate(['title' => $current['title'], 'org' => $current['org']], $current); }
+                            if ($current) {
+                                TechExperience::updateOrCreate(['title' => $current['title'], 'org' => $current['org']], $current);
+                            }
                             $current = ['title' => $m[1], 'org' => null];
+
                             continue;
                         }
                         if ($current && preg_match('/^@\s*(.+)/', $line, $m)) {
                             $current['org'] = $m[1];
+
                             continue;
                         }
                     }
-                    if ($current) { TechExperience::updateOrCreate(['title' => $current['title'], 'org' => $current['org']], $current); }
+                    if ($current) {
+                        TechExperience::updateOrCreate(['title' => $current['title'], 'org' => $current['org']], $current);
+                    }
                 }
             }
         }
@@ -115,15 +130,23 @@ class InitialContentSeeder extends Seeder
                     $current = null;
                     foreach ($lines as $line) {
                         $line = trim($line);
-                        if ($line === '') { continue; }
-                        if (preg_match('/^#\s+(.+)/', $line, $m)) {
-                            if ($current) { MgmtRecord::updateOrCreate(['title' => $current['title']], $current); }
-                            $current = ['title' => $m[1], 'description' => '', 'tags' => []];
+                        if ($line === '') {
                             continue;
                         }
-                        if (!$current) { continue; }
+                        if (preg_match('/^#\s+(.+)/', $line, $m)) {
+                            if ($current) {
+                                MgmtRecord::updateOrCreate(['title' => $current['title']], $current);
+                            }
+                            $current = ['title' => $m[1], 'description' => '', 'tags' => []];
+
+                            continue;
+                        }
+                        if (! $current) {
+                            continue;
+                        }
                         if (preg_match('/^\-\s*Deskripsi:\s*(.+)/i', $line, $m)) {
                             $current['description'] = $m[1];
+
                             continue;
                         }
                         if (preg_match('/^\-\s*Tags:\s*(.+)/i', $line, $m)) {
@@ -132,20 +155,23 @@ class InitialContentSeeder extends Seeder
                             if (str_contains($rawTags, ',')) {
                                 $tags = array_map('trim', preg_split('/,\s*/', $rawTags));
                             } else {
-                                $tags = array_values(array_filter(array_map('trim', preg_split('/\s+/', $rawTags)), fn($t) => $t !== ''));
+                                $tags = array_values(array_filter(array_map('trim', preg_split('/\s+/', $rawTags)), fn ($t) => $t !== ''));
                             }
                             $current['tags'] = $tags;
+
                             continue;
                         }
                     }
-                    if ($current) { MgmtRecord::updateOrCreate(['title' => $current['title']], $current); }
+                    if ($current) {
+                        MgmtRecord::updateOrCreate(['title' => $current['title']], $current);
+                    }
                 }
             }
         }
 
         if (Schema::hasTable('settings')) {
             $recipient = env('MAIL_FROM_ADDRESS');
-            if (!$recipient || trim($recipient) === '') {
+            if (! $recipient || trim($recipient) === '') {
                 $recipient = 'admin@example.com';
             }
             Setting::updateOrCreate(['key' => 'contact_recipient'], ['value' => $recipient]);
