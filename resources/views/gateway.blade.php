@@ -13,14 +13,14 @@
 </head>
 
 <body
-    class="bg-persona-dark text-white h-screen flex flex-col overflow-hidden selection:bg-persona-tech selection:text-persona-dark font-body">
+    class="bg-persona-dark text-white min-h-screen flex flex-col selection:bg-persona-tech selection:text-persona-dark font-body overflow-y-auto md:overflow-hidden">
     <div class="absolute inset-0 overflow-hidden -z-10 pointer-events-none">
         <div class="absolute -top-10 -left-10 w-[500px] h-[500px] bg-persona-tech/5 rounded-full blur-[120px]"></div>
         <div class="absolute -bottom-10 -right-10 w-[500px] h-[500px] bg-persona-mgmt/5 rounded-full blur-[120px]">
         </div>
     </div>
 
-    <div class="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+    <div class="flex-1 flex flex-col items-center justify-start md:justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12 max-w-7xl mx-auto w-full">
         <div class="text-center mb-12 animate-float">
             <div class="relative w-72 h-72 mx-auto mb-6 group">
                 <div
@@ -38,7 +38,7 @@
                 @endif
             </div>
             <h1 class="font-display text-4xl md:text-5xl font-bold mb-3 tracking-tight">
-                Halo, saya <span
+                Halo, saya <br class="md:hidden block"> <span
                     class="text-transparent bg-clip-text bg-gradient-to-r from-persona-tech via-persona-mgmt to-persona-art">Farras
                     Arrafi</span>
             </h1>
