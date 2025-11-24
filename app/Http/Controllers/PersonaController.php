@@ -83,6 +83,12 @@ class PersonaController extends Controller
             }
             $data['projects'] = $projects;
             $data['experiences'] = $experiences;
+            if (count($experiences) === 0) {
+                $experiences = $this->getTechExperiences();
+            }
+            $data['projects'] = $projects;
+            $data['experiences'] = $experiences;
+            $data['stack'] = $this->getTechStack();
         }
         if ($key === 'management') {
             $dbPersona = null;
@@ -478,5 +484,46 @@ class PersonaController extends Controller
         }
 
         return $records;
+    }
+    private function getTechStack(): array
+    {
+        return [
+            'backend' => [
+                'title' => '01_BACKEND',
+                'items' => [
+                    ['name' => 'Laravel', 'level' => 'Expert', 'class' => 'text-tech'],
+                    ['name' => 'PHP 8+', 'level' => 'Expert', 'class' => 'text-tech'],
+                    ['name' => 'Python', 'level' => 'Adv', 'class' => 'text-slate-500'],
+                    ['name' => 'Node.js', 'level' => 'Int', 'class' => 'text-slate-500'],
+                ]
+            ],
+            'frontend' => [
+                'title' => '02_FRONTEND',
+                'items' => [
+                    ['name' => 'Vue.js', 'level' => 'Adv', 'class' => 'text-tech'],
+                    ['name' => 'React', 'level' => 'Int', 'class' => 'text-slate-500'],
+                    ['name' => 'Tailwind', 'level' => 'Expert', 'class' => 'text-tech'],
+                    ['name' => 'Figma', 'level' => 'Adv', 'class' => 'text-slate-500'],
+                ]
+            ],
+            'intelligence' => [
+                'title' => '03_INTELLIGENCE',
+                'items' => [
+                    ['name' => 'TensorFlow', 'level' => 'Int', 'class' => 'text-slate-500'],
+                    ['name' => 'YOLOv5', 'level' => 'Adv', 'class' => 'text-tech'],
+                    ['name' => 'OpenCV', 'level' => 'Int', 'class' => 'text-slate-500'],
+                    ['name' => 'Pandas', 'level' => 'Adv', 'class' => 'text-slate-500'],
+                ]
+            ],
+            'devops' => [
+                'title' => '04_DEVOPS',
+                'items' => [
+                    ['name' => 'Docker', 'level' => 'Int', 'class' => 'text-slate-500'],
+                    ['name' => 'Git', 'level' => 'Expert', 'class' => 'text-tech'],
+                    ['name' => 'Linux', 'level' => 'Int', 'class' => 'text-slate-500'],
+                    ['name' => 'CI/CD', 'level' => 'Basic', 'class' => 'text-slate-500'],
+                ]
+            ]
+        ];
     }
 }

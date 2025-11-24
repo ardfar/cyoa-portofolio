@@ -17,6 +17,14 @@
     --color-persona-art: #86EFAC;
     --color-persona-dark: #0F172A;
     --color-persona-card: #1E293B;
+
+    /* Tech Persona Specific Colors */
+    --color-tech: #00F7A6;
+    --color-tech-dim: rgba(0, 247, 166, 0.1);
+    --color-tech-glow: rgba(0, 247, 166, 0.5);
+    --color-dark: #0B1120;
+    --color-card: #151F32;
+    --color-border: #1E293B;
 }
 
 .management-typography h1,
