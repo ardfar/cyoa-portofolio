@@ -1,39 +1,101 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eksplorasi Perspektif - Farras Arrafi</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"
-        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
-<body class="artist-gallery-bg creative-typography">
-    <div class="persona-switcher">
-        <a href="{{ route('home') }}" class="persona-home">Beranda</a>
-        <a href="{{ url('/persona/tech') }}" class="persona-tech">Tech</a>
-        <a href="{{ url('/persona/management') }}" class="persona-management">Management</a>
-        <a href="{{ url('/persona/creative') }}" class="active persona-creative">Creative</a>
+<body class="bg-art-light text-gray-800 font-body-art antialiased selection:bg-art-primary selection:text-white">
+
+    <!-- Global Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <a href="{{ route('home') }}"
+                        class="font-display-art font-bold text-2xl text-gray-900 tracking-tight hover:opacity-80 transition">
+                        farras.<span class="text-art-primary">art</span>
+                    </a>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-1 bg-white p-1 rounded-full border border-gray-200 shadow-sm">
+                    <a href="{{ route('home') }}"
+                        class="px-5 py-2 text-xs font-bold text-gray-500 hover:text-gray-900 transition rounded-full">Overview</a>
+                    <a href="{{ url('/persona/tech') }}"
+                        class="px-5 py-2 text-xs font-bold text-gray-500 hover:text-[#00F7A6] hover:bg-gray-50 transition rounded-full">Builder
+                        (Tech)</a>
+                    <a href="{{ url('/persona/management') }}"
+                        class="px-5 py-2 text-xs font-bold text-gray-500 hover:text-[#D97706] hover:bg-gray-50 transition rounded-full">Leader
+                        (Mgmt)</a>
+                    <a href="{{ url('/persona/creative') }}"
+                        class="px-5 py-2 text-xs font-bold text-art-dark bg-art-light border border-art-primary/20 rounded-full shadow-inner">Artist
+                        (Creative)</a>
+                </div>
+                <!-- Mobile Menu -->
+                <div class="md:hidden text-gray-500">
+                    <a href="{{ route('home') }}"><i class="fa-solid fa-bars"></i> Menu</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="pt-32 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
+        <span
+            class="inline-block py-1 px-3 rounded-full bg-white border border-art-primary/30 text-art-primary text-xs font-bold tracking-widest uppercase mb-6">
+            Curated Visuals
+        </span>
+        <h1 class="text-5xl md:text-7xl font-display-art font-black text-gray-900 mb-6 tracking-tight">
+            Eksplorasi Perspektif
+        </h1>
+        <p class="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-gray-600 font-light leading-relaxed">
+            Mengkurasi keindahan dari struktur beton, hangatnya sajian, hingga pendar senja. Sebuah antologi visual.
+        </p>
+    </header>
+
+    <!-- Sticky Filter Bar (Responsive Scroll) -->
+    <div class="sticky top-20 z-40 bg-art-light/95 backdrop-blur py-4 border-y border-art-primary/10">
+        <div class="max-w-7xl h-auto mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-start md:justify-center gap-3 overflow-x-auto no-scrollbar py-2">
+                <!-- Filter Buttons -->
+                <button
+                    class="filter-btn px-6 py-2 rounded-full bg-art-primary text-white font-bold text-sm transition shadow-md shadow-art-primary/20 whitespace-nowrap hover:scale-105 active:scale-95"
+                    data-filter="all">
+                    All Works
+                </button>
+                <button
+                    class="filter-btn px-6 py-2 rounded-full bg-white text-gray-600 border border-gray-200 font-bold text-sm transition hover:border-art-primary hover:text-art-primary whitespace-nowrap"
+                    data-filter="Architecture">
+                    Architecture
+                </button>
+                <button
+                    class="filter-btn px-6 py-2 rounded-full bg-white text-gray-600 border border-gray-200 font-bold text-sm transition hover:border-art-primary hover:text-art-primary whitespace-nowrap"
+                    data-filter="Culinary">
+                    Culinary
+                </button>
+                <button
+                    class="filter-btn px-6 py-2 rounded-full bg-white text-gray-600 border border-gray-200 font-bold text-sm transition hover:border-art-primary hover:text-art-primary whitespace-nowrap"
+                    data-filter="Nature">
+                    Nature
+                </button>
+                <button
+                    class="filter-btn px-6 py-2 rounded-full bg-white text-gray-600 border border-gray-200 font-bold text-sm transition hover:border-art-primary hover:text-art-primary whitespace-nowrap"
+                    data-filter="Urban">
+                    Urban
+                </button>
+            </div>
+        </div>
     </div>
 
-    <div class="w-[90vw] mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="text-center">
-            <h1 class="text-4xl font-black artist-title sm:text-5xl lg:text-6xl">Eksplorasi Perspektif</h1>
-            <p class="mt-6 text-lg artist-subtitle">Mengkurasi keindahan dari struktur beton, hangatnya sajian, hingga
-                pendar senja. Sebuah antologi visual.</p>
-        </div>
+    <!-- Masonry Gallery -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-screen">
 
-        <div class="mt-8 flex justify-center flex-wrap gap-3">
-            <button class="creative-chip creative-chip-bold filter-btn active" data-filter="all">All</button>
-            <button class="creative-chip filter-btn" data-filter="Architecture">Architecture</button>
-            <button class="creative-chip filter-btn" data-filter="Culinary">Culinary</button>
-            <button class="creative-chip filter-btn" data-filter="Nature">Nature</button>
-            <button class="creative-chip filter-btn" data-filter="Urban">Urban</button>
-        </div>
-
-        <div class="mt-12 masonry-gallery">
+        <!-- Grid Container: 1 col mobile, 2 col tablet, 3 col desktop -->
+        <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6 masonry-gallery">
             @foreach ($photos as $photo)
                 @php
                     // 1. DEFINISI VARIABEL DEFAULT DI AWAL (Anti-Error)
@@ -102,56 +164,77 @@
                     }
                 @endphp
 
-                <div class="masonry-item group relative overflow-hidden rounded-lg shadow-lg bg-white"
-                     data-theme="{{ $displayTheme }}">
+                <!-- Gallery Item -->
+                <div class="masonry-item group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-xl transition-all duration-500 break-inside-avoid"
+                    data-theme="{{ $displayTheme }}">
                     
-                    <img src="{{ $photo['url'] }}" alt="{{ $displayTheme }}"
-                        class="w-full h-full object-cover transition-transform duration-500 ease-in-out transform group-hover:scale-105">
-
                     {{-- Badge Commercial Project --}}
                     @if ($displayTheme === 'Culinary')
-                        <span class="absolute top-3 left-3 bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 py-1 rounded-full z-10 shadow-sm">
+                        <div
+                            class="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur text-art-dark text-[10px] font-bold px-3 py-1 rounded-full shadow-sm uppercase tracking-wide">
                             Commercial Project
-                        </span>
-                    @endif
-
-                    {{-- Hover Overlay EXIF --}}
-                    @if ($camera || $exifLine)
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                            <div class="text-white transform translate-y-3 group-hover:translate-y-0 transition-transform duration-300 ease-in-out">
-                                <p class="text-sm font-bold tracking-wide">{{ $camera }}</p>
-                                <div class="text-xs mt-1 opacity-90 font-mono">{{ $exifLine }}</div>
-                            </div>
                         </div>
                     @endif
+
+                    <img src="{{ $photo['url'] }}" alt="{{ $displayTheme }}"
+                        class="w-full h-auto object-cover transition-transform duration-700 ease-in-out group-hover:scale-105">
+
+                    <!-- Hover Overlay -->
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <span
+                            class="text-art-primary text-[10px] font-mono font-bold tracking-widest uppercase mb-1">{{ $displayTheme }}</span>
+                        <h3 class="text-white font-display-art text-xl font-bold mb-2">{{ $photo['filename'] ?? 'Untitled' }}</h3>
+                        
+                        @if ($camera || $exifLine)
+                        <div class="flex items-center gap-3 text-white/70 text-xs font-mono border-t border-white/20 pt-3">
+                            <span><i class="fa-solid fa-camera mr-1"></i> {{ $camera ?? 'Unknown Camera' }}</span>
+                            <span>{{ $exifLine }}</span>
+                        </div>
+                        @endif
+                    </div>
                 </div>
             @endforeach
         </div>
-    </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-white border-t border-gray-100 text-center">
+        <a href="{{ url('/persona/creative') }}"
+            class="inline-flex items-center gap-2 text-art-dark font-bold hover:text-art-primary transition mb-4">
+            <i class="fa-solid fa-arrow-left"></i> Kembali ke Profil Creative
+        </a>
+        <p class="text-xs text-gray-400 font-mono">© 2025 Farras Arrafi. All Rights Reserved.</p>
+    </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const buttons = document.querySelectorAll('.filter-btn');
             const items = document.querySelectorAll('.masonry-item');
-            
+
             buttons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Update active state button
-                    buttons.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    
+                btn.addEventListener('click', function () {
+                    // Update active state UI
+                    buttons.forEach(b => {
+                        b.classList.remove('bg-art-primary', 'text-white', 'hover:text-gray-600', 'shadow-md');
+                        b.classList.add('bg-white', 'text-gray-600');
+                    });
+                    this.classList.remove('bg-white', 'text-gray-600');
+                    this.classList.add('bg-art-primary', 'text-white', 'hover:text-gray-600', 'shadow-md');
+
                     const filterValue = this.getAttribute('data-filter').toLowerCase();
-                    
+
                     items.forEach(item => {
                         const itemTheme = (item.getAttribute('data-theme') || '').toLowerCase();
-                        
+
                         if (filterValue === 'all' || itemTheme === filterValue) {
-                            item.style.display = 'block';
-                            item.classList.remove('animate-fade-in');
-                            void item.offsetWidth; // Trigger reflow
+                            item.style.display = 'block'; // Reset display first
+                            // Add animation class
+                            item.classList.remove('hidden');
                             item.classList.add('animate-fade-in');
                         } else {
-                            item.style.display = 'none';
+                            item.style.display = 'none'; // Completely hide
+                            item.classList.remove('animate-fade-in');
                         }
                     });
                 });
@@ -159,4 +242,5 @@
         });
     </script>
 </body>
+
 </html>

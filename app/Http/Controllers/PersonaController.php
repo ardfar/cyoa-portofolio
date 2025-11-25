@@ -179,30 +179,21 @@ class PersonaController extends Controller
         $allPhotos = [];
 
         if (is_dir($basePath)) {
-            // Get only subdirectories (themes)
-            $directories = array_values(array_filter(glob($basePath.'/*'), 'is_dir'));
+            // Define allowed themes/folders
+            $allowedThemes = ['Building', 'Foods', 'Sunset', 'Transportation'];
             
-            // Also check for files in the root of portofolio folder
-            $rootFiles = glob($basePath.'/*.{jpg,jpeg,png,gif}', GLOB_BRACE) ?: [];
-            foreach ($rootFiles as $file) {
-                 $allPhotos[] = [
-                    'url' => asset('images/portofolio/'.basename($file)),
-                    'file' => $file,
-                    'theme' => 'Uncategorized',
-                    'title' => pathinfo($file, PATHINFO_FILENAME),
-                ];
-            }
-
-            foreach ($directories as $dir) {
-                $theme = basename($dir);
-                $files = glob($dir.'/*.{jpg,jpeg,png,gif}', GLOB_BRACE) ?: [];
-                foreach ($files as $file) {
-                    $allPhotos[] = [
-                        'url' => asset('images/portofolio/'.$theme.'/'.basename($file)),
-                        'file' => $file,
-                        'theme' => $theme,
-                        'title' => pathinfo($file, PATHINFO_FILENAME),
-                    ];
+            foreach ($allowedThemes as $theme) {
+                $dir = $basePath . '/' . $theme;
+                if (is_dir($dir)) {
+                    $files = glob($dir.'/*.{jpg,jpeg,png,gif}', GLOB_BRACE) ?: [];
+                    foreach ($files as $file) {
+                        $allPhotos[] = [
+                            'url' => asset('images/portofolio/'.$theme.'/'.basename($file)),
+                            'file' => $file,
+                            'theme' => $theme,
+                            'title' => pathinfo($file, PATHINFO_FILENAME),
+                        ];
+                    }
                 }
             }
         }

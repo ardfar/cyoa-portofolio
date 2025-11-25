@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eksplorasi Perspektif - Farras Arrafi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts: Syne (Display) & Manrope (Body) untuk konsistensi Persona Creative -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Manrope:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Syne', 'sans-serif'],
+                        body: ['Manrope', 'sans-serif'],
+                    },
+                    colors: {
+                        art: {
+                            primary: '#10B981',   /* Emerald/Mint */
+                            light: '#ECFDF5',     /* Soft Mint Background */
+                            dark: '#064E3B',      /* Deep Green Text */
+                            accent: '#34D399'     /* Bright Accent */
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Masonry Magic */
+        .masonry-grid {
+            column-gap: 1.5rem;
+        }
+
+        /* Penting agar item tidak terpotong antar kolom */
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+        }
+
+        /* Hide scrollbar for clean look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="bg-art-light text-gray-800 font-body antialiased selection:bg-art-primary selection:text-white">
+
+    <!-- Global Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <a href="index.html"
+                        class="font-display font-bold text-2xl text-gray-900 tracking-tight hover:opacity-80 transition">
+                        farras.<span class="text-art-primary">art</span>
+                    </a>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-1 bg-white p-1 rounded-full border border-gray-200 shadow-sm">
+                    <a href="index.html"
+                        class="px-5 py-2 text-xs font-bold text-gray-500 hover:text-gray-900 transition rounded-full">Overview</a>
+                    <a href="persona_tech.html"
+                        class="px-5 py-2 text-xs font-bold text-gray-500 hover:text-[#00F7A6] hover:bg-gray-50 transition rounded-full">Builder
+                        (Tech)</a>
+                    <a href="persona_mgmt.html"
+                        class="px-5 py-2 text-xs font-bold text-gray-500 hover:text-[#D97706] hover:bg-gray-50 transition rounded-full">Leader
+                        (Mgmt)</a>
+                    <a href="persona_creative.html"
+                        class="px-5 py-2 text-xs font-bold text-art-dark bg-art-light border border-art-primary/20 rounded-full shadow-inner">Artist
+                        (Creative)</a>
+                </div>
+                <!-- Mobile Menu -->
+                <div class="md:hidden text-gray-500">
+                    <a href="index.html"><i class="fa-solid fa-bars"></i> Menu</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="pt-32 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
+        <span
+            class="inline-block py-1 px-3 rounded-full bg-white border border-art-primary/30 text-art-primary text-xs font-bold tracking-widest uppercase mb-6">
+            Curated Visuals
+        </span>
+        <h1 class="text-5xl md:text-7xl font-display font-black text-gray-900 mb-6 tracking-tight">
+            Eksplorasi Perspektif
+        </h1>
+        <p class="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-gray-600 font-light leading-relaxed">
+            Mengkurasi keindahan dari struktur beton, hangatnya sajian, hingga pendar senja. Sebuah antologi visual.
+        </p>
+    </header>
+
+    <!-- Sticky Filter Bar (Responsive Scroll) -->
+    <div class="sticky top-20 z-40 bg-art-light/95 backdrop-blur py-4 border-y border-art-primary/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-start md:justify-center gap-3 overflow-x-auto no-scrollbar pb-2 md:pb-0">
+                <!-- Filter Buttons -->
+                <button
+                    class="filter-btn px-6 py-2 rounded-full bg-art-primary text-white font-bold text-sm transition shadow-md shadow-art-primary/20 whitespace-nowrap hover:scale-105 active:scale-95"
+                    data-filter="all">
+                    All Works
+                </button>
+                <button
+                    class="filter-btn px-6 py-2 rounded-full bg-white text-gray-600 border border-gray-200 font-bold text-sm transition hover:border-art-primary hover:text-art-primary whitespace-nowrap"
+                    data-filter="Architecture">
+                    Architecture
+                </button>
+                <button
+                    class="filter-btn px-6 py-2 rounded-full bg-white text-gray-600 border border-gray-200 font-bold text-sm transition hover:border-art-primary hover:text-art-primary whitespace-nowrap"
+                    data-filter="Culinary">
+                    Culinary
+                </button>
+                <button
+                    class="filter-btn px-6 py-2 rounded-full bg-white text-gray-600 border border-gray-200 font-bold text-sm transition hover:border-art-primary hover:text-art-primary whitespace-nowrap"
+                    data-filter="Nature">
+                    Nature
+                </button>
+                <button
+                    class="filter-btn px-6 py-2 rounded-full bg-white text-gray-600 border border-gray-200 font-bold text-sm transition hover:border-art-primary hover:text-art-primary whitespace-nowrap"
+                    data-filter="Urban">
+                    Urban
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Masonry Gallery -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-screen">
+
+        <!-- Grid Container: 1 col mobile, 2 col tablet, 3 col desktop -->
+        <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6 masonry-gallery">
+
+            <!-- Architecture Item -->
+            <div class="masonry-item group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-xl transition-all duration-500 break-inside-avoid"
+                data-theme="Architecture">
+                <img src="http://127.0.0.1:8000/images/portofolio/Building/IMG_20240716_171259_1.jpg" alt="Architecture"
+                    class="w-full h-auto object-cover transition-transform duration-700 ease-in-out group-hover:scale-105">
+
+                <!-- Hover Overlay -->
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                    <span
+                        class="text-art-primary text-[10px] font-mono font-bold tracking-widest uppercase mb-1">Architecture</span>
+                    <h3 class="text-white font-display text-xl font-bold mb-2">Sudirman Perspective</h3>
+                    <div class="flex items-center gap-3 text-white/70 text-xs font-mono border-t border-white/20 pt-3">
+                        <span><i class="fa-solid fa-camera mr-1"></i> vivo X100 Pro</span>
+                        <span>ISO 50</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Culinary Item (With Badge) -->
+            <div class="masonry-item group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-xl transition-all duration-500 break-inside-avoid"
+                data-theme="Culinary">
+                <!-- Commercial Badge -->
+                <div
+                    class="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur text-art-dark text-[10px] font-bold px-3 py-1 rounded-full shadow-sm uppercase tracking-wide">
+                    Commercial Project
+                </div>
+
+                <img src="http://127.0.0.1:8000/images/portofolio/Foods/IMG_20241216_184057.jpg" alt="Culinary"
+                    class="w-full h-auto object-cover transition-transform duration-700 ease-in-out group-hover:scale-105">
+
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                    <span
+                        class="text-art-primary text-[10px] font-mono font-bold tracking-widest uppercase mb-1">Culinary</span>
+                    <h3 class="text-white font-display text-xl font-bold mb-2">Dapur BuAs: Signature</h3>
+                    <div class="flex items-center gap-3 text-white/70 text-xs font-mono border-t border-white/20 pt-3">
+                        <span><i class="fa-solid fa-camera mr-1"></i> vivo X100 Pro</span>
+                        <span>f/1.8</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nature Item -->
+            <div class="masonry-item group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-xl transition-all duration-500 break-inside-avoid"
+                data-theme="Nature">
+                <img src="http://127.0.0.1:8000/images/portofolio/Sunset/IMG_20220525_145526.jpg" alt="Nature"
+                    class="w-full h-auto object-cover transition-transform duration-700 ease-in-out group-hover:scale-105">
+
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                    <span
+                        class="text-art-primary text-[10px] font-mono font-bold tracking-widest uppercase mb-1">Nature</span>
+                    <h3 class="text-white font-display text-xl font-bold mb-2">Golden Hour</h3>
+                    <div class="flex items-center gap-3 text-white/70 text-xs font-mono border-t border-white/20 pt-3">
+                        <span><i class="fa-solid fa-camera mr-1"></i> vivo X100 Pro</span>
+                        <span>ISO 50</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Urban Item -->
+            <div class="masonry-item group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-xl transition-all duration-500 break-inside-avoid"
+                data-theme="Urban">
+                <img src="http://127.0.0.1:8000/images/portofolio/Transportation/IMG_20241112_163711.jpg" alt="Urban"
+                    class="w-full h-auto object-cover transition-transform duration-700 ease-in-out group-hover:scale-105">
+
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                    <span
+                        class="text-art-primary text-[10px] font-mono font-bold tracking-widest uppercase mb-1">Urban</span>
+                    <h3 class="text-white font-display text-xl font-bold mb-2">City Transit</h3>
+                    <div class="flex items-center gap-3 text-white/70 text-xs font-mono border-t border-white/20 pt-3">
+                        <span><i class="fa-solid fa-camera mr-1"></i> vivo X100 Pro</span>
+                        <span>1/100s</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Architecture Item 2 -->
+            <div class="masonry-item group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-xl transition-all duration-500 break-inside-avoid"
+                data-theme="Architecture">
+                <img src="http://127.0.0.1:8000/images/portofolio/Building/IMG_20251028_103200.jpg" alt="Architecture"
+                    class="w-full h-auto object-cover transition-transform duration-700 ease-in-out group-hover:scale-105">
+
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                    <span
+                        class="text-art-primary text-[10px] font-mono font-bold tracking-widest uppercase mb-1">Architecture</span>
+                    <h3 class="text-white font-display text-xl font-bold mb-2">Modern Lines</h3>
+                    <div class="flex items-center gap-3 text-white/70 text-xs font-mono border-t border-white/20 pt-3">
+                        <span><i class="fa-solid fa-camera mr-1"></i> vivo X100 Pro</span>
+                        <span>f/1.8</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Culinary Item 2 -->
+            <div class="masonry-item group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-xl transition-all duration-500 break-inside-avoid"
+                data-theme="Culinary">
+                <div
+                    class="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur text-art-dark text-[10px] font-bold px-3 py-1 rounded-full shadow-sm uppercase tracking-wide">
+                    Commercial Project
+                </div>
+                <img src="http://127.0.0.1:8000/images/portofolio/Foods/IMG_20251009_110248.jpg" alt="Culinary"
+                    class="w-full h-auto object-cover transition-transform duration-700 ease-in-out group-hover:scale-105">
+
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                    <span
+                        class="text-art-primary text-[10px] font-mono font-bold tracking-widest uppercase mb-1">Culinary</span>
+                    <h3 class="text-white font-display text-xl font-bold mb-2">Traditional Taste</h3>
+                    <div class="flex items-center gap-3 text-white/70 text-xs font-mono border-t border-white/20 pt-3">
+                        <span><i class="fa-solid fa-camera mr-1"></i> vivo X100 Pro</span>
+                        <span>ISO 479</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-white border-t border-gray-100 text-center">
+        <a href="persona_creative.html"
+            class="inline-flex items-center gap-2 text-art-dark font-bold hover:text-art-primary transition mb-4">
+            <i class="fa-solid fa-arrow-left"></i> Kembali ke Profil Creative
+        </a>
+        <p class="text-xs text-gray-400 font-mono">© 2025 Farras Arrafi. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const buttons = document.querySelectorAll('.filter-btn');
+            const items = document.querySelectorAll('.masonry-item');
+
+            buttons.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    // Update active state UI
+                    buttons.forEach(b => {
+                        b.classList.remove('bg-art-primary', 'text-white', 'shadow-md');
+                        b.classList.add('bg-white', 'text-gray-600');
+                    });
+                    this.classList.remove('bg-white', 'text-gray-600');
+                    this.classList.add('bg-art-primary', 'text-white', 'shadow-md');
+
+                    const filterValue = this.getAttribute('data-filter').toLowerCase();
+
+                    items.forEach(item => {
+                        const itemTheme = (item.getAttribute('data-theme') || '').toLowerCase();
+
+                        if (filterValue === 'all' || itemTheme === filterValue) {
+                            item.style.display = 'block'; // Reset display first
+                            // Add animation class
+                            item.classList.remove('hidden');
+                            item.classList.add('animate-fade-in');
+                        } else {
+                            item.style.display = 'none'; // Completely hide
+                            item.classList.remove('animate-fade-in');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
