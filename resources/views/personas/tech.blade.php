@@ -76,7 +76,7 @@
             </div>
             
             <h1 class="font-display text-5xl md:text-7xl font-bold text-white leading-tight mb-6 tech-glow-text">
-                {!! $persona['headline'] ?? 'Membangun <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-tech to-emerald-500">Ekosistem Digital</span> <br>yang Cerdas.' !!}
+                Membangun <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-tech to-emerald-500">Ekosistem Digital</span> <br>yang Cerdas.
             </h1>
             
             <p class="text-lg text-slate-400 max-w-2xl leading-relaxed font-mono">

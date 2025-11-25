@@ -61,9 +61,16 @@
                 Business Strategy & Leadership
             </span>
 
-            <h1 class="font-display-mgmt text-5xl md:text-7xl font-black text-gray-900 leading-[1.1] mb-8 break-words">
+            <h1 class="font-display-mgmt text-5xl md:text-7xl font-black text-gray-900 leading-[1.1] mb-8">
                 Menerjemahkan Visi <br>
-                Menjadi <span class="text-[#D97706]">Hasil Nyata</span> .
+                Menjadi <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-mgmt-gold to-amber-600 relative">
+                    Hasil Nyata
+                    <svg class="absolute w-full h-3 -bottom-1 left-0 text-mgmt-gold/30" viewBox="0 0 100 10"
+                        preserveAspectRatio="none">
+                        <path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="8" fill="none" />
+                    </svg>
+                </span>.
             </h1>
 
             <p class="font-body-mgmt text-lg md:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed mb-10">
