@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Manrope:wght@300;400;600&display=swap');
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -32,6 +33,14 @@
     --color-mgmt-gold: #D97706;
     --color-mgmt-light: #FEF3C7;
     --color-mgmt-dark: #78350F;
+
+    /* Creative Persona Specific Colors & Fonts */
+    --font-display-art: 'Syne', sans-serif;
+    --font-body-art: 'Manrope', sans-serif;
+    --color-art-primary: #10B981;
+    --color-art-light: #ECFDF5;
+    --color-art-dark: #064E3B;
+    --color-art-accent: #34D399;
 }
 
 .management-typography h1,

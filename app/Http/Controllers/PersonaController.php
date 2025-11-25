@@ -29,6 +29,9 @@ class PersonaController extends Controller
     /**
      * Get persona content via AJAX
      */
+    /**
+     * Get persona content via AJAX
+     */
     public function content(string $persona): View
     {
         $personas = $this->getPersonas();
@@ -38,6 +41,14 @@ class PersonaController extends Controller
         }
 
         $data = ['persona' => $personas[$key]];
+        
+        if ($key === 'operations') { // Creative Persona
+            $allPhotos = $this->getAllPhotos();
+            // Shuffle and take 6 for preview
+            shuffle($allPhotos);
+            $data['gallery_preview'] = array_slice($allPhotos, 0, 6);
+        }
+
         if ($key === 'tech') {
             $dbPersona = null;
             if (Schema::hasTable('personas')) {
@@ -146,26 +157,53 @@ class PersonaController extends Controller
      */
     public function gallery(): View
     {
-        $basePath = public_path('images/portofolio');
+        $allPhotos = $this->getAllPhotos();
         $themes = [];
+        
+        foreach ($allPhotos as $photo) {
+            $themes[$photo['theme']][] = $photo;
+        }
+
+        return view('gallery', [
+            'themes' => $themes,
+            'photos' => $allPhotos,
+        ]);
+    }
+
+    /**
+     * Get all photos from the portfolio directory
+     */
+    private function getAllPhotos(): array
+    {
+        $basePath = public_path('images/portofolio');
         $allPhotos = [];
 
         if (is_dir($basePath)) {
             // Get only subdirectories (themes)
             $directories = array_values(array_filter(glob($basePath.'/*'), 'is_dir'));
+            
+            // Also check for files in the root of portofolio folder
+            $rootFiles = glob($basePath.'/*.{jpg,jpeg,png,gif}', GLOB_BRACE) ?: [];
+            foreach ($rootFiles as $file) {
+                 $allPhotos[] = [
+                    'url' => asset('images/portofolio/'.basename($file)),
+                    'file' => $file,
+                    'theme' => 'Uncategorized',
+                    'title' => pathinfo($file, PATHINFO_FILENAME),
+                ];
+            }
+
             foreach ($directories as $dir) {
                 $theme = basename($dir);
                 $files = glob($dir.'/*.{jpg,jpeg,png,gif}', GLOB_BRACE) ?: [];
-                $photos = [];
                 foreach ($files as $file) {
-                    $photos[] = [
+                    $allPhotos[] = [
                         'url' => asset('images/portofolio/'.$theme.'/'.basename($file)),
                         'file' => $file,
                         'theme' => $theme,
+                        'title' => pathinfo($file, PATHINFO_FILENAME),
                     ];
                 }
-                $themes[$theme] = $photos;
-                $allPhotos = array_merge($allPhotos, $photos);
             }
         }
 
@@ -174,10 +212,7 @@ class PersonaController extends Controller
             return strcmp($a['url'], $b['url']);
         });
 
-        return view('gallery', [
-            'themes' => $themes,
-            'photos' => $allPhotos,
-        ]);
+        return $allPhotos;
     }
 
     /**
@@ -225,12 +260,12 @@ class PersonaController extends Controller
             ],
             'operations' => [
                 'id' => 'creative',
-                'name' => 'Operations & Creative',
-                'headline' => 'Mewujudkan ide visual melalui desain grafis dan fotografi.',
-                'description' => 'Fokus pada desain grafis dan visual storytelling untuk mendukung branding dan komunikasi yang kuat.',
-                'roles' => ['Desain Grafis', 'Photographer'],
-                'theme' => 'green-gray',
-                'accent_color' => 'green',
+                'name' => 'Creative & Visual',
+                'headline' => 'Menangkap Jiwa di Balik Logika.',
+                'description' => 'Menerjemahkan ide abstrak menjadi pengalaman visual yang menyentuh rasa. Dari desain identitas hingga fotografi yang bercerita.',
+                'roles' => ['Visual Storyteller', 'Photographer', 'Graphic Designer'],
+                'theme' => 'emerald-mint',
+                'accent_color' => 'emerald',
             ],
         ];
     }

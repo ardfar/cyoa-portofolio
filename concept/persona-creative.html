@@ -4,12 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $persona['name'] ?? 'Farras Arrafi - Creative & Visual' }}</title>
-    
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    
+    <title>Farras Arrafi - Creative & Visual</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fonts: Syne (Artistic Display) & Manrope (Modern Clean Body) -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Manrope:wght@300;400;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Syne', 'sans-serif'],
+                        body: ['Manrope', 'sans-serif'],
+                    },
+                    colors: {
+                        art: {
+                            primary: '#10B981',   /* Emerald/Mint */
+                            light: '#ECFDF5',     /* Soft Mint Background */
+                            dark: '#064E3B',      /* Deep Green Text */
+                            accent: '#34D399'     /* Bright Accent */
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         /* Hide scrollbar */
         .no-scrollbar::-webkit-scrollbar {
@@ -39,27 +61,27 @@
     </style>
 </head>
 
-<body class="bg-art-light text-gray-800 font-body-art antialiased selection:bg-art-primary selection:text-white">
+<body class="bg-art-light text-gray-800 font-body antialiased selection:bg-art-primary selection:text-white">
 
     <!-- Global Navigation -->
     <nav class="fixed top-0 w-full z-50 glass-nav">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <div class="shrink-0">
-                    <a href="{{ route('home') }}"
-                        class="font-display-art font-bold text-2xl text-gray-900 tracking-tight hover:opacity-80 transition">
+                <div class="flex-shrink-0">
+                    <a href="index.html"
+                        class="font-display font-bold text-2xl text-gray-900 tracking-tight hover:opacity-80 transition">
                         farras.<span class="text-art-primary">art</span>
                     </a>
                 </div>
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-1 bg-white p-1 rounded-full border border-gray-200 shadow-sm">
-                    <a href="{{ route('home') }}"
+                    <a href="index.html"
                         class="px-5 py-2 text-xs font-bold text-gray-500 hover:text-gray-900 transition rounded-full">Overview</a>
-                    <a href="{{ route('persona.content', 'tech') }}"
+                    <a href="persona_tech.html"
                         class="px-5 py-2 text-xs font-bold text-gray-500 hover:text-[#00F7A6] hover:bg-gray-50 transition rounded-full">Builder
                         (Tech)</a>
-                    <a href="{{ route('persona.content', 'management') }}"
-                        class="px-5 py-2 text-xs font-bold text-gray-500 hover:text-mgmt-gold hover:bg-gray-50 transition rounded-full">Leader
+                    <a href="persona_mgmt.html"
+                        class="px-5 py-2 text-xs font-bold text-gray-500 hover:text-[#D97706] hover:bg-gray-50 transition rounded-full">Leader
                         (Mgmt)</a>
                     <a href="#"
                         class="px-5 py-2 text-xs font-bold text-art-dark bg-art-light border border-art-primary/20 rounded-full shadow-inner">Artist
@@ -67,7 +89,7 @@
                 </div>
                 <!-- Mobile Menu -->
                 <div class="md:hidden text-gray-500">
-                    <a href="{{ route('home') }}"><i class="fa-solid fa-bars"></i> Menu</a>
+                    <a href="index.html"><i class="fa-solid fa-bars"></i> Menu</a>
                 </div>
             </div>
         </div>
@@ -78,7 +100,7 @@
         class="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden min-h-[70vh] flex flex-col justify-center">
         <!-- Organic Shapes Background -->
         <div
-            class="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-art-accent rounded-full mix-blend-multiply filter blur-[120px] opacity-20 animate-blob">
+            class="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-[#34D399] rounded-full mix-blend-multiply filter blur-[120px] opacity-20 animate-blob">
         </div>
         <div
             class="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-[#6EE7B7] rounded-full mix-blend-multiply filter blur-[100px] opacity-20 animate-blob animation-delay-2000">
@@ -90,7 +112,7 @@
                 <span class="w-2 h-2 rounded-full bg-art-primary"></span> Visual Storyteller
             </div>
 
-            <h1 class="font-display-art text-6xl md:text-8xl font-bold text-gray-900 leading-[0.9] mb-8 tracking-tight">
+            <h1 class="font-display text-6xl md:text-8xl font-bold text-gray-900 leading-[0.9] mb-8 tracking-tight">
                 Menangkap Jiwa <br>
                 <span class="italic font-light text-art-primary">di Balik Logika.</span>
             </h1>
@@ -102,7 +124,7 @@
 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
                 <a href="#gallery"
-                    class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-gray-900 font-display-art rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 hover:bg-gray-800">
+                    class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-gray-900 font-display rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 hover:bg-gray-800">
                     Lihat Galeri
                     <i class="fa-solid fa-arrow-down ml-2 group-hover:translate-y-1 transition-transform"></i>
                 </a>
@@ -118,7 +140,7 @@
     <div class="sticky top-20 z-40 bg-art-light/90 backdrop-blur border-y border-art-primary/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <nav
-                class="flex space-x-8 overflow-x-auto py-4 no-scrollbar text-sm font-bold text-gray-500 font-display-art uppercase tracking-wider">
+                class="flex space-x-8 overflow-x-auto py-4 no-scrollbar text-sm font-bold text-gray-500 font-display uppercase tracking-wider">
                 <a href="#philosophy" class="whitespace-nowrap hover:text-art-primary transition">01. Filosofi</a>
                 <a href="#gallery" class="whitespace-nowrap hover:text-art-primary transition">02. Fotografi</a>
                 <a href="#design" class="whitespace-nowrap hover:text-art-primary transition">03. Desain</a>
@@ -131,7 +153,7 @@
     <section id="philosophy" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div class="grid lg:grid-cols-12 gap-12 items-center">
             <div class="lg:col-span-5">
-                <h2 class="font-display-art text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
                     Estetika yang <br> Fungsional.
                 </h2>
                 <p class="text-gray-600 text-lg leading-relaxed mb-8">
@@ -156,13 +178,13 @@
                 <div
                     class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-50 aspect-square flex flex-col justify-center items-center text-center">
                     <i class="fa-solid fa-pen-nib text-4xl text-art-primary mb-4"></i>
-                    <h3 class="font-display-art font-bold text-lg">Graphic Design</h3>
+                    <h3 class="font-display font-bold text-lg">Graphic Design</h3>
                     <p class="text-xs text-gray-500 mt-2">Logo, Identitas, & Layout</p>
                 </div>
                 <div
                     class="bg-art-primary text-white p-6 rounded-2xl shadow-lg transform translate-y-8 aspect-square flex flex-col justify-center items-center text-center">
                     <i class="fa-solid fa-camera-retro text-4xl mb-4"></i>
-                    <h3 class="font-display-art font-bold text-lg">Photography</h3>
+                    <h3 class="font-display font-bold text-lg">Photography</h3>
                     <p class="text-xs text-white/80 mt-2">Portrait, Street, & Event</p>
                 </div>
             </div>
@@ -176,7 +198,7 @@
                 <div>
                     <span class="text-art-primary font-bold tracking-widest uppercase text-xs mb-2 block">Curated
                         Gallery</span>
-                    <h2 class="font-display-art text-4xl md:text-5xl font-bold text-gray-900">Jeda Visual</h2>
+                    <h2 class="font-display text-4xl md:text-5xl font-bold text-gray-900">Jeda Visual</h2>
                 </div>
                 <p class="text-gray-500 max-w-md text-right md:text-left text-sm">
                     Koleksi momen yang dibekukan waktu. Menangkap emosi mentah dari kehidupan urban dan alam.
@@ -186,29 +208,58 @@
             <!-- Masonry Grid Implementation -->
             <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
 
-                @if(isset($gallery_preview) && count($gallery_preview) > 0)
-                    @foreach($gallery_preview as $photo)
-                    <div class="masonry-item group relative overflow-hidden rounded-2xl break-inside-avoid">
-                        <img src="{{ $photo['url'] }}" alt="{{ $photo['title'] }}"
-                            class="w-full object-cover transition duration-700 group-hover:scale-105">
-                        <div
-                            class="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
-                            <span class="text-art-primary text-xs font-mono font-bold mb-1">{{ strtoupper($photo['theme']) }}</span>
-                            <h3 class="text-white font-display-art text-xl font-bold">{{ $photo['title'] }}</h3>
-                            <p class="text-white/70 text-xs mt-2 font-mono">Portfolio Item</p>
-                        </div>
+                <!-- Photo 1 -->
+                <div class="masonry-item group relative overflow-hidden rounded-2xl break-inside-avoid">
+                    <img src="image_47e7ca.jpg" alt="City Life"
+                        class="w-full object-cover transition duration-700 group-hover:scale-105">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
+                        <span class="text-art-primary text-xs font-mono font-bold mb-1">STREET</span>
+                        <h3 class="text-white font-display text-xl font-bold">Urban Rhythm</h3>
+                        <p class="text-white/70 text-xs mt-2 font-mono">vivo X100 Pro | f/1.8</p>
                     </div>
-                    @endforeach
-                @else
-                    <div class="col-span-full text-center py-12 text-gray-500">
-                        <p>Belum ada foto yang ditampilkan.</p>
+                </div>
+
+                <!-- Photo 2 -->
+                <div class="masonry-item group relative overflow-hidden rounded-2xl break-inside-avoid">
+                    <img src="image_47cddc.jpg" alt="Nature"
+                        class="w-full object-cover transition duration-700 group-hover:scale-105">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
+                        <span class="text-art-primary text-xs font-mono font-bold mb-1">LANDSCAPE</span>
+                        <h3 class="text-white font-display text-xl font-bold">Morning Calm</h3>
+                        <p class="text-white/70 text-xs mt-2 font-mono">Sony A6000 | 16mm</p>
                     </div>
-                @endif
+                </div>
+
+                <!-- Photo 3 (Tall) -->
+                <div class="masonry-item group relative overflow-hidden rounded-2xl break-inside-avoid">
+                    <img src="image_b7193c.jpg" alt="Culinary"
+                        class="w-full object-cover transition duration-700 group-hover:scale-105">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
+                        <span class="text-art-primary text-xs font-mono font-bold mb-1">COMMERCIAL</span>
+                        <h3 class="text-white font-display text-xl font-bold">Dapur BuAs</h3>
+                        <p class="text-white/70 text-xs mt-2 font-mono">Product Photography</p>
+                    </div>
+                </div>
+
+                <!-- Photo 4 -->
+                <div class="masonry-item group relative overflow-hidden rounded-2xl break-inside-avoid">
+                    <img src="image_b794df.png" alt="Bakso Boss"
+                        class="w-full object-cover transition duration-700 group-hover:scale-105">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
+                        <span class="text-art-primary text-xs font-mono font-bold mb-1">ADVERTISING</span>
+                        <h3 class="text-white font-display text-xl font-bold">Bakso Boss 88</h3>
+                        <p class="text-white/70 text-xs mt-2 font-mono">Flyer Design</p>
+                    </div>
+                </div>
 
             </div>
 
             <div class="mt-12 text-center">
-                <a href="{{ route('persona.creative.gallery') }}"
+                <a href="persona_creative_gallery.html"
                     class="inline-block border-b-2 border-gray-900 text-gray-900 font-bold hover:text-art-primary hover:border-art-primary transition pb-1">
                     Lihat Arsip Lengkap →
                 </a>
@@ -219,15 +270,15 @@
     <!-- Design Projects (Horizontal Scroll on Mobile, Grid on Desktop) -->
     <section id="design" class="py-24 bg-art-light">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="font-display-art text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">Studi Kasus Desain
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">Studi Kasus Desain
             </h2>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
                 <!-- Project Card 1 -->
-                <a href="{{ route('portfolio.kopinaren') }}"
+                <a href="kopinaren_case_study.html"
                     class="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
-                    <div class="aspect-4/3 bg-gray-200 relative overflow-hidden">
+                    <div class="aspect-[4/3] bg-gray-200 relative overflow-hidden">
                         <img src="image_b794df.png" alt="Kopinaren"
                             class="w-full h-full object-cover group-hover:scale-105 transition duration-700 grayscale group-hover:grayscale-0">
                         <div
@@ -236,7 +287,7 @@
                     </div>
                     <div class="p-6">
                         <h3
-                            class="font-display-art text-2xl font-bold text-gray-900 mb-2 group-hover:text-art-primary transition">
+                            class="font-display text-2xl font-bold text-gray-900 mb-2 group-hover:text-art-primary transition">
                             Kopinaren</h3>
                         <p class="text-gray-500 text-sm line-clamp-2">Merancang identitas visual kopi urban yang
                             "affordable luxury" untuk Gen-Z.</p>
@@ -246,11 +297,11 @@
                 </a>
 
                 <!-- Project Card 2 -->
-                <a href="{{ route('portfolio.bakso-boss') }}"
+                <a href="bakso_boss_case_study.html"
                     class="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
-                    <div class="aspect-4/3 bg-gray-800 relative overflow-hidden">
+                    <div class="aspect-[4/3] bg-gray-800 relative overflow-hidden">
                         <div
-                            class="absolute inset-0 flex items-center justify-center text-white font-display-art font-bold text-2xl opacity-20">
+                            class="absolute inset-0 flex items-center justify-center text-white font-display font-bold text-2xl opacity-20">
                             BAKSO BOSS</div>
                         <div
                             class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-xs font-bold text-gray-900">
@@ -258,7 +309,7 @@
                     </div>
                     <div class="p-6">
                         <h3
-                            class="font-display-art text-2xl font-bold text-gray-900 mb-2 group-hover:text-art-primary transition">
+                            class="font-display text-2xl font-bold text-gray-900 mb-2 group-hover:text-art-primary transition">
                             Bakso Boss 88</h3>
                         <p class="text-gray-500 text-sm line-clamp-2">Gamifikasi menu dan desain flyer untuk
                             meningkatkan sales F&B.</p>
@@ -268,11 +319,11 @@
                 </a>
 
                 <!-- Project Card 3 -->
-                <a href="{{ route('portfolio.mik') }}"
+                <a href="mik_case_study.html"
                     class="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
-                    <div class="aspect-4/3 bg-blue-900 relative overflow-hidden">
+                    <div class="aspect-[4/3] bg-blue-900 relative overflow-hidden">
                         <div
-                            class="absolute inset-0 flex items-center justify-center text-white font-display-art font-bold text-2xl opacity-20">
+                            class="absolute inset-0 flex items-center justify-center text-white font-display font-bold text-2xl opacity-20">
                             MIK CORP</div>
                         <div
                             class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-xs font-bold text-gray-900">
@@ -280,7 +331,7 @@
                     </div>
                     <div class="p-6">
                         <h3
-                            class="font-display-art text-2xl font-bold text-gray-900 mb-2 group-hover:text-art-primary transition">
+                            class="font-display text-2xl font-bold text-gray-900 mb-2 group-hover:text-art-primary transition">
                             Media Info Kreasindo</h3>
                         <p class="text-gray-500 text-sm line-clamp-2">Visualisasi data kompleks untuk presentasi
                             korporat B2B.</p>
@@ -298,10 +349,10 @@
         <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20">
         </div>
         <div class="max-w-2xl mx-auto relative z-10">
-            <h2 class="font-display-art text-4xl md:text-5xl font-bold mb-6">Punya Visi Visual?</h2>
+            <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">Punya Visi Visual?</h2>
             <p class="text-gray-400 text-lg mb-10">Mari diskusikan bagaimana kita bisa membuat brand Anda tampil
                 menonjol dan bercerita.</p>
-            <a href="{{ route('contact') }}"
+            <a href="contact.html"
                 class="inline-block px-10 py-4 bg-art-primary text-white font-bold rounded-full hover:bg-emerald-400 transition shadow-[0_0_30px_rgba(16,185,129,0.4)]">
                 Mulai Proyek Kreatif
             </a>
