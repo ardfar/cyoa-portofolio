@@ -24,14 +24,14 @@
     </style>
 </head>
 
-<body class="bg-white text-gray-800 font-body antialiased selection:bg-mgmt-gold selection:text-white overflow-x-hidden">
+<body class="bg-white text-gray-800 font-body-mgmt antialiased selection:bg-mgmt-gold selection:text-white overflow-x-hidden">
 
     <!-- Global Navigation -->
     <nav class="fixed top-0 w-full z-50 glass-nav">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0">
-                    <a href="{{ route('home') }}" class="font-display font-bold text-2xl text-gray-900 tracking-tight hover:opacity-80 transition">
+                    <a href="{{ route('home') }}" class="font-display-mgmt font-bold text-2xl text-gray-900 tracking-tight hover:opacity-80 transition">
                         farras.<span class="text-mgmt-gold">biz</span>
                     </a>
                 </div>
@@ -61,12 +61,12 @@
                 Business Strategy & Leadership
             </span>
 
-            <h1 class="font-display text-5xl md:text-7xl font-black text-gray-900 leading-[1.1] mb-8 break-words">
+            <h1 class="font-display-mgmt text-5xl md:text-7xl font-black text-gray-900 leading-[1.1] mb-8 break-words">
                 Menerjemahkan Visi <br>
                 Menjadi <span class="text-[#D97706]">Hasil Nyata</span> .
             </h1>
 
-            <p class="font-body text-lg md:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed mb-10">
+            <p class="font-body-mgmt text-lg md:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed mb-10">
                 Saya membantu organisasi menjembatani kesenjangan antara teknologi kompleks dan tujuan bisnis, memastikan setiap inisiatif memiliki ROI yang terukur.
             </p>
 
@@ -98,7 +98,7 @@
         <div class="grid lg:grid-cols-2 gap-16 items-start">
             <!-- Text Content -->
             <div>
-                <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                <h2 class="font-display-mgmt text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                     Menghubungkan Titik-Titik Bisnis.
                 </h2>
                 <p class="text-gray-600 text-lg leading-relaxed mb-8">
@@ -129,7 +129,7 @@
 
             <!-- Metrics Grid (Responsive) -->
             <div id="metrics" class="bg-gray-50 rounded-3xl p-8 border border-gray-100">
-                <h3 class="font-display text-xl font-bold text-gray-900 mb-6 border-b border-gray-200 pb-4">
+                <h3 class="font-display-mgmt text-xl font-bold text-gray-900 mb-6 border-b border-gray-200 pb-4">
                     Dampak Terukur (KPIs)
                 </h3>
                 <div class="grid grid-cols-2 gap-6">
@@ -149,7 +149,7 @@
     <section id="case-studies" class="py-20 bg-gray-50 border-y border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900">Track Record</h2>
+                <h2 class="font-display-mgmt text-3xl md:text-4xl font-bold text-gray-900">Track Record</h2>
                 <p class="text-gray-500 mt-4 text-lg">Portofolio kepemimpinan dalam inisiatif strategis.</p>
             </div>
 
@@ -158,7 +158,7 @@
                 <div class="group bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-card transition-all duration-300 border border-gray-100 flex flex-col h-full">
                     <div class="h-48 bg-gray-800 flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-900"></div>
-                        <span class="relative z-10 font-display font-bold text-2xl text-white tracking-widest">{{ strtoupper($record['title']) }}</span>
+                        <span class="relative z-10 font-display-mgmt font-bold text-2xl text-white tracking-widest">{{ strtoupper($record['title']) }}</span>
                     </div>
                     <div class="p-8 flex-1 flex flex-col">
                         <h3 class="font-bold text-xl text-gray-900 mb-2">{{ $record['title'] }}</h3>
@@ -186,7 +186,7 @@
     <!-- Strategic Roadmap (Responsive Timeline) -->
     <section id="roadmap" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div class="text-center mb-16">
-            <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900">Metodologi Kerja</h2>
+            <h2 class="font-display-mgmt text-3xl md:text-4xl font-bold text-gray-900">Metodologi Kerja</h2>
             <p class="text-gray-500 mt-4 text-lg">Bagaimana saya mengubah masalah menjadi solusi.</p>
         </div>
 
@@ -213,7 +213,7 @@
     <!-- Call to Action -->
     <section id="contact" class="py-20 bg-gray-900 text-white text-center px-4">
         <div class="max-w-3xl mx-auto">
-            <h2 class="font-display text-3xl md:text-5xl font-bold mb-6">Butuh Strategi yang Jelas?</h2>
+            <h2 class="font-display-mgmt text-3xl md:text-5xl font-bold mb-6">Butuh Strategi yang Jelas?</h2>
             <p class="text-gray-400 text-lg mb-10">
                 Jangan biarkan ide bisnis Anda terhenti di tahap konsep. Mari diskusikan bagaimana kita bisa mengeksekusinya menjadi produk yang profitable.
             </p>
