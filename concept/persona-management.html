@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farras Arrafi - Management & Strategy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fonts: Playfair Display (Serif for Headings) & Plus Jakarta Sans (Modern Sans for Body) -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Playfair Display', 'serif'],
+                        body: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        mgmt: {
+                            gold: '#D97706',     /* Professional Gold */
+                            light: '#FEF3C7',    /* Soft Background */
+                            dark: '#78350F'      /* Deep Brown/Gold Text */
+                        },
+                        slate: {
+                            850: '#1e293b',      /* Dark footer bg */
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'card': '0 10px 30px -5px rgba(0, 0, 0, 0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-800 font-body antialiased selection:bg-mgmt-gold selection:text-white">
+
+    <!-- Global Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <a href="index.html"
+                        class="font-display font-bold text-2xl text-gray-900 tracking-tight hover:opacity-80 transition">
+                        farras.<span class="text-mgmt-gold">biz</span>
+                    </a>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-1 bg-gray-100 p-1 rounded-full border border-gray-200">
+                    <a href="index.html"
+                        class="px-5 py-2 text-xs font-medium text-gray-500 hover:text-gray-900 transition rounded-full">Overview</a>
+                    <a href="persona_tech.html"
+                        class="px-5 py-2 text-xs font-medium text-gray-500 hover:text-[#00F7A6] hover:bg-gray-50 transition rounded-full">Builder
+                        (Tech)</a>
+                    <a href="#"
+                        class="px-5 py-2 text-xs font-bold text-mgmt-dark bg-white shadow-sm border border-gray-200 rounded-full">Leader
+                        (Mgmt)</a>
+                    <a href="persona_creative.html"
+                        class="px-5 py-2 text-xs font-medium text-gray-500 hover:text-[#86EFAC] hover:bg-gray-50 transition rounded-full">Artist
+                        (Creative)</a>
+                </div>
+                <!-- Mobile Menu Placeholder -->
+                <div class="md:hidden text-gray-500">
+                    <a href="index.html"><i class="fa-solid fa-bars"></i> Menu</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header
+        class="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden min-h-[60vh] flex flex-col justify-center text-center">
+        <!-- Abstract Background -->
+        <div
+            class="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-mgmt-light rounded-full mix-blend-multiply filter blur-[120px] opacity-50 -z-10">
+        </div>
+        <div
+            class="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-orange-50 rounded-full mix-blend-multiply filter blur-[100px] opacity-50 -z-10">
+        </div>
+
+        <div class="max-w-4xl mx-auto">
+            <span
+                class="inline-block py-1 px-3 rounded-full bg-mgmt-light text-mgmt-dark text-xs font-bold tracking-widest uppercase mb-6 border border-mgmt-gold/20">
+                Business Strategy & Leadership
+            </span>
+
+            <h1 class="font-display text-5xl md:text-7xl font-black text-gray-900 leading-[1.1] mb-8">
+                Menerjemahkan Visi <br>
+                Menjadi <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-mgmt-gold to-amber-600 relative">
+                    Hasil Nyata
+                    <svg class="absolute w-full h-3 -bottom-1 left-0 text-mgmt-gold/30" viewBox="0 0 100 10"
+                        preserveAspectRatio="none">
+                        <path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="8" fill="none" />
+                    </svg>
+                </span>.
+            </h1>
+
+            <p class="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed mb-10 font-light">
+                Saya membantu organisasi menjembatani kesenjangan antara <strong>teknologi kompleks</strong> dan
+                <strong>tujuan bisnis</strong>, memastikan setiap inisiatif memiliki ROI yang terukur.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#case-studies"
+                    class="w-full sm:w-auto px-8 py-4 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition shadow-lg shadow-gray-900/20">
+                    Lihat Track Record
+                </a>
+                <a href="#roadmap"
+                    class="w-full sm:w-auto px-8 py-4 bg-white text-gray-900 border border-gray-200 font-medium rounded-lg hover:border-mgmt-gold hover:text-mgmt-gold transition">
+                    Lihat Pendekatan Strategis
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sticky Local Nav (Mobile Scrollable) -->
+    <div class="sticky top-20 z-40 bg-white/80 backdrop-blur border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="flex space-x-8 overflow-x-auto py-4 no-scrollbar text-sm font-medium text-gray-500">
+                <a href="#about" class="whitespace-nowrap hover:text-mgmt-gold transition">01. Kapabilitas</a>
+                <a href="#metrics" class="whitespace-nowrap hover:text-mgmt-gold transition">02. Key Metrics</a>
+                <a href="#case-studies" class="whitespace-nowrap hover:text-mgmt-gold transition">03. Studi Kasus</a>
+                <a href="#roadmap" class="whitespace-nowrap hover:text-mgmt-gold transition">04. Roadmap</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Expertise & Metrics Section -->
+    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-16 items-start">
+            <!-- Text Content -->
+            <div>
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                    Menghubungkan Titik-Titik Bisnis.
+                </h2>
+                <p class="text-gray-600 text-lg leading-relaxed mb-8">
+                    Banyak proyek gagal bukan karena kekurangan teknologi, tapi karena kekurangan arah. Dengan latar
+                    belakang teknis yang kuat dan pola pikir bisnis, saya memastikan tim *engineer* membangun apa yang
+                    benar-benar dibutuhkan pasar.
+                </p>
+
+                <div class="space-y-6">
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center text-mgmt-gold shrink-0">
+                            <i class="fa-solid fa-chess-knight text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Strategic Planning</h3>
+                            <p class="text-sm text-gray-500 mt-1">Market research, competitive analysis, dan
+                                go-to-market strategy.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center text-mgmt-gold shrink-0">
+                            <i class="fa-solid fa-people-group text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Team Leadership</h3>
+                            <p class="text-sm text-gray-500 mt-1">Memimpin tim lintas fungsi (Product, Design,
+                                Engineering) dengan metodologi Agile/Scrum.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Metrics Grid (Responsive) -->
+            <div id="metrics" class="bg-gray-50 rounded-3xl p-8 border border-gray-100">
+                <h3 class="font-display text-xl font-bold text-gray-900 mb-6 border-b border-gray-200 pb-4">
+                    Dampak Terukur (KPIs)
+                </h3>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm">
+                        <div class="text-3xl md:text-4xl font-black text-mgmt-gold mb-1">25%</div>
+                        <div class="text-xs font-bold uppercase tracking-wider text-gray-400">Cost Reduction</div>
+                        <p class="text-xs text-gray-500 mt-2">Melalui efisiensi operasional di Dapur BuAs.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm">
+                        <div class="text-3xl md:text-4xl font-black text-gray-900 mb-1">10+</div>
+                        <div class="text-xs font-bold uppercase tracking-wider text-gray-400">SME Helped</div>
+                        <p class="text-xs text-gray-500 mt-2">Transformasi digital untuk UMKM lokal.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm">
+                        <div class="text-3xl md:text-4xl font-black text-emerald-500 mb-1">98%</div>
+                        <div class="text-xs font-bold uppercase tracking-wider text-gray-400">Satisfaction</div>
+                        <p class="text-xs text-gray-500 mt-2">Customer Satisfaction Score (CSAT).</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm">
+                        <div class="text-3xl md:text-4xl font-black text-blue-600 mb-1">2x</div>
+                        <div class="text-xs font-bold uppercase tracking-wider text-gray-400">Efficiency</div>
+                        <p class="text-xs text-gray-500 mt-2">Peningkatan kecepatan delivery tim.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies (Responsive Cards) -->
+    <section id="case-studies" class="py-20 bg-gray-50 border-y border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900">Track Record</h2>
+                <p class="text-gray-500 mt-4 text-lg">Portofolio kepemimpinan dalam inisiatif strategis.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Card 1 -->
+                <div
+                    class="group bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-card transition-all duration-300 border border-gray-100 flex flex-col h-full">
+                    <div class="h-48 bg-gray-800 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-900"></div>
+                        <span
+                            class="relative z-10 font-display font-bold text-2xl text-white tracking-widest">DIGIREKBER</span>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col">
+                        <h3 class="font-bold text-xl text-gray-900 mb-2">Digital Escrow Platform</h3>
+                        <p class="text-gray-600 text-sm mb-6 flex-1">
+                            Memimpin pengembangan produk dari 0 hingga peluncuran. Fokus pada mitigasi risiko penipuan
+                            transaksi online.
+                        </p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fa-solid fa-check text-green-500 mr-3"></i> 5,000+ Transaksi Aman
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fa-solid fa-check text-green-500 mr-3"></i> 90% Fraud Reduction
+                            </div>
+                        </div>
+                        <span
+                            class="inline-block px-3 py-1 bg-gray-100 text-gray-600 text-xs font-semibold rounded uppercase tracking-wide w-fit">Product
+                            Strategy</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div
+                    class="group bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-card transition-all duration-300 border border-gray-100 flex flex-col h-full">
+                    <div class="h-48 bg-amber-100 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-amber-400 to-orange-500"></div>
+                        <span class="relative z-10 font-display font-bold text-2xl text-white tracking-widest">DAPUR
+                            BUAS</span>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col">
+                        <h3 class="font-bold text-xl text-gray-900 mb-2">F&B Operational Efficiency</h3>
+                        <p class="text-gray-600 text-sm mb-6 flex-1">
+                            Restrukturisasi manajemen keuangan dan operasional untuk meningkatkan margin profitabilitas
+                            bisnis kuliner.
+                        </p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fa-solid fa-arrow-trend-up text-blue-500 mr-3"></i> +25% Net Profit
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fa-solid fa-scissors text-blue-500 mr-3"></i> Cost Efficiency
+                            </div>
+                        </div>
+                        <span
+                            class="inline-block px-3 py-1 bg-amber-50 text-amber-700 text-xs font-semibold rounded uppercase tracking-wide w-fit">Financial
+                            Planning</span>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div
+                    class="group bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-card transition-all duration-300 border border-gray-100 flex flex-col h-full">
+                    <div class="h-48 bg-blue-100 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-indigo-600"></div>
+                        <span
+                            class="relative z-10 font-display font-bold text-2xl text-white tracking-widest">PCRPC</span>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col">
+                        <h3 class="font-bold text-xl text-gray-900 mb-2">Community IT Support</h3>
+                        <p class="text-gray-600 text-sm mb-6 flex-1">
+                            Membangun sistem layanan IT terpadu untuk komunitas dan UMKM, meningkatkan standar pelayanan
+                            teknis.
+                        </p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fa-solid fa-bolt text-yellow-500 mr-3"></i> SLA < 24 Jam </div>
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <i class="fa-regular fa-face-smile text-yellow-500 mr-3"></i> 95% Satisfaction
+                                    </div>
+                            </div>
+                            <span
+                                class="inline-block px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold rounded uppercase tracking-wide w-fit">Ops
+                                Management</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+    </section>
+
+    <!-- Strategic Roadmap (Responsive Timeline) -->
+    <section id="roadmap" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900">Metodologi Kerja</h2>
+            <p class="text-gray-500 mt-4 text-lg">Bagaimana saya mengubah masalah menjadi solusi.</p>
+        </div>
+
+        <div class="relative">
+            <!-- Vertical Line (Mobile) / Horizontal Line (Desktop) -->
+            <div
+                class="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-200 md:left-0 md:right-0 md:top-12 md:h-0.5 md:w-full">
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-4 relative">
+
+                <!-- Step 1 -->
+                <div class="relative flex md:block items-start">
+                    <div
+                        class="md:mx-auto w-16 h-16 rounded-full bg-white border-4 border-mgmt-gold flex items-center justify-center z-10 text-xl font-bold text-mgmt-gold shadow-lg shrink-0">
+                        01
+                    </div>
+                    <div class="ml-8 md:ml-0 md:mt-6 md:text-center pt-2 md:pt-0">
+                        <h3 class="font-bold text-lg text-gray-900">Discovery</h3>
+                        <p class="text-sm text-gray-500 mt-2">Audit masalah, riset pasar, dan definisi tujuan bisnis
+                            (KPIs).</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative flex md:block items-start">
+                    <div
+                        class="md:mx-auto w-16 h-16 rounded-full bg-white border-4 border-gray-300 flex items-center justify-center z-10 text-xl font-bold text-gray-400 shadow shrink-0">
+                        02
+                    </div>
+                    <div class="ml-8 md:ml-0 md:mt-6 md:text-center pt-2 md:pt-0">
+                        <h3 class="font-bold text-lg text-gray-900">Strategy</h3>
+                        <p class="text-sm text-gray-500 mt-2">Perancangan roadmap produk, alokasi sumber daya, dan
+                            mitigasi risiko.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative flex md:block items-start">
+                    <div
+                        class="md:mx-auto w-16 h-16 rounded-full bg-white border-4 border-gray-300 flex items-center justify-center z-10 text-xl font-bold text-gray-400 shadow shrink-0">
+                        03
+                    </div>
+                    <div class="ml-8 md:ml-0 md:mt-6 md:text-center pt-2 md:pt-0">
+                        <h3 class="font-bold text-lg text-gray-900">Execution</h3>
+                        <p class="text-sm text-gray-500 mt-2">Implementasi Agile, sprint management, dan quality
+                            assurance.</p>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative flex md:block items-start">
+                    <div
+                        class="md:mx-auto w-16 h-16 rounded-full bg-white border-4 border-green-500 flex items-center justify-center z-10 text-xl font-bold text-green-600 shadow shrink-0">
+                        04
+                    </div>
+                    <div class="ml-8 md:ml-0 md:mt-6 md:text-center pt-2 md:pt-0">
+                        <h3 class="font-bold text-lg text-gray-900">Optimization</h3>
+                        <p class="text-sm text-gray-500 mt-2">Analisis data performa, feedback loop, dan scaling
+                            strategy.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section id="contact" class="py-20 bg-gray-900 text-white text-center px-4">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="font-display text-3xl md:text-5xl font-bold mb-6">Butuh Strategi yang Jelas?</h2>
+            <p class="text-gray-400 text-lg mb-10">
+                Jangan biarkan ide bisnis Anda terhenti di tahap konsep. Mari diskusikan bagaimana kita bisa
+                mengeksekusinya menjadi produk yang profitable.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="contact.html"
+                    class="px-8 py-4 bg-white text-gray-900 font-bold rounded-lg hover:bg-gray-100 transition">
+                    Konsultasi Bisnis
+                </a>
+                <a href="#"
+                    class="px-8 py-4 border border-gray-600 text-white font-medium rounded-lg hover:border-white transition">
+                    Lihat LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-850 text-gray-500 py-8 border-t border-gray-800 text-center text-xs font-mono">
+        <p>© 2025 Farras Arrafi. Management & Strategy Portfolio.</p>
+    </footer>
+
+</body>
+
+</html>

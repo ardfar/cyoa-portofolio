@@ -120,6 +120,8 @@ class PersonaController extends Controller
                 $records = $this->getMgmtRecords();
             }
             $data['records'] = $records;
+            $data['metrics'] = $this->getMgmtMetrics();
+            $data['roadmap'] = $this->getMgmtRoadmap();
         }
 
         return view('personas.'.($key === 'operations' ? 'creative' : $key), $data);
@@ -519,11 +521,74 @@ class PersonaController extends Controller
                 'title' => '04_DEVOPS',
                 'items' => [
                     ['name' => 'Docker', 'level' => 'Int', 'class' => 'text-slate-500'],
-                    ['name' => 'Git', 'level' => 'Expert', 'class' => 'text-tech'],
-                    ['name' => 'Linux', 'level' => 'Int', 'class' => 'text-slate-500'],
-                    ['name' => 'CI/CD', 'level' => 'Basic', 'class' => 'text-slate-500'],
+                    ['name' => 'AWS', 'level' => 'Basic', 'class' => 'text-slate-500'],
+                    ['name' => 'CI/CD', 'level' => 'Int', 'class' => 'text-tech'],
                 ]
             ]
+        ];
+    }
+
+    private function getMgmtMetrics(): array
+    {
+        return [
+            [
+                'value' => '25%',
+                'label' => 'Cost Reduction',
+                'desc' => 'Melalui efisiensi operasional di Dapur BuAs.',
+                'color' => 'text-mgmt-gold',
+            ],
+            [
+                'value' => '10+',
+                'label' => 'SME Helped',
+                'desc' => 'Transformasi digital untuk UMKM lokal.',
+                'color' => 'text-gray-900',
+            ],
+            [
+                'value' => '98%',
+                'label' => 'Satisfaction',
+                'desc' => 'Customer Satisfaction Score (CSAT).',
+                'color' => 'text-emerald-500',
+            ],
+            [
+                'value' => '2x',
+                'label' => 'Efficiency',
+                'desc' => 'Peningkatan kecepatan delivery tim.',
+                'color' => 'text-blue-600',
+            ],
+        ];
+    }
+
+    private function getMgmtRoadmap(): array
+    {
+        return [
+            [
+                'step' => '01',
+                'title' => 'Discovery',
+                'desc' => 'Audit masalah, riset pasar, dan definisi tujuan bisnis (KPIs).',
+                'border' => 'border-mgmt-gold',
+                'text' => 'text-mgmt-gold',
+            ],
+            [
+                'step' => '02',
+                'title' => 'Strategy',
+                'desc' => 'Perancangan roadmap produk, alokasi sumber daya, dan mitigasi risiko.',
+                'border' => 'border-gray-300',
+                'text' => 'text-gray-400',
+            ],
+            [
+                'step' => '03',
+                'title' => 'Execution',
+                'desc' => 'Implementasi Agile, sprint management, dan quality assurance.',
+                'border' => 'border-gray-300',
+                'text' => 'text-gray-400',
+            ],
+            [
+                'step' => '04',
+                'title' => 'Optimization',
+                'desc' => 'Analisis data performa, feedback loop, dan scaling strategy.',
+                'border' => 'border-green-500',
+                'text' => 'text-green-600',
+            ],
         ];
     }
 }
