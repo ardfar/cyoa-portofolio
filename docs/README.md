@@ -12,7 +12,7 @@
 | [`srs/`](./srs/index.md) | Software Requirements Specification — goals, scope, functional & non-functional requirements |
 | [`architecture/`](./architecture/system-overview.md) | Technical system design — URL map, app structure, database schema, future features |
 | [`design/`](./design/design-system.md) | UI/UX design system — tokens, per-persona identity, component specs |
-| [`standards/`](./standards/seo.md) | Project standards — SEO, coding conventions, constraints & assumptions |
+| [`standards/`](./standards/seo.md) | Project standards — SEO, AI guidelines, coding conventions, constraints & assumptions |
 | [`testing/`](./testing/testing-strategy.md) | QA & testing — test plan, Pest test cases, deployment checklist |
 
 ---

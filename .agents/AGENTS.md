@@ -12,5 +12,6 @@ Start by reading the master index at:
 2. **Never guess the design system.** Always refer to `docs/design/` for Tailwind tokens, typography, and component layouts before editing Blade views.
 3. **Always check the Roadmap.** Before starting a new feature, verify its current phase in `docs/testing/roadmap.md`.
 4. **Adhere to Constraints.** Read `docs/standards/constraints.md` to ensure you do not introduce prohibited technologies (e.g., no queue workers, no background jobs, no Redis).
+5. **Follow AI Guidelines.** Read `docs/standards/ai-guidelines.md` for mandatory coding styles, linters, and critical action limitations (e.g. no deletion or prod access without review).
 
 **By following these rules, you will maintain the integrity, design, and architecture of the CYOA Portfolio as defined in the SRS.**
