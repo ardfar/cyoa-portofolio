@@ -5,6 +5,12 @@
 
 ---
 
+> **Note on Schema Architecture:** 
+> This document defines the **Unified Schema** for the CYOA Portfolio. 
+> Older fragmented migrations (e.g., `tech_projects_table`, `mgmt_records_table`) are deprecated and should be replaced by the unified tables defined below. Personas are handled via ENUMs or JSON arrays to maintain a single Admin CRUD interface.
+
+---
+
 ## Entity Relationship Overview
 
 ```
