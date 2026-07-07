@@ -26,3 +26,4 @@ To maintain security and project integrity, the following rules apply strictly t
   - Accessing, modifying, or configuring production environments, production databases, or deployment scripts.
 - **No Guessing:** If a requirement or architectural choice is ambiguous, stop and ask the user for clarification rather than making an assumption.
 - **Constraints Awareness:** Ensure no prohibited technologies (e.g., queue workers, background jobs, or Redis) are introduced, as dictated by `docs/standards/constraints.md`.
+- **Post-Feature Testing:** Immediately after creating or updating a feature, you MUST execute the steps defined in the corresponding Test Plan (located in `docs/testing/`) to verify functionality, SEO, and UAT before considering the task complete.
