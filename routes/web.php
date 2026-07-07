@@ -1,56 +1,24 @@
 <?php
 
-use App\Http\Controllers\CmsController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\PersonaController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AuthController;
 
-// Gateway page - main entry point (no cache)
-Route::get('/', [PersonaController::class, 'index'])
-    ->name('home');
+// Public routes placeholder
+Route::get('/', function () {
+    return view('welcome');
+});
 
-// Persona content endpoint for AJAX requests (no cache)
-Route::get('/persona/{persona}', [PersonaController::class, 'content'])
-    ->name('persona.content');
-
-// Resume/Overview page (no cache)
-Route::get('/resume', [PersonaController::class, 'resume'])
-    ->name('resume');
-
-// Full photography gallery (by theme) under creative persona
-Route::get('/persona/creative/gallery', [PersonaController::class, 'gallery'])
-    ->name('persona.creative.gallery');
-
-// Dedicated portfolio page for Kopinaren
-Route::get('/portfolio/kopinaren', function () {
-    return view('portfolio.kopinaren');
-})->name('portfolio.kopinaren');
-
-// Dedicated portfolio page for Bakso Boss 88
-Route::get('/portfolio/bakso-boss', function () {
-    return view('portfolio.bakso-boss');
-})->name('portfolio.bakso-boss');
-
-// Dedicated portfolio page for Media Info Kreasindo (MIK)
-Route::get('/portfolio/mik', function () {
-    return view('portfolio.mik');
-})->name('portfolio.mik');
-
-// Additional static pages (no cache)
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
-
-Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
-Route::post('/contact', [ContactController::class, 'send']);
-
-// CMS Routes (Basic functionality without authentication for simplicity)
-Route::prefix('cms')->group(function () {
-    Route::get('/', [CmsController::class, 'dashboard'])->name('cms.dashboard');
-    Route::post('/update-site', [CmsController::class, 'updateSiteSettings'])->name('cms.update-site');
-    Route::post('/update-persona/{persona}', [CmsController::class, 'updatePersonaSettings'])->name('cms.update-persona');
-    Route::post('/add-project/{persona}', [CmsController::class, 'addProject'])->name('cms.add-project');
-    Route::post('/update-project/{persona}/{index}', [CmsController::class, 'updateProject'])->name('cms.update-project');
-    Route::post('/remove-project/{persona}/{index}', [CmsController::class, 'removeProject'])->name('cms.remove-project');
-    Route::post('/clear-cache', [CmsController::class, 'clearCache'])->name('cms.clear-cache');
+// Admin Auth Routes
+Route::prefix('admin')->group(function () {
+    Route::get('/login', [AuthController::class, 'showLogin'])->name('admin.login');
+    Route::post('/login', [AuthController::class, 'authenticate'])->middleware('throttle:5,1');
+    
+    Route::middleware('auth:admin')->group(function () {
+        Route::post('/logout', [AuthController::class, 'logout'])->name('admin.logout');
+        
+        // Admin Dashboard (Phase 2)
+        Route::get('/', function () {
+            return "Admin Dashboard"; // Placeholder for Admin\DashboardController@index
+        })->name('admin.dashboard');
+    });
 });

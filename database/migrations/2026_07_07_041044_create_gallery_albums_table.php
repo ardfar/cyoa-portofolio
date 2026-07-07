@@ -6,19 +6,25 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
-        Schema::create('mgmt_records', function (Blueprint $table) {
+        Schema::create('gallery_albums', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('description')->nullable();
-            $table->json('tags')->nullable();
+            $table->string('slug')->unique();
+            $table->unsignedBigInteger('cover_photo_id')->nullable();
             $table->timestamps();
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('mgmt_records');
+        Schema::dropIfExists('gallery_albums');
     }
 };
